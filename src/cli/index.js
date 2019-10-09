@@ -10,7 +10,7 @@ const flags = require('./flags')
 const options = { flags }
 const cli = meow(helpText, options)
 
-if (!cli.input[0])
+if(!cli.input.length)
     return cli.showHelp(1)
 
 scanFromFile(cli.input[0], cli.flags)
