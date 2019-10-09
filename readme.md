@@ -30,3 +30,5 @@ $ qrscanner ./qrCode.jpg
 $ qrscanner ./qrCode.jpg --clear
 This message is written in a QR Code
 ```
+
+![qrCode Image](./qrCode.gif)
