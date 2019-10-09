@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "bin": {
-    "qrscanner": "./index.js"
+    "qrscanner": "./src/cli/index.js"
   },
   "scripts": {
-    "start": "node ./index.js",
+    "start": "node ./src/cli/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "pkg . -t node10-linux-x64,node10-macos-x64,node10-win-x64 --out-path ./bin"
   },
