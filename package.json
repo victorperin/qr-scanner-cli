@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "node ./src/cli/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "build": "pkg . -t node10-linux-x64,node10-macos-x64,node10-win-x64 --out-path ./bin"
   },
   "keywords": [],
@@ -28,6 +28,8 @@
     "eslint-config-prettier": "^6.4.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-prettier": "^3.1.1",
+    "execa": "^2.0.5",
+    "jest": "^24.9.0",
     "pkg": "^4.4.0",
     "prettier": "^1.18.2"
   }

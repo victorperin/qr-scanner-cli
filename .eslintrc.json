@@ -2,7 +2,8 @@
   "env": {
     "commonjs": true,
     "es6": true,
-    "node": true
+    "node": true,
+    "jest": true
   },
   "extends": ["airbnb-base", "prettier"],
   "plugins": ["prettier"],
@@ -15,6 +16,8 @@
   },
   "rules": {
     "prettier/prettier": ["error"],
-    "no-console": "off"
+    "no-console": "off",
+    "comma-dangle": ["error", "always-multiline"],
+    "import/prefer-default-export": "off"
   }
 }
