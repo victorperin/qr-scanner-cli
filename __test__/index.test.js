@@ -8,7 +8,7 @@ const ERROR = {
 
 test('Should read successfully the URL from QR-Code', async () => {
   const img = '__test__/fixture/sample.jpg'
-  const { stdout } = await execa('node', ['index.js', img])
+  const { stdout } = await execa('node', ['src/cli/index.js', img])
 
   const result = stdout
   const expected = 'https://github.com/victorperin/qr-scanner-cli'
@@ -17,7 +17,7 @@ test('Should read successfully the URL from QR-Code', async () => {
 
 test('Should handle missing parameter <file>', async () => {
   try {
-    await execa('node', ['index.js'])
+    await execa('node', ['src/cli/index.js'])
   } catch (err) {
     const { failed, stderr } = err
 
@@ -31,7 +31,7 @@ test('Should handle missing parameter <file>', async () => {
 test('Should handle file not found', async () => {
   const img = '404-notfound.jpg'
   try {
-    await execa('node', ['index.js', img])
+    await execa('node', ['src/cli/index.js', img])
   } catch (err) {
     const { failed, stderr } = err
 
@@ -44,7 +44,7 @@ test('Should handle file not found', async () => {
 
 test('Should handle invalid file (no QR-Code)', async () => {
   try {
-    await execa('node', ['index.js', '__test__/fixture/invalid.jpg'])
+    await execa('node', ['src/cli/index.js', '__test__/fixture/invalid.jpg'])
   } catch (err) {
     const { failed, stderr } = err
 
