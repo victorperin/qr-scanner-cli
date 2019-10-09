@@ -20,8 +20,5 @@
   },
   "devDependencies": {
     "pkg": "^4.4.0"
-  },
-  "engines": {
-    "node": "10"
   }
 }
