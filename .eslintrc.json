@@ -15,7 +15,6 @@
   },
   "rules": {
     "prettier/prettier": ["error"],
-    "no-console": "off",
-    "comma-dangle": ["error", "always"]
+    "no-console": "off"
   }
 }
