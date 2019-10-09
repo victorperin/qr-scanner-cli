@@ -1,13 +1,15 @@
 {
   "name": "qr-scanner-cli",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "",
   "main": "index.js",
   "bin": {
     "qrscanner": "./index.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "pkg . -t node10-linux-x64,node10-macos-x64,node10-win-x64 --out-path ./bin"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +21,7 @@
   "devDependencies": {
     "eslint": "^6.5.1",
     "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-plugin-import": "^2.18.2"
+    "eslint-plugin-import": "^2.18.2",
+    "pkg": "^4.4.0"
   }
 }
