@@ -1,12 +1,11 @@
 name: Node.js Package
 
 on:
-  pull_request:
-    branches:
-      - master
   push:
     branches:
       - master
+    tags:
+     - v*
 
 jobs:
   build:
@@ -23,6 +22,8 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - name: tag
+      if: contains(github.ref, 'tags')
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
@@ -36,6 +37,8 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - name: tag
+        if: contains(github.ref, 'tags')
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
