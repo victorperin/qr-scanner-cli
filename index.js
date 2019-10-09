@@ -1,10 +1,9 @@
 #! /usr/bin/env node
-const Jimp = require('jimp')
+
 const chalk = require('chalk')
-const boxen = require('boxen')
-const fs = require('fs')
 const meow = require('meow')
-const QrCode = require('qrcode-reader')
+
+const qrScanner = require('./qrscanner')
 
 const cli = meow(
   `
@@ -37,40 +36,4 @@ const cli = meow(
   },
 )
 
-function qrScannerCli(inputFile, { clear }) {
-  if (!inputFile) {
-    cli.showHelp(1)
-  }
-
-  const buffer = fs.readFileSync(inputFile)
-  Jimp.read(buffer, (err, image) => {
-    if (err) {
-      console.error(err)
-      // TODO handle error
-    }
-    const qr = new QrCode()
-    qr.callback = (callbackError, value) => {
-      if (callbackError) {
-        console.error(callbackError)
-        // TODO handle error
-      }
-      const scanResult = value.result
-
-      if (clear) {
-        console.log(scanResult)
-        return
-      }
-
-      console.log(
-        boxen(scanResult, {
-          padding: 1,
-          borderStyle: 'double',
-          borderColor: 'green',
-        }),
-      )
-    }
-    qr.decode(image.bitmap)
-  })
-}
-
-qrScannerCli(cli.input[0], cli.flags)
+qrScanner(cli)
