@@ -19,6 +19,9 @@
     "qrcode-reader": "^1.0.4"
   },
   "devDependencies": {
+    "eslint": "^6.5.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
     "pkg": "^4.4.0"
   }
 }
