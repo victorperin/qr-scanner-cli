@@ -11,11 +11,16 @@ before_deploy:
     - npm run build
 
 deploy:
-    provider: releases
-    api_key:
-        - secure: "TO BE DEFINED"
-    file_glob: true
-    file: "bin/qr-scanner-cli-*"
-    skip_cleanup: true
-    on:
-        tags: true
+    - provider: releases
+      api_key:
+          - secure: "TO BE DEFINED"
+      file_glob: true
+      file: "bin/qr-scanner-cli-*"
+      skip_cleanup: true
+      on:
+          tags: true
+    - provider: npm
+      email: "YOUR_EMAIL_ADDRESS"
+      api_key: "YOUR_AUTH_TOKEN"
+      on:
+          tags: true
