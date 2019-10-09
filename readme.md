@@ -1,6 +1,11 @@
 # QR Scanner CLI
 QR Scanner CLI is a project that can resolve any QR code from an image on your desktop.
 
+## Installation 
+Installation is done using the npm install command:
+```
+npm i -g qr-scanner-cli
+```
 ## Usage
 ```
 $ qrscanner <input file>
