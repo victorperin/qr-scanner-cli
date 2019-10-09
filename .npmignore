@@ -4,3 +4,5 @@ bin
 .editorconfig
 .eslintrc.json
 .prettierrc
+__test__
+*.test.js
