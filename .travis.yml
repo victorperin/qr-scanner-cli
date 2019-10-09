@@ -1,0 +1,21 @@
+language: node_js
+node_js:
+  - stable
+
+script:
+    - npm install
+    # - npm run lint
+    # - npm run test
+
+before_deploy:
+    - npm run build
+
+deploy:
+    provider: releases
+    api_key:
+        - secure: "TO BE DEFINED"
+    file_glob: true
+    file: "bin/qr-scanner-cli-*"
+    skip_cleanup: true
+    on:
+        tags: true
