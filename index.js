@@ -1,12 +1,13 @@
 #! /usr/bin/env node
-const Jimp = require('jimp');
-const chalk = require('chalk');
-const boxen = require('boxen');
-const fs = require('fs');
-const meow = require('meow');
-const QrCode = require('qrcode-reader');
+const Jimp = require('jimp')
+const chalk = require('chalk')
+const boxen = require('boxen')
+const fs = require('fs')
+const meow = require('meow')
+const QrCode = require('qrcode-reader')
 
-const cli = meow(`
+const cli = meow(
+  `
     Usage
       $ qrscanner <input file>
 
@@ -25,48 +26,51 @@ const cli = meow(`
 
       $ qrscanner ./qrCode.jpg --clear
       This message is written in a QR Code
-`, {
-  flags: {
-    clear: {
-      type: 'boolean',
-      alias: 'c',
+`,
+  {
+    flags: {
+      clear: {
+        type: 'boolean',
+        alias: 'c',
+      },
     },
   },
-});
+)
 
 function qrScannerCli(inputFile, { clear }) {
   if (!inputFile) {
-    cli.showHelp(1);
+    cli.showHelp(1)
   }
 
-  const buffer = fs.readFileSync(inputFile);
+  const buffer = fs.readFileSync(inputFile)
   Jimp.read(buffer, (err, image) => {
     if (err) {
-      console.error(err);
-    // TODO handle error
+      console.error(err)
+      // TODO handle error
     }
-    const qr = new QrCode();
+    const qr = new QrCode()
     qr.callback = (callbackError, value) => {
       if (callbackError) {
-        console.error(callbackError);
-      // TODO handle error
+        console.error(callbackError)
+        // TODO handle error
       }
-      const scanResult = value.result;
+      const scanResult = value.result
 
       if (clear) {
-        console.log(scanResult);
-        return;
+        console.log(scanResult)
+        return
       }
 
-      console.log(boxen(scanResult, {
-        padding: 1,
-        borderStyle: 'double',
-        borderColor: 'green',
-      }));
-    };
-    qr.decode(image.bitmap);
-  });
+      console.log(
+        boxen(scanResult, {
+          padding: 1,
+          borderStyle: 'double',
+          borderColor: 'green',
+        }),
+      )
+    }
+    qr.decode(image.bitmap)
+  })
 }
 
-
-qrScannerCli(cli.input[0], cli.flags);
+qrScannerCli(cli.input[0], cli.flags)
