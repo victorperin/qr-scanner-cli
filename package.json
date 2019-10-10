@@ -8,6 +8,7 @@
   },
   "scripts": {
     "start": "node ./src/cli/index.js",
+    "pretest": "eslint .",
     "test": "jest",
     "build": "pkg . -t node10-linux-x64,node10-macos-x64,node10-win-x64 --out-path ./bin"
   },
