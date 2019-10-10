@@ -7,7 +7,7 @@ const ERROR = {
 }
 
 test('Should read successfully the URL from QR-Code', async () => {
-  const img = '__test__/fixture/sample.jpg'
+  const img = 'tests/fixture/sample.jpg'
   const { stdout } = await execa('node', ['src/cli/index.js', img])
 
   const result = stdout
