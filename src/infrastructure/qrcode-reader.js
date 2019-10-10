@@ -7,7 +7,7 @@ const readQR = imageBitmap =>
     qr.callback = (error, value) => {
       if (error) return reject(error)
 
-      resolve(value.result)
+      return resolve(value.result)
     }
 
     qr.decode(imageBitmap)
