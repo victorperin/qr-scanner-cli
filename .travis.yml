@@ -1,17 +1,19 @@
 language: node_js
+addons:
+  apt:
+    packages:
+    - xsel
+    - xvfb
 node_js:
   - '12'
   - '10'
-
-before_install:
-  - sudo apt-get install -y xsel
 
 install:
   - npm ci
   - npm run build
 
 script:
-  - npm test
+  - xvfb-run npm test
 
 deploy:
   provider: npm
