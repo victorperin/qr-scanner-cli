@@ -1,5 +1,7 @@
 # QR Scanner CLI
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/victorperin/qr-scanner-cli.svg)](https://greenkeeper.io/)
+
 QR Scanner CLI is a project that can resolve any QR code from an image on your desktop.
 
 ## Installation
