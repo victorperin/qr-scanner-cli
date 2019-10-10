@@ -5,19 +5,14 @@ const { readFile } = require('./infrastructure/fs')
 const { greenBox } = require('./infrastructure/boxen')
 const readQR = require('./infrastructure/qrcode-reader')
 
-const logWithGreenBox = text => console.log(greenBox(text))
-
 const extractBitmap = ({ bitmap }) => bitmap
 
-const doFlagClear = (text, flags) => {
-  if (flags.clear) {
-    console.log(text)
-  }
-  else {
-    logWithGreenBox(text)
-  }
+const outputText = (text, flags) => {
+  const output = flags.clear
+    ? text
+    : greenBox(text)
 
-  return text
+  console.log(output)
 }
 
 const doFlagClipboard = (text, flags) => {
@@ -34,8 +29,8 @@ const scanFromFile = (filePath, flags) =>
     .then(Jimp.read)
     .then(extractBitmap)
     .then(readQR)
-    .then(t => doFlagClear(t, flags))
     .then(t => doFlagClipboard(t, flags))
+    .then(t => outputText(t, flags))
     .catch(console.error)
 
 module.exports = scanFromFile
