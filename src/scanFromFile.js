@@ -8,9 +8,7 @@ const readQR = require('./infrastructure/qrcode-reader')
 const extractBitmap = ({ bitmap }) => bitmap
 
 const outputText = (text, flags) => {
-  const output = flags.clear
-    ? text
-    : greenBox(text)
+  const output = flags.clear ? text : greenBox(text)
 
   console.log(output)
 }
