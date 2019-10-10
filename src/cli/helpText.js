@@ -1,5 +1,5 @@
-const { greenBox } = require('../infrastructure/boxen')
 const { stripIndent } = require('common-tags')
+const { greenBox } = require('../infrastructure/boxen')
 
 const helpText = stripIndent`
   Usage
