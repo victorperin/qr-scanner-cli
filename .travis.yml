@@ -18,3 +18,4 @@ deploy:
     tags: true
     repo: victorperin/qr-scanner-cli
     branch: master
+    node: '12'
