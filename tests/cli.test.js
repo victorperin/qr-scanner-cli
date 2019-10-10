@@ -1,4 +1,5 @@
 const execa = require('execa')
+const clipboardy = require('clipboardy')
 
 const ERROR = {
   MISSING_PARAMS_FILE: '[WARNING] Missing argument file: node index.js <file>!',
@@ -13,6 +14,17 @@ test('Should read successfully the URL from QR-Code', async () => {
   const result = stdout
   const expected = 'https://github.com/victorperin/qr-scanner-cli'
   expect(result).toEqual(expect.stringContaining(expected))
+})
+
+test('Should output text to clipboard if -p is specified', async () => {
+  const img = 'tests/fixture/sample.jpg'
+  const { stdout } = await execa('node', ['src/cli/index.js', img, '-p'])
+
+  const result = clipboardy.readSync()
+  const expected = 'https://github.com/victorperin/qr-scanner-cli'
+
+  expect(stdout).toEqual(expect.stringContaining(expected))
+  expect(result).toEqual(expected)
 })
 
 test('Should handle missing parameter <file>', async () => {
