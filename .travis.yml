@@ -1,0 +1,20 @@
+language: node_js
+node_js:
+  - '12'
+  - '10'
+
+install:
+  - npm ci
+  - npm run build
+
+script:
+  - npm test
+
+deploy:
+  provider: npm
+  email: me@victorperin.ninja
+  api_key: $NPM_TOKEN
+  on:
+    tags: true
+    repo: victorperin/qr-scanner-cli
+    branch: master
