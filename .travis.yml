@@ -3,6 +3,9 @@ node_js:
   - '12'
   - '10'
 
+before_install:
+  - sudo apt-get install -y xsel
+
 install:
   - npm ci
   - npm run build
