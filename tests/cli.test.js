@@ -7,6 +7,8 @@ const ERROR = {
   PATTERN_NOT_FOUND: '[WARNING] No pattern could be found! Is there a QR-Code?',
 }
 
+beforeEach(() => clipboardy.writeSync(''))
+
 test('Should read successfully the URL from QR-Code', async () => {
   const img = 'tests/fixture/sample.jpg'
   const { stdout } = await execa('node', ['src/cli/index.js', img])
