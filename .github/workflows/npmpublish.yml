@@ -22,9 +22,9 @@ jobs:
   publish-npm:
     needs: build
     runs-on: ubuntu-latest
+    if: contains(github.ref, 'tags')
     steps:
       - name: tag
-        if: contains(github.ref, 'tags')
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
@@ -37,9 +37,9 @@ jobs:
   publish-gpr:
     needs: build
     runs-on: ubuntu-latest
+    if: contains(github.ref, 'tags')
     steps:
       - name: tag
-        if: contains(github.ref, 'tags')
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
