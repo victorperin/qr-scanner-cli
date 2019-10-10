@@ -6,8 +6,7 @@ const GREEN_BOX_CONFIG = {
   borderColor: 'green',
 }
 
-const greenBox = (text, { margin=0 }={} ) =>
-  boxen(text, { ...GREEN_BOX_CONFIG, margin })
+const greenBox = (text, { margin = 0 } = {}) => boxen(text, { ...GREEN_BOX_CONFIG, margin })
 
 module.exports = {
   greenBox,
