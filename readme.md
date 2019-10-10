@@ -16,7 +16,7 @@ npm i -g qr-scanner-cli
 $ qrscanner <input file>
 ```
 
-![Demo Gif](./demo.gif)
+![New Demo Gif](./demo.gif)
 
 ## Options
 
