@@ -26,6 +26,7 @@ $ qrscanner <input file>
 ```
 - --clean  -c  Clear output, just print the QR Code scan result
 - --version Show installed version
+- --clipboard, -p  copy the qr code value to your clipboard
 - --help Show this help
 ```
 

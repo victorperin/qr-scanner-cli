@@ -7,6 +7,7 @@ const helpText = stripIndent`
 
   Options
     --clean, -c  Clear output, just print the QR Code scan result
+    --clipboard, -p  copy the qr code value to your clipboard
     --version Show installed version
     --help Show this help
 
