@@ -17,11 +17,6 @@ script:
 
 jobs:
   include:
-    - stage: release
-      node_js: lts/*
-      # branch: master #testing before release
-      deploy:
-        provider: script
-        skip_cleanup: true
-        script:
-          - npx semantic-release
+    - stage: deploy
+      # if: branch = master
+      script: npx travis-deploy-once "npm run semantic-release"
