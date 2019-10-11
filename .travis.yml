@@ -17,6 +17,6 @@ script:
 
 jobs:
   include:
-    if: branch = master
     - stage: deploy
+      if: (NOT type IN (pull_request)) AND (branch = master)
       script: npm run semantic-release
