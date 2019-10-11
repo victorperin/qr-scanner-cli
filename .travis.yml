@@ -15,12 +15,13 @@ install:
 script:
   - xvfb-run npm test
 
-deploy:
-  provider: npm
-  email: me@victorperin.ninja
-  api_key: $NPM_TOKEN
-  on:
-    tags: true
-    repo: victorperin/qr-scanner-cli
-    branch: master
-    node: '12'
+jobs:
+  include:
+    - stage: release
+      node_js: lts/*
+      # branch: master #testing before release
+      deploy:
+        provider: script
+        skip_cleanup: true
+        script:
+          - npx semantic-release

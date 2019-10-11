@@ -1,6 +1,6 @@
 {
   "name": "qr-scanner-cli",
-  "version": "0.2.2",
+  "version": "0.2.2-development",
   "description": "",
   "main": "index.js",
   "bin": {
@@ -36,5 +36,9 @@
     "pkg": "^4.4.0",
     "prettier": "^1.18.2",
     "semantic-release": "^15.13.24"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/victorperin/qr-scanner-cli.git"
   }
 }
