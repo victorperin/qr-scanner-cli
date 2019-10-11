@@ -1,6 +1,6 @@
 {
   "name": "qr-scanner-cli",
-  "version": "0.2.2",
+  "version": "0.2.2-development",
   "description": "",
   "main": "index.js",
   "bin": {
@@ -11,6 +11,7 @@
     "test": "jest",
     "pretest": "eslint .",
     "build": "pkg . -t node10-linux-x64,node10-macos-x64,node10-win-x64 --out-path ./bin",
+    "semantic-release": "semantic-release",
     "coverage": "http-server coverage/lcov-report/"
   },
   "keywords": [],
@@ -35,6 +36,11 @@
     "http-server": "^0.11.1",
     "jest": "^24.9.0",
     "pkg": "^4.4.0",
-    "prettier": "^1.18.2"
+    "prettier": "^1.18.2",
+    "semantic-release": "^15.13.24"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/victorperin/qr-scanner-cli.git"
   }
 }
