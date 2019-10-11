@@ -18,5 +18,5 @@ script:
 jobs:
   include:
     - stage: deploy
-      # if: branch = master
+      if: branch = master
       script: npm run semantic-release
