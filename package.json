@@ -9,6 +9,7 @@
   "scripts": {
     "start": "node ./src/cli/index.js",
     "test": "jest",
+    "test:coverage": "jest --coverage && cat ./coverage/lcov.info | coveralls",
     "pretest": "eslint .",
     "build": "pkg . -t node10-linux-x64,node10-macos-x64,node10-win-x64 --out-path ./bin",
     "semantic-release": "semantic-release",
@@ -27,6 +28,7 @@
     "qrcode-reader": "^1.0.4"
   },
   "devDependencies": {
+    "coveralls": "^3.0.7",
     "eslint": "^6.5.1",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-config-prettier": "^6.4.0",
