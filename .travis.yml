@@ -15,7 +15,6 @@ install:
 script:
   - xvfb-run npm test
 
-# this only runs on master branch
 jobs:
   include:
     if: branch = master
