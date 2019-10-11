@@ -15,8 +15,9 @@ install:
 script:
   - xvfb-run npm test
 
+# this only runs on master branch
 jobs:
   include:
+    if: branch = master
     - stage: deploy
-      if: branch = master
       script: npm run semantic-release
