@@ -1,5 +1,6 @@
 # QR Scanner CLI
 
+[![Build Status](https://travis-ci.com/victorperin/qr-scanner-cli.svg?branch=master)](https://travis-ci.com/victorperin/qr-scanner-cli)
 [![Greenkeeper badge](https://badges.greenkeeper.io/victorperin/qr-scanner-cli.svg)](https://greenkeeper.io/)
 
 QR Scanner CLI is a project that can resolve any QR code from an image on your desktop.
