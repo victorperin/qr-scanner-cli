@@ -6,3 +6,6 @@ bin
 .prettierrc
 tests/
 *.test.js
+.travis.yml
+demo.gif
+jest.config.js
