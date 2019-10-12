@@ -1,5 +1,5 @@
-const execa = require('execa')
-const clipboardy = require('clipboardy')
+const execute = require('../src/cli/execute')
+const { greenBox } = require('../src/infrastructure/boxen')
 
 const ERROR = {
   MISSING_PARAMS_FILE: '[WARNING] Missing argument file: node index.js <file>!',
@@ -7,37 +7,63 @@ const ERROR = {
   PATTERN_NOT_FOUND: '[WARNING] No pattern could be found! Is there a QR-Code?',
 }
 
-beforeEach(() => clipboardy.writeSync(''))
+let consoleOutput = []
+let consoleError = []
+let consoleWarn = []
+const originalLog = console.log
+const originalError = console.error
+const originalWarn = console.warn
+const mockedLog = output => consoleOutput.push(output)
+const mockedError = err => consoleError.push(err)
+const mockedWarn = warning => consoleWarn.push(warning)
+
+beforeEach(() => {
+  console.log = mockedLog
+  console.error = mockedError
+  console.warn = mockedWarn
+})
+afterEach(() => {
+  console.log = originalLog
+  console.error = originalError
+  console.warn = originalWarn
+  consoleOutput = []
+  consoleError = []
+  consoleWarn = []
+})
 
 test('Should read successfully the URL from QR-Code', async () => {
-  const img = 'tests/fixture/sample.jpg'
-  const { stdout } = await execa('node', ['src/cli/index.js', img])
+  await execute({
+    input: ['tests/fixture/sample.jpg'],
+    flags: { clear: false, c: false, clipboard: false, p: false },
+  })
 
-  const result = stdout
+  const result = consoleOutput.join('\n')
   const expected = 'https://github.com/victorperin/qr-scanner-cli'
   expect(result).toEqual(expect.stringContaining(expected))
 })
 
 test('Should output text to clipboard if -p is specified', async () => {
-  const img = 'tests/fixture/sample.jpg'
-  const { stdout } = await execa('node', ['src/cli/index.js', img, '-p'])
+  await execute({
+    input: ['tests/fixture/sample.jpg'],
+    flags: { clear: false, c: false, clipboard: true, p: true },
+  })
 
-  const result = clipboardy.readSync()
-  const expected = 'https://github.com/victorperin/qr-scanner-cli'
+  const result = consoleOutput.join('\n')
+  const expected = greenBox('https://github.com/victorperin/qr-scanner-cli')
 
-  expect(stdout).toEqual(expect.stringContaining(expected))
   expect(result).toEqual(expected)
 })
 
 test('Should handle missing parameter <file>', async () => {
   try {
-    await execa('node', ['src/cli/index.js'])
+    await execute({
+      input: [],
+      flags: { clear: false, c: false, clipboard: false, p: false },
+    })
   } catch (err) {
-    const { failed, stderr } = err
+    const result = consoleWarn.join('\n')
 
-    const result = stderr
     const expected = ERROR.MISSING_PARAMS_FILE
-    expect(failed).toBeTruthy()
     expect(result).toEqual(expect.stringContaining(expected))
   }
 })
@@ -45,26 +71,28 @@ test('Should handle missing parameter <file>', async () => {
 test('Should handle file not found', async () => {
   const img = '404-notfound.jpg'
   try {
-    await execa('node', ['src/cli/index.js', img])
+    await execute({
+      input: [img],
+      flags: { clear: false, c: false, clipboard: false, p: false },
+    })
   } catch (err) {
-    const { failed, stderr } = err
+    const result = consoleError.join('')
 
-    const result = stderr
     const expected = ERROR.FILE_NOT_FOUND(img)
-    expect(failed).toBeTruthy()
     expect(result).toEqual(expect.stringContaining(expected))
   }
 })
 
 test('Should handle invalid file (no QR-Code)', async () => {
   try {
-    await execa('node', ['src/cli/index.js', '__test__/fixture/invalid.jpg'])
+    await execute({
+      input: ['tests/fixture/invalid.jpg'],
+      flags: { clear: false, c: false, clipboard: false, p: false },
+    })
   } catch (err) {
-    const { failed, stderr } = err
+    const result = consoleError.join('')
 
-    const result = stderr
     const expected = ERROR.PATTERN_NOT_FOUND
-    expect(failed).toBeTruthy()
     expect(result).toEqual(expect.stringContaining(expected))
   }
 })
