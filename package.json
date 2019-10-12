@@ -10,7 +10,7 @@
     "start": "node ./src/cli/index.js",
     "test": "jest",
     "pretest": "eslint .",
-    "test:diff": "jest --no-cache --findRelatedTests --passWithNoTests --collectCoverage false",
+    "test:diff": "jest --no-cache --passWithNoTests --collectCoverage=false --findRelatedTests",
     "build": "pkg . -t node10-linux-x64,node10-macos-x64,node10-win-x64 --out-path ./bin",
     "semantic-release": "semantic-release",
     "coverage": "http-server coverage/lcov-report/"
