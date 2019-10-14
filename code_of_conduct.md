@@ -7,10 +7,12 @@ We are committed to providing a welcoming and inspiring community and expect tha
 
 
 Our Scope
+
 This code of conduct applies both within the project spaces and whenever one is contributing to some other open-sourced project.
 When representing our community use an official project e-mail address , valid social media account and most importantly polite behaviour.
 
 Our Standards
+
 We believe in creating a positive enviornment and it includes:
 
 - Use of a polite and professional language
