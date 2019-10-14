@@ -1,4 +1,4 @@
-CODE OF CONDUCT 
+                                                       CODE OF CONDUCT
 
 This code of conduct outlines our expectations for participants within the QR-Scanner community. Anyone who violates the same will be banned from the community.
 As the project is open-sourced it is our responsibility to take a pledge that we would follow some protocols and are confined with the same.
