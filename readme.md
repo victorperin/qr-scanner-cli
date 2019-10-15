@@ -41,6 +41,6 @@ $ qrscanner ./qrCode.jpg
 ║                                          ║
 ╚══════════════════════════════════════════╝
 
-$ qrscanner ./qrCode.jpg --clear
+$ qrscanner ./qrCode.jpg --clean
 This message is written in a QR Code
 ```
