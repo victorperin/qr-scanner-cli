@@ -27,3 +27,13 @@ test('should pass on happy path', async () => {
   expect(boxen.greenBox).toBeCalledWith('FAKE QR CONTENT')
   expect(console.log).toBeCalledWith('FAKE BOX')
 })
+
+test('should console.error if readFile fails', async () => {
+  fs.readFile.mockRejectedValue('FAKE ERROR')
+  jest.spyOn(global.console, 'error').mockReturnValue()
+
+  await scanFromFile('FAKE PATH', {})
+
+  expect(fs.readFile).toBeCalledWith('FAKE PATH')
+  expect(console.error).toBeCalledWith('FAKE ERROR')
+})
