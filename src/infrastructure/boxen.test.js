@@ -23,3 +23,12 @@ test('Should call boxen with basic settings and return boxen content', async () 
 
   expect(result).toEqual('MOCKED VALUE')
 })
+
+test('Should add margin if config is passed', () => {
+  boxen.mockReturnValue('MOCKED VALUE')
+
+  greenBox('some input', { margin: 4 })
+
+  const boxenMockFirstCall = boxen.mock.calls[0]
+  expect(boxenMockFirstCall[1]).toMatchObject({ margin: 4 })
+})
