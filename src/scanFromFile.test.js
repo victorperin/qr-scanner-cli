@@ -74,3 +74,18 @@ test('should output without box if clear flag is present', async () => {
 
   expect(clipboardy.writeSync).not.toBeCalledWith('FAKE QR CONTENT')
 })
+
+test('should execute flags (clear, clipboard)', async () => {
+  jest.spyOn(global.console, 'log').mockReturnValue()
+
+  await scanFromFile('FAKE PATH', { clear: true, clipboard: true })
+
+  expect(fs.readFile).toBeCalledWith('FAKE PATH')
+  expect(Jimp.read).toBeCalledWith('FAKE FILE CONTENT')
+  expect(qrReader).toBeCalledWith('FAKE BITMAP')
+  expect(boxen.greenBox).not.toBeCalledWith('FAKE QR CONTENT')
+  expect(console.log).toBeCalledWith('FAKE QR CONTENT')
+  expect(console.log).not.toBeCalledWith('FAKE BOX')
+
+  expect(clipboardy.writeSync).toBeCalledWith('FAKE QR CONTENT')
+})
