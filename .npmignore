@@ -9,3 +9,4 @@ tests/
 .travis.yml
 demo.gif
 jest.config.js
+coverage/
