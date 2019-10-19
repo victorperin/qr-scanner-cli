@@ -10,13 +10,16 @@ jest.mock('./infrastructure/fs')
 jest.mock('./infrastructure/qrcode-reader')
 jest.mock('./infrastructure/boxen')
 
-beforeEach(jest.restoreAllMocks)
-
-test('should pass on happy path', async () => {
+beforeEach(() => {
   fs.readFile.mockResolvedValue('FAKE FILE CONTENT')
   Jimp.read.mockResolvedValue({ bitmap: 'FAKE BITMAP' })
   qrReader.mockResolvedValue('FAKE QR CONTENT')
   boxen.greenBox.mockReturnValue('FAKE BOX')
+})
+
+afterEach(jest.restoreAllMocks)
+
+test('should pass on happy path', async () => {
   jest.spyOn(global.console, 'log').mockReturnValue()
 
   await scanFromFile('FAKE PATH', {})
