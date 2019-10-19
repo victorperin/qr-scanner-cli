@@ -4,6 +4,6 @@ module.exports = {
   collectCoverageFrom: ['<rootDir>/src/**/*.js'],
   coverageDirectory: 'coverage',
   testEnvironment: 'node',
-  testMatch: ['<rootDir>/tests/**/*.test.js'],
+  testMatch: ['<rootDir>/tests/**/*.test.js', '<rootDir>/src/**/*.test.js'],
   verbose: true,
 }
