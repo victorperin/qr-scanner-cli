@@ -184,7 +184,7 @@ While the prerequisites above must be satisfied prior to having your pull reques
 
 ### Angular Commit Style
 
-We have very precise rules over how our git commit messages can be formatted. This leads to ***more readable messages*** that are easy to follow when looking through the ***project history***.
+We have very precise rules over how our git commit messages can be formatted. This leads to ***more readable messages*** that are easy to follow when looking through the ***project history***. For follow the rules we bring to this file the [commit message format](#commit-message-format)
 
 ### Commit Message Format
 Each commit message consists of a **header**, a **body** and a **footer**.  The header has a special
@@ -231,15 +231,6 @@ The scope should be the name of the npm package affected (as perceived by the pe
 
 We use the husky to keep the changes acceptables and you can find some information of this [right here.](#husky-the-pre-commit-flow)
 
-### Git Commit Messages
-
-* Use the present tense ("Add feature" not "Added feature")
-* Use the imperative mood ("Move cursor to..." not "Moves cursor to...")
-* Limit the first line to 72 characters or less
-* Reference issues and pull requests liberally after the first line
-* When only changing documentation, include `[ci skip]` in the commit title
-* Respect the commitlint rules
-
 ### Eslint and Prettier Styleguide
 
 The organization of the code is provided by prettier and the eslint configuration. They can be found in the project root, both named like [.prettierrc](.prettierrc) to prettier configuration and [.eslintrc.json](.eslintrc.json) for the eslint configuration file.
@@ -272,7 +263,8 @@ All JavaScript must adhere to [JavaScript Standard Style](https://standardjs.com
 ### Specs Styleguide
 
 - Include thoughtfully-worded, well-structured [Jest](https://jestjs.io/) specs in the `./tests` folder.
-- Treat `test` as a noun or situation.
+- Treat `describe` as a noun or situation.
+- Treat `it` as a statement about state or how an operation changes state.
 - Treat `expect` as a expectation how an operation must complete.
 
 #### Example
