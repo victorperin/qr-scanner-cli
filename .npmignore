@@ -10,3 +10,4 @@ tests/
 demo.gif
 jest.config.js
 coverage/
+__mocks__
