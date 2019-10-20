@@ -27,7 +27,7 @@ The following is a set of guidelines for contributing to QR Scanner CLI. These a
 
 ## Code of Conduct
 
-This project and everyone participating in it is governed by the [Code of Conduct](./code_of_conduct.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to [me@victorperin.ninja](mailto:me@victorperin.ninja).
+This project and everyone participating in it is governed by the [Code of Conduct](CODE_OF_CONFUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to [me@victorperin.ninja](mailto:me@victorperin.ninja).
 
 ## How the development workflow works?
 
@@ -35,7 +35,7 @@ The development starts when you select an issue to contribute, adding some messa
 
 You need to get some precautions before to commit your code, please check the [To-do before finishing a pull request!](#to-do-before-finishing-a-pull-request)
 
-Don't forgot the tests if you are creating a feature, and check twice the orthography if you is creating a documentation ou fixing that
+Don't forgot the tests if you are creating a feature, and check twice the orthography if you are creating a documentation ou fixing that
 
 We have an community chimes in with helpful advice if you have questions.
 
@@ -74,17 +74,17 @@ These are some cases to exemplify the commit message:
 
 **Commit message**|**Accpetable**
 -----|-----
-TYPE:commit message|:-1:
-Type:commit message|:-1:
-type:commit message|:+1:
-:commit message|:-1:
-type: commit message is too long to this way i can exemplification everything and keep my history today|:-1:
-type: commit message.|:-1: 
-type: commit message|:+1:
-type(SCOPE): commit message|:-1:
-type(Scope): commit message|:-1:
-type(): commit message|:-1:
-type(scope): commit message|:+1:
+TYPE:commit message|:x:
+Type:commit message|:x:
+type:commit message|:white_check_mark:
+:commit message|:x:
+type: commit message is too long to this way i can exemplification everything and keep my history today|:x:
+type: commit message.|:x: 
+type: commit message|:white_check_mark:
+type(SCOPE): commit message|:x:
+type(Scope): commit message|:x:
+type(): commit message|:x:
+type(scope): commit message|:white_check_mark:
 
 More examples you can find in the full documentation.
 
@@ -92,7 +92,7 @@ More examples you can find in the full documentation.
 
 ### Reporting Bugs
 
-This section guides you through submitting a bug report for QR Scanner CLI. Following these guidelines helps maintainers and the community understand your report :pencil:, reproduce the behavior :man-technologist:, and find related reports :mag_right:.
+This section guides you through submitting a bug report for QR Scanner CLI. Following these guidelines helps maintainers and the community understand your report :pencil:, reproduce the behavior :computer:, and find related reports :mag_right:.
 
 Before creating bug reports, please check [this list](#before-submitting-a-bug-report) as you might find out that you don't need to create one. When you are creating a bug report, please [include as many details as possible](#how-do-i-submit-a-good-bug-report). Fill out with the maximum information for helps us resolve issues faster.
 
@@ -182,6 +182,55 @@ While the prerequisites above must be satisfied prior to having your pull reques
 
 ## Styleguides
 
+### Angular Commit Style
+
+We have very precise rules over how our git commit messages can be formatted. This leads to ***more readable messages*** that are easy to follow when looking through the ***project history***.
+
+### Commit Message Format
+Each commit message consists of a **header**, a **body** and a **footer**.  The header has a special
+format that includes a **type**, a **scope** and a **subject**:
+
+The **header** is mandatory and the **scope** of the header is optional.
+
+Any line of the commit message cannot be longer 72 characters! This allows the message to be easier
+to read on GitHub as well as in various git tools.
+
+The footer should contain a [closing reference to an issue](https://help.github.com/articles/closing-issues-via-commit-messages/) if any.
+
+Samples: (even more [samples](https://github.com/angular/angular/commits/master))
+
+```
+docs(contributing): update angular commit style
+```
+```
+fix(release): need to depend on latest node.js
+
+The version in our package.json gets copied to the one we publish, and users need the latest of these.
+```
+
+#### Revert
+If the commit reverts a previous commit, it should begin with `revert: `, followed by the header of the reverted commit. In the body it should say: `This reverts commit <hash>.`, where the hash is the SHA of the commit being reverted.
+
+#### Type
+Must be one of the following:
+
+* **build**: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)
+* **ci**: Changes to our CI configuration files and scripts (example scopes: Circle, BrowserStack, SauceLabs)
+* **docs**: Documentation only changes
+* **feat**: A new feature
+* **fix**: A bug fix
+* **perf**: A code change that improves performance
+* **refactor**: A code change that neither fixes a bug nor adds a feature
+* **style**: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+* **test**: Adding missing tests or correcting existing tests
+
+#### Scope
+The scope should be the name of the npm package affected (as perceived by the person reading the changelog generated from commit messages).
+
+#### Before Commit
+
+We use the husky to keep the changes acceptables and you can find some information of this [right here.](#husky-the-pre-commit-flow)
+
 ### Git Commit Messages
 
 * Use the present tense ("Add feature" not "Added feature")
@@ -190,6 +239,10 @@ While the prerequisites above must be satisfied prior to having your pull reques
 * Reference issues and pull requests liberally after the first line
 * When only changing documentation, include `[ci skip]` in the commit title
 * Respect the commitlint rules
+
+### Eslint and Prettier Styleguide
+
+The organization of the code is provided by prettier and the eslint configuration. They can be found in the project root, both named like [.prettierrc](.prettierrc) to prettier configuration and [.eslintrc.json](.eslintrc.json) for the eslint configuration file.
 
 ### JavaScript Styleguide
 
@@ -218,40 +271,15 @@ All JavaScript must adhere to [JavaScript Standard Style](https://standardjs.com
 
 ### Specs Styleguide
 
-- Include thoughtfully-worded, well-structured [Jasmine](https://jasmine.github.io/) specs in the `./tests` folder.
-- Treat `describe` as a noun or situation.
-- Treat `it` as a statement about state or how an operation changes state.
+- Include thoughtfully-worded, well-structured [Jest](https://jestjs.io/) specs in the `./tests` folder.
+- Treat `test` as a noun or situation.
+- Treat `expect` as a expectation how an operation must complete.
 
 #### Example
 
-```coffee
-describe 'a dog', ->
- it 'barks', ->
- # spec here
- describe 'when the dog is happy', ->
-  it 'wags its tail', ->
+```javascript
+test('a dog barks when is happy', () => {
   # spec here
-```
-
-### Documentation Styleguide
-
-* Use [Markdown](https://daringfireball.net/projects/markdown).
-* Reference methods and classes in markdown with the custom `{}` notation:
-    * Reference classes with `{ClassName}`
-    * Reference instance methods with `{ClassName::methodName}`
-    * Reference class methods with `{ClassName.methodName}`
-
-#### Example
-
-```coffee
-# Public: Disable the package with the given name.
-#
-# * `name`    The {String} name of the package to disable.
-# * `options` (optional) The {Object} with disable options (default: {}):
-#   * `trackTime`     A {Boolean}, `true` to track the amount of time taken.
-#   * `ignoreErrors`  A {Boolean}, `true` to catch and ignore errors thrown.
-# * `callback` The {Function} to call after the package has been disabled.
-#
-# Returns `undefined`.
-disablePackage: (name, options, callback) ->
+  expect('dog barks').toBeTruthy()
+})
 ```
