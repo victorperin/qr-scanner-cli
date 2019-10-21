@@ -31,6 +31,6 @@ test('should reject if qr is qrcode-reader runs callback with error', done => {
   originalLibInstance.callback('FAKE ERROR')
 
   expect(qrPromise)
-    .rejects.toEqual('FAKE ERROR')
+    .rejects.toEqual(new Error('FAKE ERROR'))
     .then(done)
 })
