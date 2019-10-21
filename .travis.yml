@@ -7,6 +7,10 @@ addons:
 node_js:
   - '12'
   - '10'
+os:
+  - linux
+  - osx
+  - windows
 
 install:
   - npm ci
