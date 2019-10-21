@@ -14,7 +14,7 @@ Installation is done using the npm install command:
 npm i -g qr-scanner-cli
 ```
 
-## Usage
+## Usage CLI mode
 
 ```
 $ qrscanner <input file>
@@ -43,4 +43,19 @@ $ qrscanner ./qrCode.jpg
 
 $ qrscanner ./qrCode.jpg --clean
 This message is written in a QR Code
+```
+
+## Usage programmatic
+
+```sh
+npm install qr-scanner-cli
+```
+
+```js
+const qrScanner = require('qr-scanner-cli')
+
+qrScanner('path/to/file.png')
+  .then((result) => {
+    console.log('QR Code content: ', result)
+  })
 ```
