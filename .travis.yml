@@ -17,7 +17,9 @@ install:
   - npm run build
 
 script:
-  - xvfb-run npm run test:coverage
+  - if [ "$TRAVIS_OS_NAME" = "linux"   ]; then   xvfb-run npm run test:coverage   ; fi
+  - if [ "$TRAVIS_OS_NAME" = "osx"     ]; then        npm run test:coverage       ; fi
+  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then        npm run test:coverage       ; fi
 
 jobs:
   include:
