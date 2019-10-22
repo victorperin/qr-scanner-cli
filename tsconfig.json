@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "types": ["jest", "node"],
+    "noEmit": true
+  },
+  "include": ["src/**/*.js"],
+  "exclude": ["src/**/*.test.js", "**/__mocks__/*.js"]
+}

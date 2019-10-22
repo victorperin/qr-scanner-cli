@@ -15,6 +15,7 @@ const execution = () => {
     return cli.showHelp(1)
   }
 
+  // @ts-ignore
   return scanFromFile(cli.input[0], cli.flags)
 }
 

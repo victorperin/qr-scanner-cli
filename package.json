@@ -12,6 +12,7 @@
     "test:coverage": "jest --coverage && cat ./coverage/lcov.info | coveralls",
     "pretest": "eslint .",
     "test:diff": "jest --no-cache --passWithNoTests --collectCoverage=false --findRelatedTests",
+    "typecheck": "tsc",
     "build": "pkg . -t node10-linux-x64,node10-macos-x64,node10-win-x64 --out-path ./bin",
     "semantic-release": "semantic-release",
     "coverage": "http-server coverage/lcov-report/"
@@ -31,6 +32,11 @@
   "devDependencies": {
     "@commitlint/cli": "^8.2.0",
     "@commitlint/config-angular": "^8.2.0",
+    "@types/common-tags": "^1.8.0",
+    "@types/jest": "^24.0.19",
+    "@types/jimp": "^0.2.28",
+    "@types/meow": "^5.0.0",
+    "@types/node": "^12.11.5",
     "coveralls": "^3.0.7",
     "eslint": "^6.5.1",
     "eslint-config-airbnb-base": "^14.0.0",
@@ -44,7 +50,8 @@
     "lint-staged": "^9.4.2",
     "pkg": "^4.4.0",
     "prettier": "^1.18.2",
-    "semantic-release": "^15.13.24"
+    "semantic-release": "^15.13.24",
+    "typescript": "^3.6.4"
   },
   "repository": {
     "type": "git",
