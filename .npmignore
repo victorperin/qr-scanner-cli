@@ -11,3 +11,5 @@ demo.gif
 jest.config.js
 coverage/
 __mocks__
+CONTRIBUTING.md
+CODE_OF_CONDUCT.md
