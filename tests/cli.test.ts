@@ -1,9 +1,9 @@
-const execa = require('execa')
-const clipboardy = require('clipboardy')
+import execa from 'execa'
+import clipboardy from 'clipboardy'
 
 const ERROR = {
   MISSING_PARAMS_FILE: '[WARNING] Missing argument file: node index.js <file>!',
-  FILE_NOT_FOUND: file => `[ERROR] File <${file}> not found!`,
+  FILE_NOT_FOUND: (file: string) => `[ERROR] File <${file}> not found!`,
   PATTERN_NOT_FOUND: '[WARNING] No pattern could be found! Is there a QR-Code?',
 }
 
@@ -11,7 +11,7 @@ beforeEach(() => clipboardy.writeSync(''))
 
 test('Should read successfully the URL from QR-Code', async () => {
   const img = 'tests/fixture/sample.jpg'
-  const { stdout } = await execa('node', ['src/cli/index.js', img])
+  const { stdout } = await execa('node', ['dist/cli/index.js', img])
 
   const result = stdout
   const expected = 'https://github.com/victorperin/qr-scanner-cli'
@@ -20,7 +20,7 @@ test('Should read successfully the URL from QR-Code', async () => {
 
 test('Should output text to clipboard if -p is specified', async () => {
   const img = 'tests/fixture/sample.jpg'
-  const { stdout } = await execa('node', ['src/cli/index.js', img, '-p'])
+  const { stdout } = await execa('node', ['dist/cli/index.js', img, '-p'])
 
   const result = clipboardy.readSync()
   const expected = 'https://github.com/victorperin/qr-scanner-cli'
@@ -31,7 +31,7 @@ test('Should output text to clipboard if -p is specified', async () => {
 
 test('Should handle missing parameter <file>', async () => {
   try {
-    await execa('node', ['src/cli/index.js'])
+    await execa('node', ['dist/cli/index.js'])
   } catch (err) {
     const { failed, stderr } = err
 
@@ -45,7 +45,7 @@ test('Should handle missing parameter <file>', async () => {
 test('Should handle file not found', async () => {
   const img = '404-notfound.jpg'
   try {
-    await execa('node', ['src/cli/index.js', img])
+    await execa('node', ['dist/cli/index.js', img])
   } catch (err) {
     const { failed, stderr } = err
 
@@ -58,7 +58,7 @@ test('Should handle file not found', async () => {
 
 test('Should handle invalid file (no QR-Code)', async () => {
   try {
-    await execa('node', ['src/cli/index.js', '__test__/fixture/invalid.jpg'])
+    await execa('node', ['dist/cli/index.js', '__test__/fixture/invalid.jpg'])
   } catch (err) {
     const { failed, stderr } = err
 

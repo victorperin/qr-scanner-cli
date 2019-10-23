@@ -1,7 +1,6 @@
 {
+  "parser": "@typescript-eslint/parser",
   "env": {
-    "commonjs": true,
-    "es6": true,
     "node": true,
     "jest": true
   },
@@ -18,6 +17,8 @@
     "prettier/prettier": ["error"],
     "no-console": "off",
     "comma-dangle": ["error", "always-multiline"],
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "import/no-unresolved": "off",
+    "no-unused-vars": "off"
   }
 }

@@ -1,7 +1,7 @@
-const { stripIndent } = require('common-tags')
-const { greenBox } = require('../infrastructure/boxen')
+import { stripIndent } from 'common-tags'
+import { greenBox } from '../infrastructure/boxen'
 
-const helpText = stripIndent`
+export const helpText = stripIndent`
   Usage
     $ qrscanner <input file>
 
@@ -18,5 +18,3 @@ const helpText = stripIndent`
     $ qrscanner ./qrCode.jpg --clear
     This message is written in a QR Code
 `
-
-module.exports = helpText

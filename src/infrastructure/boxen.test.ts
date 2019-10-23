@@ -1,11 +1,14 @@
-const boxen = require('boxen')
-const { greenBox } = require('./boxen')
+import boxen from 'boxen'
+import { greenBox } from './boxen'
 
 jest.mock('boxen')
-beforeEach(boxen.mockReset)
+
+const mockedBoxen = (boxen as unknown) as jest.Mock<string>
+
+beforeEach(mockedBoxen.mockReset)
 
 test('Should call boxen with basic settings and return boxen content', async () => {
-  boxen.mockReturnValue('MOCKED VALUE')
+  mockedBoxen.mockReturnValue('MOCKED VALUE')
 
   const input = 'sample input'
   const greenBoxConfig = {
@@ -15,8 +18,7 @@ test('Should call boxen with basic settings and return boxen content', async () 
   }
 
   const result = greenBox(input)
-
-  const boxenMockFirstCall = boxen.mock.calls[0]
+  const boxenMockFirstCall = mockedBoxen.mock.calls[0]
 
   expect(boxenMockFirstCall[0]).toEqual(input)
   expect(boxenMockFirstCall[1]).toMatchObject(greenBoxConfig)
@@ -25,10 +27,10 @@ test('Should call boxen with basic settings and return boxen content', async () 
 })
 
 test('Should add margin if config is passed', () => {
-  boxen.mockReturnValue('MOCKED VALUE')
+  mockedBoxen.mockReturnValue('MOCKED VALUE')
 
   greenBox('some input', { margin: 4 })
 
-  const boxenMockFirstCall = boxen.mock.calls[0]
+  const boxenMockFirstCall = mockedBoxen.mock.calls[0]
   expect(boxenMockFirstCall[1]).toMatchObject({ margin: 4 })
 })

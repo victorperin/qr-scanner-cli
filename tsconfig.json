@@ -1,13 +1,17 @@
 {
   "compilerOptions": {
-    "allowJs": true,
-    "checkJs": true,
     "module": "commonjs",
     "strict": true,
+    "alwaysStrict": true,
+    "lib": ["esnext"],
     "esModuleInterop": true,
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
     "types": ["jest", "node"],
-    "noEmit": true
+    "outDir": "dist",
+    "moduleResolution": "node",
+    "rootDir": "src"
   },
-  "include": ["src/**/*.js"],
-  "exclude": ["src/**/*.test.js", "**/__mocks__/*.js"]
+  "include": ["src/**/*.ts"]
 }

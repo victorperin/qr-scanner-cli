@@ -1,15 +1,18 @@
-const originalLib = require('qrcode-reader')
-const qrcodeReader = require('./qrcode-reader')
+import originalLib from 'qrcode-reader'
+import { readQR } from './qrcode-reader'
 
 jest.mock('qrcode-reader')
 
+// @ts-ignore
 beforeEach(originalLib.mockClear)
 
 test('should resolve if qr is qrcode-reader runs callback without errors', done => {
   const fakeImageBitmap = 'FAKE BITMAP'
-  const qrPromise = qrcodeReader(fakeImageBitmap)
+  // @ts-ignore
+  const qrPromise = readQR(fakeImageBitmap)
 
   expect(originalLib).toHaveBeenCalledTimes(1)
+  // @ts-ignore
   const originalLibInstance = originalLib.mock.instances[0]
 
   originalLibInstance.callback(null, { result: 'FAKE RESULT' })
@@ -24,8 +27,10 @@ test('should resolve if qr is qrcode-reader runs callback without errors', done 
 
 test('should reject if qr is qrcode-reader runs callback with error', done => {
   const fakeImageBitmap = 'FAKE BITMAP'
-  const qrPromise = qrcodeReader(fakeImageBitmap)
+  // @ts-ignore
+  const qrPromise = readQR(fakeImageBitmap)
 
+  // @ts-ignore
   const originalLibInstance = originalLib.mock.instances[0]
 
   originalLibInstance.callback('FAKE ERROR')
