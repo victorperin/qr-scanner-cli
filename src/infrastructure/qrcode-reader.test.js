@@ -1,5 +1,5 @@
 const originalLib = require('qrcode-reader')
-const qrcodeReader = require('./qrcode-reader')
+const { readQR } = require('../../dist/infrastructure/qrcode-reader')
 
 jest.mock('qrcode-reader')
 
@@ -7,7 +7,7 @@ beforeEach(originalLib.mockClear)
 
 test('should resolve if qr is qrcode-reader runs callback without errors', done => {
   const fakeImageBitmap = 'FAKE BITMAP'
-  const qrPromise = qrcodeReader(fakeImageBitmap)
+  const qrPromise = readQR(fakeImageBitmap)
 
   expect(originalLib).toHaveBeenCalledTimes(1)
   const originalLibInstance = originalLib.mock.instances[0]
@@ -24,7 +24,7 @@ test('should resolve if qr is qrcode-reader runs callback without errors', done 
 
 test('should reject if qr is qrcode-reader runs callback with error', done => {
   const fakeImageBitmap = 'FAKE BITMAP'
-  const qrPromise = qrcodeReader(fakeImageBitmap)
+  const qrPromise = readQR(fakeImageBitmap)
 
   const originalLibInstance = originalLib.mock.instances[0]
 

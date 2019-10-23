@@ -4,14 +4,15 @@
   "description": "",
   "main": "index.js",
   "bin": {
-    "qrscanner": "./src/cli/index.js"
+    "qrscanner": "./dist/cli/index.js"
   },
   "scripts": {
-    "start": "node ./src/cli/index.js",
+    "start": "node ./dist/cli/index.js",
     "test": "jest",
     "test:coverage": "jest --coverage && cat ./coverage/lcov.info | coveralls",
-    "pretest": "eslint .",
+    "pretest": "npm run build:ts",
     "test:diff": "jest --no-cache --passWithNoTests --collectCoverage=false --findRelatedTests",
+    "build:ts": "tsc",
     "build": "pkg . -t node10-linux-x64,node10-macos-x64,node10-win-x64 --out-path ./bin",
     "semantic-release": "semantic-release",
     "coverage": "http-server coverage/lcov-report/"
@@ -20,11 +21,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/common-tags": "^1.8.0",
+    "@types/meow": "^5.0.0",
     "boxen": "^4.1.0",
     "chalk": "^2.4.2",
     "clipboardy": "^2.1.0",
     "common-tags": "^1.8.0",
-    "jimp": "^0.8.4",
+    "jimp": "^0.8.5",
     "meow": "^5.0.0",
     "qrcode-reader": "^1.0.4"
   },
@@ -44,7 +47,8 @@
     "lint-staged": "^9.4.2",
     "pkg": "^4.4.0",
     "prettier": "^1.18.2",
-    "semantic-release": "^15.13.24"
+    "semantic-release": "^15.13.24",
+    "typescript": "^3.6.4"
   },
   "repository": {
     "type": "git",

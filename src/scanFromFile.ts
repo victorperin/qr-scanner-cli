@@ -1,9 +1,11 @@
-const Jimp = require('jimp')
-const clipboardy = require('clipboardy')
-
-const { readFile } = require('./infrastructure/fs')
-const { greenBox } = require('./infrastructure/boxen')
-const readQR = require('./infrastructure/qrcode-reader')
+import * as clipboardy from 'clipboardy'
+import { readFile } from './infrastructure/fs'
+import { greenBox } from './infrastructure/boxen'
+import { readQR } from './infrastructure/qrcode-reader'
+// See: https://github.com/oliver-moran/jimp/issues/803
+import Jimp from 'jimp'
+// tslint:disable-next-line: no-var-requires
+const jimp: Jimp = require('jimp')
 
 const extractBitmap = ({ bitmap }) => bitmap
 
@@ -21,14 +23,12 @@ const doFlagClipboard = (text, flags) => {
   return text
 }
 
-const scanFromFile = (filePath, flags) =>
+export const scanFromFile = (filePath, flags) =>
   Promise.resolve(filePath)
     .then(readFile)
-    .then(Jimp.read)
+    .then(jimp.read)
     .then(extractBitmap)
     .then(readQR)
     .then(t => doFlagClipboard(t, flags))
     .then(t => outputText(t, flags))
     .catch(console.error)
-
-module.exports = scanFromFile

@@ -1,5 +1,5 @@
 const boxen = require('boxen')
-const { greenBox } = require('./boxen')
+const { greenBox } = require('../../dist/infrastructure/boxen')
 
 jest.mock('boxen')
 beforeEach(boxen.mockReset)

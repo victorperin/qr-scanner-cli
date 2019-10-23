@@ -1,9 +1,9 @@
 const meow = require('meow')
 
-const scanFromFile = require('../scanFromFile')
-const execution = require('./execution')
+const { scanFromFile } = require('../../dist/scanFromFile')
+const { execution } = require('../../dist/cli/execution')
 
-jest.mock('../scanFromFile.js')
+jest.mock('../../dist/scanFromFile')
 
 test('should execute scanFrom file', () => {
   scanFromFile.mockResolvedValue('MOCKED SCAN RESULT')

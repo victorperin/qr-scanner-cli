@@ -1,6 +1,6 @@
-const QrCode = require('qrcode-reader')
+import QrCode from 'qrcode-reader'
 
-const readQR = imageBitmap =>
+export const readQR = imageBitmap =>
   new Promise((resolve, reject) => {
     const qr = new QrCode()
 
@@ -12,5 +12,3 @@ const readQR = imageBitmap =>
 
     qr.decode(imageBitmap)
   })
-
-module.exports = readQR
