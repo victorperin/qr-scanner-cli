@@ -6,6 +6,11 @@
   "bin": {
     "qrscanner": "./dist/cli/index.js"
   },
+  "files": [
+    "dist",
+    "!*.test.*",
+    "!__mocks__"
+  ],
   "scripts": {
     "start": "tsc -b && node ./dist/cli/index.js",
     "test": "tsc -b && jest",
@@ -54,7 +59,7 @@
     "prettier": "^1.18.2",
     "semantic-release": "^15.13.24",
     "ts-jest": "^24.1.0",
-    "typescript": "^3.6.4"
+    "typescript": "^3.8.0-dev.20191023"
   },
   "repository": {
     "type": "git",

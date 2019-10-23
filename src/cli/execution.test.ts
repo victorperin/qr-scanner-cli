@@ -1,3 +1,4 @@
+// @ts-nocheck
 import meow from 'meow'
 import { scanFromFile } from '../scanFromFile'
 import { execution } from './execution'
@@ -5,9 +6,7 @@ import { execution } from './execution'
 jest.mock('../scanFromFile.ts')
 
 test('should execute scanFrom file', () => {
-  // @ts-ignore
   scanFromFile.mockResolvedValue('MOCKED SCAN RESULT')
-  // @ts-ignore
   meow.mockReturnValue({ input: ['MOCKED FILE PATH'], flags: { biru: 'laibe' } })
   execution()
 
@@ -16,12 +15,9 @@ test('should execute scanFrom file', () => {
 })
 
 test('should warn if no argument passed', () => {
-  // @ts-ignore
-  scanFromFile.mockResolvedValue('MOCKED SCAN RESULT')
   const helpSpy = jest.fn()
   jest.spyOn(global.console, 'warn').mockReturnValue()
 
-  // @ts-ignore
   meow.mockReturnValue({ input: [], flags: { biru: 'laibe' }, showHelp: helpSpy })
   execution()
 

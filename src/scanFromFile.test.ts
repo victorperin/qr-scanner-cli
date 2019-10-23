@@ -1,3 +1,4 @@
+// @ts-nocheck
 import * as fs from 'fs-extra'
 import Jimp from 'jimp'
 import clipboardy from 'clipboardy'
@@ -12,15 +13,10 @@ jest.mock('./infrastructure/qrcode-reader')
 jest.mock('./infrastructure/boxen')
 
 beforeEach(() => {
-  // @ts-ignore
   fs.readFile.mockResolvedValue('FAKE FILE CONTENT')
-  // @ts-ignore
   Jimp.read.mockResolvedValue({ bitmap: 'FAKE BITMAP' })
-  // @ts-ignore
   readQR.mockResolvedValue('FAKE QR CONTENT')
-  // @ts-ignore
   greenBox.mockReturnValue('FAKE BOX')
-  // @ts-ignore
   clipboardy.writeSync.mockResolvedValue('FAKE CLIPBOARD')
 })
 
@@ -41,7 +37,6 @@ test('should pass on happy path', async () => {
 })
 
 test('should console.error if readFile fails', async () => {
-  // @ts-ignore
   fs.readFile.mockRejectedValue('FAKE ERROR')
   jest.spyOn(global.console, 'error').mockReturnValue()
 
