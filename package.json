@@ -13,6 +13,7 @@
     "pretest": "npm run build:ts",
     "test:diff": "jest --no-cache --passWithNoTests --collectCoverage=false --findRelatedTests",
     "build:ts": "tsc",
+    "prebuild": "npm run-script build:ts",
     "build": "pkg . -t node10-linux-x64,node10-macos-x64,node10-win-x64 --out-path ./bin",
     "semantic-release": "semantic-release",
     "coverage": "http-server coverage/lcov-report/"
