@@ -1,13 +1,20 @@
 const { stripIndent } = require('common-tags')
 const { greenBox } = require('../infrastructure/boxen')
+const flags = require('../cli/flags')
+
+const flagDescriptions = Object.keys(flags)
+  .map(flagKey => {
+    const flag = flags[flagKey]
+    return `    --${flagKey}, -${flag.alias}  ${flag.description}`
+  })
+  .join('\n')
 
 const helpText = stripIndent`
   Usage
     $ qrscanner <input file>
 
   Options
-    --clean, -c  Clear output, just print the QR Code scan result
-    --clipboard, -p  copy the qr code value to your clipboard
+${flagDescriptions}
     --version Show installed version
     --help Show this help
 
