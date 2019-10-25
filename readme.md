@@ -24,12 +24,21 @@ $ qrscanner <input file>
 
 ## Options
 
+Access all available and updated options passing the `--help` argument:
+
 ```
-- --clean  -c  Clear output, just print the QR Code scan result
-- --version Show installed version
-- --clipboard, -p  copy the qr code value to your clipboard
-- --help Show this help
+qrscanner --help
 ```
+
+A view of the options at release [v1.0.0](https://github.com/victorperin/qr-scanner-cli/releases/tag/v1.0.0):
+
+```
+--clean, -c  Clear output, just print the QR Code scan result
+--clipboard, -p  copy the qr code value to your clipboard
+--version Show installed version
+--help Show this help
+```
+> Consider that this list may be outdated, always refer to the `help` option described above.
 
 ## Examples
 
