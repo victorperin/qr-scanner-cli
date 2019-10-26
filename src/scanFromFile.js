@@ -24,10 +24,7 @@ const doFlagClipboard = (text, flags) => {
 
 const doOpen = (text, flags) => {
   if (flags.open) {
-    ;(async () => {
-      console.log(text)
-      await open(text)
-    })()
+    open(text)
   }
   return text
 }
