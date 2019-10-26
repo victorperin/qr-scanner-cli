@@ -12,7 +12,7 @@ const flags = {
   open: {
     type: 'boolean',
     alias: 'o',
-    description: 'Open the qr code value in any browser or program if support it'
+    description: 'Open the qr code value in any browser or program if support it',
   },
 }
 
