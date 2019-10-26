@@ -1,13 +1,20 @@
 import { stripIndent } from 'common-tags'
 import { greenBox } from '../infrastructure/boxen'
+import { flags } from './flags'
+
+const flagDescriptions = Object.keys(flags)
+  .map(flagKey => {
+    const flag = flags[flagKey]
+    return `    --${flagKey}, -${flag.alias}  ${flag.description}`
+  })
+  .join('\n')
 
 export const helpText = stripIndent`
   Usage
     $ qrscanner <input file>
 
   Options
-    --clean, -c  Clear output, just print the QR Code scan result
-    --clipboard, -p  copy the qr code value to your clipboard
+${flagDescriptions}
     --version Show installed version
     --help Show this help
 
