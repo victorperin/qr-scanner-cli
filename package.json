@@ -32,6 +32,7 @@
     "fs-extra": "^8.1.0",
     "jimp": "^0.8.5",
     "meow": "^5.0.0",
+    "open": "^7.0.0",
     "qrcode-reader": "^1.0.4"
   },
   "devDependencies": {

@@ -2,6 +2,7 @@
 import * as fs from 'fs-extra'
 import Jimp from 'jimp'
 import clipboardy from 'clipboardy'
+import open from 'open'
 import { readQR } from './infrastructure/qrcode-reader'
 import { greenBox } from './infrastructure/boxen'
 import { scanFromFile } from './scanFromFile'
@@ -11,6 +12,7 @@ jest.mock('clipboardy')
 jest.mock('fs-extra')
 jest.mock('./infrastructure/qrcode-reader')
 jest.mock('./infrastructure/boxen')
+jest.mock('open')
 
 beforeEach(() => {
   fs.readFile.mockResolvedValue('FAKE FILE CONTENT')
@@ -88,4 +90,16 @@ test('should execute flags (clear, clipboard)', async () => {
   expect(console.log).not.toBeCalledWith('FAKE BOX')
 
   expect(clipboardy.writeSync).toBeCalledWith('FAKE QR CONTENT')
+})
+
+test('should execute open with --open', async () => {
+  open.mockResolvedValue('FAKE RESULT')
+
+  await scanFromFile('FAKE PATH', { open: true })
+
+  expect(fs.readFile).toBeCalledWith('FAKE PATH')
+  expect(Jimp.read).toBeCalledWith('FAKE FILE CONTENT')
+  expect(readQR).toBeCalledWith('FAKE BITMAP')
+  expect(greenBox).toBeCalledWith('FAKE QR CONTENT')
+  expect(open).toBeCalledWith('FAKE QR CONTENT')
 })

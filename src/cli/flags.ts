@@ -17,9 +17,15 @@ export const flags: MeowFlags = {
     alias: 'p',
     description: 'Copy the qr code value to your clipboard',
   },
+  open: {
+    type: 'boolean',
+    alias: 'o',
+    description: 'Open the qr code value in any browser or program if support it',
+  },
 }
 
 export interface Flags {
   clear?: boolean
   clipboard?: boolean
+  open?: boolean
 }
