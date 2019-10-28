@@ -3,3 +3,8 @@ plugins:
     enabled: true
     config:
       editorconfig: .editorconfig
+
+exclude_patterns:
+  - node_modules/*
+  - coverage/*
+  - tests/fixture/*
