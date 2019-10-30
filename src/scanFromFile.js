@@ -8,13 +8,13 @@ const readQR = require('./infrastructure/qrcode-reader')
 
 const extractBitmap = ({ bitmap }) => bitmap
 
-const outputText = (text, flags) => {
+const outputText = flags => text => {
   const output = flags.clear ? text : greenBox(text)
 
   console.log(output)
 }
 
-const doFlagClipboard = (text, flags) => {
+const doFlagClipboard = flags => text => {
   if (flags.clipboard) {
     clipboardy.writeSync(text)
   }
@@ -22,7 +22,7 @@ const doFlagClipboard = (text, flags) => {
   return text
 }
 
-const doOpen = (text, flags) => {
+const doOpen = flags => text => {
   if (flags.open) {
     open(text)
   }
@@ -45,9 +45,9 @@ const scanFromFile = (filePath, flags) =>
     .then(Jimp.read)
     .then(extractBitmap)
     .then(readQR)
-    .then(t => doFlagClipboard(t, flags))
-    .then(t => doOpen(t, flags))
-    .then(t => outputText(t, flags))
+    .then(doFlagClipboard(flags))
+    .then(doOpen(flags))
+    .then(outputText(flags))
     .catch(errorHandler(filePath))
 
 module.exports = scanFromFile
