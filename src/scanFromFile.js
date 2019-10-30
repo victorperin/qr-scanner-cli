@@ -38,6 +38,5 @@ const scanFromFile = (filePath, flags) =>
     .then(t => doFlagClipboard(t, flags))
     .then(t => doOpen(t, flags))
     .then(t => outputText(t, flags))
-    .catch(console.error)
 
 module.exports = scanFromFile

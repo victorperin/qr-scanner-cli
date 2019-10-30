@@ -39,13 +39,11 @@ test('should pass on happy path', async () => {
 })
 
 test('should console.error if readFile fails', async () => {
+  expect.assertions(2)
   fs.readFile.mockRejectedValue('FAKE ERROR')
-  jest.spyOn(global.console, 'error').mockReturnValue()
 
-  await scanFromFile('FAKE PATH', {})
-
+  await expect(scanFromFile('FAKE PATH', {})).rejects.toMatch('FAKE ERROR')
   expect(fs.readFile).toBeCalledWith('FAKE PATH')
-  expect(console.error).toBeCalledWith('FAKE ERROR')
 })
 
 test('should copy to clipboard if flag is present', async () => {
