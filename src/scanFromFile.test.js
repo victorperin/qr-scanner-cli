@@ -91,6 +91,7 @@ test('should execute flags (clear, clipboard)', async () => {
 })
 
 test('should execute open with --open', async () => {
+  jest.spyOn(global.console, 'log').mockReturnValue()
   open.mockResolvedValue('FAKE RESULT')
 
   await scanFromFile('FAKE PATH', { open: true })
@@ -100,4 +101,5 @@ test('should execute open with --open', async () => {
   expect(qrReader).toBeCalledWith('FAKE BITMAP')
   expect(boxen.greenBox).toBeCalledWith('FAKE QR CONTENT')
   expect(open).toBeCalledWith('FAKE QR CONTENT')
+  expect(console.log).toBeCalledWith('FAKE BOX')
 })
