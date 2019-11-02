@@ -45,7 +45,7 @@
     "lint-staged": "^9.4.2",
     "pkg": "^4.4.0",
     "prettier": "^1.18.2",
-    "semantic-release": "^15.13.24"
+    "semantic-release": "^15.13.29"
   },
   "repository": {
     "type": "git",
