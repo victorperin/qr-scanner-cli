@@ -9,3 +9,4 @@ exclude_patterns:
   - coverage/*
   - tests/fixture/*
   - package-lock.json
+  - demo.gif
