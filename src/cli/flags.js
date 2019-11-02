@@ -9,6 +9,11 @@ const flags = {
     alias: 'p',
     description: 'Copy the qr code value to your clipboard',
   },
+  open: {
+    type: 'boolean',
+    alias: 'o',
+    description: 'Open the qr code value in any browser or program if support it',
+  },
 }
 
 module.exports = flags

@@ -30,6 +30,7 @@ test('Should output text to clipboard if -p is specified', async () => {
 })
 
 test('Should handle missing parameter <file>', async () => {
+  expect.assertions(2)
   try {
     await execa('node', ['src/cli/index.js'])
   } catch (err) {
@@ -43,6 +44,7 @@ test('Should handle missing parameter <file>', async () => {
 })
 
 test('Should handle file not found', async () => {
+  expect.assertions(2)
   const img = '404-notfound.jpg'
   try {
     await execa('node', ['src/cli/index.js', img])
@@ -57,8 +59,9 @@ test('Should handle file not found', async () => {
 })
 
 test('Should handle invalid file (no QR-Code)', async () => {
+  expect.assertions(2)
   try {
-    await execa('node', ['src/cli/index.js', '__test__/fixture/invalid.jpg'])
+    await execa('node', ['src/cli/index.js', 'tests/fixture/invalid.jpg'])
   } catch (err) {
     const { failed, stderr } = err
 
