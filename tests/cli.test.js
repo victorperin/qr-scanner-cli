@@ -36,7 +36,7 @@ test('Should output text to clipboard if -p is specified', async () => {
 test('Should handle missing parameter <file>', async () => {
   expect.assertions(2)
   try {
-    await execa('node', ['src/cli/index.js'])
+    await execa('qrscanner')
   } catch (err) {
     const { failed, stderr } = err
 
