@@ -39,13 +39,34 @@ test('should pass on happy path', async () => {
 })
 
 test('should console.error if readFile fails', async () => {
-  fs.readFile.mockRejectedValue('FAKE ERROR')
-  jest.spyOn(global.console, 'error').mockReturnValue()
+  expect.assertions(2)
+  const expectedError = new Error('FAKE ERROR')
+  fs.readFile.mockRejectedValue(expectedError)
 
-  await scanFromFile('FAKE PATH', {})
-
+  await expect(scanFromFile('FAKE PATH', {})).rejects.toEqual(expectedError)
   expect(fs.readFile).toBeCalledWith('FAKE PATH')
-  expect(console.error).toBeCalledWith('FAKE ERROR')
+})
+
+test('should console.error if readFile fails', async () => {
+  expect.assertions(2)
+  const expectedError = '0 patterns found'
+  fs.readFile.mockRejectedValue(expectedError)
+
+  await expect(scanFromFile('FAKE PATH', {})).rejects.toEqual(
+    new Error('[WARNING] No pattern could be found! Is there a QR-Code?'),
+  )
+  expect(fs.readFile).toBeCalledWith('FAKE PATH')
+})
+
+test('should console.error if readFile fails', async () => {
+  expect.assertions(2)
+  const expectedError = new Error('no such file or directory')
+  fs.readFile.mockRejectedValue(expectedError)
+
+  await expect(scanFromFile('FAKE PATH', {})).rejects.toEqual(
+    new Error('[ERROR] File <FAKE PATH> not found!'),
+  )
+  expect(fs.readFile).toBeCalledWith('FAKE PATH')
 })
 
 test('should copy to clipboard if flag is present', async () => {
@@ -93,6 +114,7 @@ test('should execute flags (clear, clipboard)', async () => {
 })
 
 test('should execute open with --open', async () => {
+  jest.spyOn(global.console, 'log').mockReturnValue()
   open.mockResolvedValue('FAKE RESULT')
 
   await scanFromFile('FAKE PATH', { open: true })
@@ -102,4 +124,5 @@ test('should execute open with --open', async () => {
   expect(qrReader).toBeCalledWith('FAKE BITMAP')
   expect(boxen.greenBox).toBeCalledWith('FAKE QR CONTENT')
   expect(open).toBeCalledWith('FAKE QR CONTENT')
+  expect(console.log).toBeCalledWith('FAKE BOX')
 })

@@ -6,7 +6,7 @@
     "jest": true
   },
   "extends": ["airbnb-base", "prettier"],
-  "plugins": ["prettier"],
+  "plugins": ["prettier", "editorconfig"],
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
@@ -16,6 +16,7 @@
   },
   "rules": {
     "prettier/prettier": ["error"],
+    "editorconfig/editorconfig": "error",
     "no-console": "off",
     "comma-dangle": ["error", "always-multiline"],
     "import/prefer-default-export": "off"
