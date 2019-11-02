@@ -3,6 +3,8 @@ plugins:
     enabled: true
     config:
       editorconfig: .editorconfig
+  eslint:
+    enabled: true
 
 exclude_patterns:
   - node_modules/*
