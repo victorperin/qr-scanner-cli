@@ -42,6 +42,3 @@ issues that violate this Code of Conduct, or terminate the contributor temporari
 This code of conduct applies both within the project spaces and whenever one is contributing to some other open-sourced project.
 When representing our community use an official project e-mail address, 
 valid social media account and most importantly polite behaviour.
-
-
-
