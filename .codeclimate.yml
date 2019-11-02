@@ -1,0 +1,12 @@
+plugins:
+  editorconfig:
+    enabled: true
+    config:
+      editorconfig: .editorconfig
+
+exclude_patterns:
+  - node_modules/*
+  - coverage/*
+  - tests/fixture/*
+  - package-lock.json
+  - demo.gif

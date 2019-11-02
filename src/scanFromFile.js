@@ -1,4 +1,5 @@
 const Jimp = require('jimp')
+const open = require('open')
 const clipboardy = require('clipboardy')
 
 const { readFile } = require('./infrastructure/fs')
@@ -21,6 +22,13 @@ const doFlagClipboard = (text, flags) => {
   return text
 }
 
+const doOpen = (text, flags) => {
+  if (flags.open) {
+    open(text)
+  }
+  return text
+}
+
 const scanFromFile = (filePath, flags) =>
   Promise.resolve(filePath)
     .then(readFile)
@@ -28,6 +36,7 @@ const scanFromFile = (filePath, flags) =>
     .then(extractBitmap)
     .then(readQR)
     .then(t => doFlagClipboard(t, flags))
+    .then(t => doOpen(t, flags))
     .then(t => outputText(t, flags))
     .catch(console.error)
 
