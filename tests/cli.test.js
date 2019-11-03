@@ -7,11 +7,15 @@ const ERROR = {
   PATTERN_NOT_FOUND: '[WARNING] No pattern could be found! Is there a QR-Code?',
 }
 
+beforeAll(() => {
+  jest.setTimeout(30000)
+  return execa('npm', ['link'])
+})
 beforeEach(() => clipboardy.writeSync(''))
 
 test('Should read successfully the URL from QR-Code', async () => {
   const img = 'tests/fixture/sample.jpg'
-  const { stdout } = await execa('node', ['src/cli/index.js', img])
+  const { stdout } = await execa('qrscanner', [img])
 
   const result = stdout
   const expected = 'https://github.com/victorperin/qr-scanner-cli'
@@ -20,7 +24,7 @@ test('Should read successfully the URL from QR-Code', async () => {
 
 test('Should output text to clipboard if -p is specified', async () => {
   const img = 'tests/fixture/sample.jpg'
-  const { stdout } = await execa('node', ['src/cli/index.js', img, '-p'])
+  const { stdout } = await execa('qrscanner', [img, '-p'])
 
   const result = clipboardy.readSync()
   const expected = 'https://github.com/victorperin/qr-scanner-cli'
@@ -32,7 +36,7 @@ test('Should output text to clipboard if -p is specified', async () => {
 test('Should handle missing parameter <file>', async () => {
   expect.assertions(2)
   try {
-    await execa('node', ['src/cli/index.js'])
+    await execa('qrscanner')
   } catch (err) {
     const { failed, stderr } = err
 
@@ -47,7 +51,7 @@ test('Should handle file not found', async () => {
   expect.assertions(2)
   const img = '404-notfound.jpg'
   try {
-    await execa('node', ['src/cli/index.js', img])
+    await execa('qrscanner', [img])
   } catch (err) {
     const { failed, stderr } = err
 
@@ -61,7 +65,7 @@ test('Should handle file not found', async () => {
 test('Should handle invalid file (no QR-Code)', async () => {
   expect.assertions(2)
   try {
-    await execa('node', ['src/cli/index.js', 'tests/fixture/invalid.jpg'])
+    await execa('qrscanner', ['tests/fixture/invalid.jpg'])
   } catch (err) {
     const { failed, stderr } = err
 
