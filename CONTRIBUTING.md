@@ -55,11 +55,11 @@ Husky is an hook that operates before commit changes in the project the hook lin
 
 #### Remember to follow it, otherwise your code will be rejected
 
-The commit message need keep a standard, so we chose to use the commitlint with angular configuration, the fully documentation can be [find here](https://www.npmjs.com/package/@commitlint/config-angular), but the abstract of the documentation will be bottom:
+The commit message need keep a standard, so we chose to use the commitlint with conventional commits configuration, the fully documentation can be [find here](https://www.npmjs.com/package/@commitlint/config-conventional), but the abstract of the documentation will be bottom:
 
 The commitmessage need to start with a type, the acceptable type's is:
 ```javascript
-types => ['build','ci','docs','feat','fix','perf','refactor','revert','style','test']
+types => [ 'build','ci','chore','docs','feat','fix','perf','refactor','revert','style','test' ]
 ```
 
 And the type-case is ruled by lowercase always if is in uppercase or camelcase is not valid.
@@ -182,7 +182,7 @@ While the prerequisites above must be satisfied prior to having your pull reques
 
 ## Styleguides
 
-### Angular Commit Style
+### Conventional Commits Style
 
 We have very precise rules over how our git commit messages can be formatted. This leads to ***more readable messages*** that are easy to follow when looking through the ***project history***. For follow the rules we bring to this file the [commit message format](#commit-message-format)
 
@@ -197,10 +197,10 @@ to read on GitHub as well as in various git tools.
 
 The footer should contain a [closing reference to an issue](https://help.github.com/articles/closing-issues-via-commit-messages/) if any.
 
-Samples: (even more [samples](https://github.com/angular/angular/commits/master))
+Samples: (even more [samples](https://www.conventionalcommits.org))
 
 ```
-docs(contributing): update angular commit style
+docs(contributing): update conventional commits style
 ```
 ```
 fix(release): need to depend on latest node.js
