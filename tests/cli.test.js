@@ -8,7 +8,7 @@ const ERROR = {
 }
 
 beforeAll(() => {
-  jest.setTimeout(30000)
+  jest.setTimeout(300000)
   return execa('npm', ['link'])
 })
 beforeEach(() => clipboardy.writeSync(''))
