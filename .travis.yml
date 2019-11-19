@@ -5,6 +5,7 @@ addons:
     - xsel
     - xvfb
 node_js:
+  - '13'
   - '12'
   - '10'
 os:
