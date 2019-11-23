@@ -1,9 +1,9 @@
 const Jimp = require('jimp')
-const errorHandlers = require('./error-handlers')
+const errorHandlers = require('./handlers/error')
 
 const { readFile } = require('./infrastructure/fs')
 const readQR = require('./infrastructure/qrcode-reader')
-const { outputText, doFlagClipboard, doOpen } = require('./flag-handlers')
+const { outputText, doFlagClipboard, doOpen } = require('./handlers/flags')
 
 const extractBitmap = ({ bitmap }) => bitmap
 

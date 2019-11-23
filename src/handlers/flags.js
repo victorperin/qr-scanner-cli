@@ -1,6 +1,6 @@
 const open = require('open')
 const clipboardy = require('clipboardy')
-const { greenBox } = require('./infrastructure/boxen')
+const { greenBox } = require('../infrastructure/boxen')
 
 const outputText = flags => text => {
   const output = flags.clear ? text : greenBox(text)
