@@ -1,33 +1,10 @@
 const Jimp = require('jimp')
-const open = require('open')
-const clipboardy = require('clipboardy')
 
 const { readFile } = require('./infrastructure/fs')
-const { greenBox } = require('./infrastructure/boxen')
 const readQR = require('./infrastructure/qrcode-reader')
+const { outputText, doFlagClipboard, doOpen } = require('./flag-handlers')
 
 const extractBitmap = ({ bitmap }) => bitmap
-
-const outputText = flags => text => {
-  const output = flags.clear ? text : greenBox(text)
-
-  console.log(output)
-}
-
-const doFlagClipboard = flags => text => {
-  if (flags.clipboard) {
-    clipboardy.writeSync(text)
-  }
-
-  return text
-}
-
-const doOpen = flags => text => {
-  if (flags.open) {
-    open(text)
-  }
-  return text
-}
 
 const errorHandler = filePath => error => {
   if (typeof error === 'string' && error.includes('0 patterns found'))
