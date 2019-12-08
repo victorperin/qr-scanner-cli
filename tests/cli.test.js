@@ -7,10 +7,7 @@ const ERROR = {
   PATTERN_NOT_FOUND: '[WARNING] No pattern could be found! Is there a QR-Code?',
 }
 
-beforeAll(() => {
-  jest.setTimeout(300000)
-  return execa('npm', ['link'])
-})
+beforeAll(() => jest.setTimeout(300000))
 beforeEach(() => clipboardy.writeSync(''))
 
 test('Should read successfully the URL from QR-Code', async () => {
