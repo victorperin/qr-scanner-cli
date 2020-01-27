@@ -4,6 +4,7 @@ const open = require('open')
 const fs = require('./infrastructure/fs')
 const qrReader = require('./infrastructure/qrcode-reader')
 const boxen = require('./infrastructure/boxen')
+const errorHandler = require('./handlers/error')
 
 const scanFromFile = require('./scanFromFile')
 
@@ -13,6 +14,7 @@ jest.mock('./infrastructure/fs')
 jest.mock('./infrastructure/qrcode-reader')
 jest.mock('./infrastructure/boxen')
 jest.mock('open')
+jest.mock('./handlers/error')
 
 beforeEach(() => {
   fs.readFile.mockResolvedValue('FAKE FILE CONTENT')
@@ -20,6 +22,7 @@ beforeEach(() => {
   qrReader.mockResolvedValue('FAKE QR CONTENT')
   boxen.greenBox.mockReturnValue('FAKE BOX')
   clipboardy.writeSync.mockResolvedValue('FAKE CLIPBOARD')
+  errorHandler.scanFromFile.mockResolvedValue('FAKE ERROR')
 })
 
 afterEach(jest.restoreAllMocks)
@@ -44,28 +47,6 @@ test('should console.error if readFile fails', async () => {
   fs.readFile.mockRejectedValue(expectedError)
 
   await expect(scanFromFile('FAKE PATH', {})).rejects.toEqual(expectedError)
-  expect(fs.readFile).toBeCalledWith('FAKE PATH')
-})
-
-test('should console.error if readFile fails', async () => {
-  expect.assertions(2)
-  const expectedError = '0 patterns found'
-  fs.readFile.mockRejectedValue(expectedError)
-
-  await expect(scanFromFile('FAKE PATH', {})).rejects.toEqual(
-    new Error('[WARNING] No pattern could be found! Is there a QR-Code?'),
-  )
-  expect(fs.readFile).toBeCalledWith('FAKE PATH')
-})
-
-test('should console.error if readFile fails', async () => {
-  expect.assertions(2)
-  const expectedError = new Error('no such file or directory')
-  fs.readFile.mockRejectedValue(expectedError)
-
-  await expect(scanFromFile('FAKE PATH', {})).rejects.toEqual(
-    new Error('[ERROR] File <FAKE PATH> not found!'),
-  )
   expect(fs.readFile).toBeCalledWith('FAKE PATH')
 })
 
