@@ -12,7 +12,8 @@
     "SharedArrayBuffer": "readonly"
   },
   "parserOptions": {
-    "ecmaVersion": 8
+    "ecmaVersion": 8,
+    "sourceType": "module"
   },
   "rules": {
     "prettier/prettier": ["error"],
