@@ -9,12 +9,18 @@ const ERROR = {
 
 const CLI_PATH = './src/cli/index.js'
 
+/*
+  using execa with nyc is a workarround to get coverage from jest.
+  More on: https://github.com/facebook/jest/issues/3190#issuecomment-354758036
+*/
+const execute = args => execa('./node_modules/.bin/nyc', ['--reporter=none', CLI_PATH, ...args])
+
 beforeAll(() => jest.setTimeout(300000))
 beforeEach(() => clipboardy.writeSync(''))
 
 test('Should read successfully the URL from QR-Code', async () => {
   const img = 'tests/fixture/sample.jpg'
-  const { stdout } = await execa(CLI_PATH, [img])
+  const { stdout } = await execute([img])
 
   const result = stdout
   const expected = 'https://github.com/victorperin/qr-scanner-cli'
@@ -23,7 +29,7 @@ test('Should read successfully the URL from QR-Code', async () => {
 
 test('Should output text to clipboard if -p is specified', async () => {
   const img = 'tests/fixture/sample.jpg'
-  const { stdout } = await execa(CLI_PATH, [img, '-p'])
+  const { stdout } = await execute([img, '-p'])
 
   const result = clipboardy.readSync()
   const expected = 'https://github.com/victorperin/qr-scanner-cli'
@@ -50,7 +56,7 @@ test('Should handle file not found', async () => {
   expect.assertions(2)
   const img = '404-notfound.jpg'
   try {
-    await execa(CLI_PATH, [img])
+    await execute([img])
   } catch (err) {
     const { failed, stderr } = err
 
@@ -64,7 +70,7 @@ test('Should handle file not found', async () => {
 test('Should handle invalid file (no QR-Code)', async () => {
   expect.assertions(2)
   try {
-    await execa(CLI_PATH, ['tests/fixture/invalid.jpg'])
+    await execute(['tests/fixture/invalid.jpg'])
   } catch (err) {
     const { failed, stderr } = err
 
