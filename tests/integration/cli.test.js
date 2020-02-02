@@ -7,12 +7,21 @@ const ERROR = {
   PATTERN_NOT_FOUND: '[WARNING] No pattern could be found! Is there a QR-Code?',
 }
 
+const CLI_PATH = './src/cli/index.js'
+
+/*
+  using execa with nyc is a workarround to get coverage from jest.
+  More on: https://github.com/facebook/jest/issues/3190#issuecomment-354758036
+*/
+const execute = (args = []) =>
+  execa('./node_modules/.bin/nyc', ['--silent', '--no-clean', CLI_PATH, ...args])
+
 beforeAll(() => jest.setTimeout(300000))
 beforeEach(() => clipboardy.writeSync(''))
 
 test('Should read successfully the URL from QR-Code', async () => {
   const img = 'tests/fixture/sample.jpg'
-  const { stdout } = await execa('qrscanner', [img])
+  const { stdout } = await execute([img])
 
   const result = stdout
   const expected = 'https://github.com/victorperin/qr-scanner-cli'
@@ -21,7 +30,7 @@ test('Should read successfully the URL from QR-Code', async () => {
 
 test('Should output text to clipboard if -p is specified', async () => {
   const img = 'tests/fixture/sample.jpg'
-  const { stdout } = await execa('qrscanner', [img, '-p'])
+  const { stdout } = await execute([img, '-p'])
 
   const result = clipboardy.readSync()
   const expected = 'https://github.com/victorperin/qr-scanner-cli'
@@ -32,37 +41,27 @@ test('Should output text to clipboard if -p is specified', async () => {
 
 test('Should handle missing parameter <file>', async () => {
   expect.assertions(2)
-  try {
-    await execa('qrscanner')
-  } catch (err) {
-    const { failed, stderr } = err
+  const { failed, stderr } = await execute().catch(err => err)
 
-    const result = stderr
-    const expected = ERROR.MISSING_PARAMS_FILE
-    expect(failed).toBeTruthy()
-    expect(result).toEqual(expect.stringContaining(expected))
-  }
+  const expected = ERROR.MISSING_PARAMS_FILE
+  expect(failed).toBeTruthy()
+  expect(stderr).toEqual(expect.stringContaining(expected))
 })
 
 test('Should handle file not found', async () => {
   expect.assertions(2)
   const img = '404-notfound.jpg'
-  try {
-    await execa('qrscanner', [img])
-  } catch (err) {
-    const { failed, stderr } = err
+  const { failed, stderr } = await execute([img]).catch(err => err)
 
-    const result = stderr
-    const expected = ERROR.FILE_NOT_FOUND(img)
-    expect(failed).toBeTruthy()
-    expect(result).toEqual(expect.stringContaining(expected))
-  }
+  const expected = ERROR.FILE_NOT_FOUND(img)
+  expect(failed).toBeTruthy()
+  expect(stderr).toEqual(expect.stringContaining(expected))
 })
 
 test('Should handle invalid file (no QR-Code)', async () => {
   expect.assertions(2)
   try {
-    await execa('qrscanner', ['tests/fixture/invalid.jpg'])
+    await execute(['tests/fixture/invalid.jpg'])
   } catch (err) {
     const { failed, stderr } = err
 

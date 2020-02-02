@@ -8,9 +8,12 @@
   },
   "scripts": {
     "start": "node ./src/cli/index.js",
+    "linter": "eslint .",
     "test": "jest",
-    "test:coverage": "jest --coverage && cat ./coverage/lcov.info | coveralls",
-    "pretest": "eslint . && npm link",
+    "test:unit": "jest src/**/*.test.js",
+    "test:integration": "jest tests/integration/cli.test.js",
+    "test:all": "npm run test:unit && npm run test:integration",
+    "test:coverage": "nyc --reporter=lcov npm run test:all && cat ./coverage/lcov.info | coveralls",
     "test:diff": "jest --no-cache --passWithNoTests --collectCoverage=false --findRelatedTests",
     "build": "pkg . -t node10-linux-x64,node10-macos-x64,node10-win-x64 --out-path ./bin",
     "semantic-release": "semantic-release",
@@ -20,34 +23,35 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "boxen": "^4.1.0",
+    "boxen": "^4.2.0",
     "chalk": "^3.0.0",
     "clipboardy": "^2.1.0",
     "common-tags": "^1.8.0",
-    "jimp": "^0.9.0",
+    "jimp": "^0.9.3",
     "meow": "^6.0.0",
-    "open": "^7.0.0",
+    "open": "^7.0.2",
     "qrcode-reader": "^1.0.4"
   },
   "devDependencies": {
-    "@commitlint/cli": "^8.2.0",
-    "@commitlint/config-conventional": "^8.2.0",
-    "@commitlint/travis-cli": "^8.2.0",
-    "coveralls": "^3.0.7",
-    "eslint": "^6.6.0",
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "@commitlint/travis-cli": "^8.3.5",
+    "coveralls": "^3.0.9",
+    "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-config-prettier": "^6.7.0",
-    "eslint-plugin-editorconfig": "^2.1.2",
-    "eslint-plugin-import": "^2.19.1",
-    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-prettier": "^3.1.2",
     "execa": "^4.0.0",
-    "http-server": "^0.12.0",
-    "husky": "^4.0.2",
-    "jest": "^24.9.0",
-    "lint-staged": "^10.0.3",
-    "pkg": "^4.4.0",
+    "http-server": "^0.12.1",
+    "husky": "^4.2.1",
+    "jest": "^25.1.0",
+    "lint-staged": "^10.0.7",
+    "nyc": "^15.0.0",
+    "pkg": "^4.4.2",
     "prettier": "^1.19.1",
-    "semantic-release": "^17.0.0"
+    "semantic-release": "^17.0.2"
   },
   "repository": {
     "type": "git",
@@ -69,5 +73,8 @@
       "eslint",
       "npm run test:diff"
     ]
+  },
+  "engines": {
+    "node": ">=10"
   }
 }
