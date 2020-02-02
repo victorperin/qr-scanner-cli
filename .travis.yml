@@ -31,7 +31,6 @@ before_script:
 
 script:
   - commitlint-travis
-  - if [ "$TRAVIS_OS_NAME" = "linux"   ]; then           npm run linter           ; fi
   - if [ "$TRAVIS_OS_NAME" = "linux"   ]; then   xvfb-run npm run test:coverage   ; fi
   - if [ "$TRAVIS_OS_NAME" = "osx"     ]; then        npm run test:coverage       ; fi
   - if [ "$TRAVIS_OS_NAME" = "windows" ]; then        npm run test:coverage       ; fi
