@@ -8,6 +8,7 @@
   },
   "scripts": {
     "start": "node ./src/cli/index.js",
+    "linter": "eslint .",
     "test": "jest",
     "test:unit": "jest src/**/*.test.js",
     "test:integration": "jest tests/integration/cli.test.js",
