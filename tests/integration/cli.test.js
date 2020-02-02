@@ -41,31 +41,21 @@ test('Should output text to clipboard if -p is specified', async () => {
 
 test('Should handle missing parameter <file>', async () => {
   expect.assertions(2)
-  try {
-    await execute()
-  } catch (err) {
-    const { failed, stderr } = err
+  const { failed, stderr } = await execute().catch(err => err)
 
-    const result = stderr
-    const expected = ERROR.MISSING_PARAMS_FILE
-    expect(failed).toBeTruthy()
-    expect(result).toEqual(expect.stringContaining(expected))
-  }
+  const expected = ERROR.MISSING_PARAMS_FILE
+  expect(failed).toBeTruthy()
+  expect(stderr).toEqual(expect.stringContaining(expected))
 })
 
 test('Should handle file not found', async () => {
   expect.assertions(2)
   const img = '404-notfound.jpg'
-  try {
-    await execute([img])
-  } catch (err) {
-    const { failed, stderr } = err
+  const { failed, stderr } = await execute([img]).catch(err => err)
 
-    const result = stderr
-    const expected = ERROR.FILE_NOT_FOUND(img)
-    expect(failed).toBeTruthy()
-    expect(result).toEqual(expect.stringContaining(expected))
-  }
+  const expected = ERROR.FILE_NOT_FOUND(img)
+  expect(failed).toBeTruthy()
+  expect(stderr).toEqual(expect.stringContaining(expected))
 })
 
 test('Should handle invalid file (no QR-Code)', async () => {
