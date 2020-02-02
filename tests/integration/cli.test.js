@@ -13,7 +13,7 @@ const CLI_PATH = './src/cli/index.js'
   using execa with nyc is a workarround to get coverage from jest.
   More on: https://github.com/facebook/jest/issues/3190#issuecomment-354758036
 */
-const execute = args =>
+const execute = (args = []) =>
   execa('./node_modules/.bin/nyc', ['--silent', '--no-clean', CLI_PATH, ...args])
 
 beforeAll(() => jest.setTimeout(300000))
@@ -42,7 +42,7 @@ test('Should output text to clipboard if -p is specified', async () => {
 test('Should handle missing parameter <file>', async () => {
   expect.assertions(2)
   try {
-    await execa(CLI_PATH)
+    await execute()
   } catch (err) {
     const { failed, stderr } = err
 
