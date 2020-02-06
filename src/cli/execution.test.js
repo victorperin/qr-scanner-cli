@@ -4,6 +4,7 @@ const scanFromFile = require('../scanFromFile')
 const execution = require('./execution')
 
 jest.mock('../scanFromFile.js')
+jest.mock('meow', () => jest.fn())
 
 test('should execute scanFrom file', () => {
   scanFromFile.mockResolvedValue('MOCKED SCAN RESULT')
