@@ -6,6 +6,6 @@ module.exports = {
   // coverageReporters: ['lcov', 'text'],
   // coverageDirectory: 'coverage',
   testEnvironment: 'node',
-  testMatch: ['<rootDir>/tests/**/*.test.js', '<rootDir>/src/**/*.test.js'],
+  testMatch: ['<rootDir>/tests/**/*.test.(t|j)s', '<rootDir>/src/**/*.test.(t|j)s'],
   verbose: true,
 }
