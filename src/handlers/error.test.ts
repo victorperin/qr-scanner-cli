@@ -1,4 +1,4 @@
-const { scanFromFile } = require('./error')
+import { scanFromFile } from './error'
 
 describe('error handler', () => {
   describe('scanFromFile', () => {
