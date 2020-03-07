@@ -1,9 +1,10 @@
-const open = require('open')
+import { mocked } from 'ts-jest/utils'
+import open from 'open'
+import { doOpen } from './flags'
 
-const { doOpen } = require('./flags')
-
+const openMocked = mocked(open, true)
 jest.mock('open')
-beforeEach(open.mockReset)
+beforeEach(openMocked.mockReset)
 
 describe('doOpen', () => {
   it('should open with text if flag open exists', () => {
@@ -15,7 +16,7 @@ describe('doOpen', () => {
     doOpen(flags)(input)
 
     // assert
-    expect(open.mock.calls[0][0]).toEqual(input)
+    expect(openMocked.mock.calls[0][0]).toEqual(input)
   })
 
   it('should not open with text if there is no flag open', () => {
@@ -27,7 +28,7 @@ describe('doOpen', () => {
     doOpen(flags)(input)
 
     // assert
-    expect(open.mock.calls.length).toEqual(0)
+    expect(openMocked.mock.calls.length).toEqual(0)
   })
 
   it('should return text if there is no flag open', () => {
