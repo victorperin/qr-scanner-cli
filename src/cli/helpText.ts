@@ -1,6 +1,6 @@
-const { stripIndent } = require('common-tags')
-const { greenBox } = require('../infrastructure/boxen')
-const flags = require('../cli/flags')
+import { stripIndent } from 'common-tags'
+import { greenBox } from '../infrastructure/boxen'
+import flags from '../cli/flags'
 
 const flagDescriptions = Object.keys(flags)
   .map(flagKey => {
@@ -26,4 +26,4 @@ ${flagDescriptions}
     This message is written in a QR Code
 `
 
-module.exports = helpText
+export default helpText
