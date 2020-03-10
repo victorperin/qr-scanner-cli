@@ -1,8 +1,8 @@
-const boxen = require('boxen')
+import boxen, { BorderStyle } from 'boxen'
 
 const GREEN_BOX_CONFIG = {
   padding: 1,
-  borderStyle: 'double',
+  borderStyle: BorderStyle.Double,
   borderColor: 'green',
 }
 
