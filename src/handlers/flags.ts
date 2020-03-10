@@ -1,6 +1,6 @@
-const open = require('open')
-const clipboardy = require('clipboardy')
-const { greenBox } = require('../infrastructure/boxen')
+import open from 'open'
+import clipboardy from 'clipboardy'
+import { greenBox } from '../infrastructure/boxen'
 
 const outputText = flags => text => {
   const output = flags.clear ? text : greenBox(text)
