@@ -1,4 +1,4 @@
-const QrCode = require('qrcode-reader')
+import QrCode from 'qrcode-reader'
 
 const readQR = imageBitmap =>
   new Promise((resolve, reject) => {
