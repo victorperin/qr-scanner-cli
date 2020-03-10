@@ -1,4 +1,4 @@
-const Jimp = require('jimp')
+import Jimp from 'jimp'
 
 const extractBitmap = ({ bitmap }) => bitmap
 
