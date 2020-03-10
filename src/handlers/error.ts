@@ -1,4 +1,4 @@
-const scanFromFile = filePath => error => {
+export const scanFromFile = filePath => error => {
   if (typeof error === 'string' && error.includes('0 patterns found'))
     throw new Error('[WARNING] No pattern could be found! Is there a QR-Code?')
 
@@ -8,6 +8,6 @@ const scanFromFile = filePath => error => {
   throw error
 }
 
-module.exports = {
-  scanFromFile,
+export default {
+  scanFromFile
 }
