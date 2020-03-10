@@ -16,4 +16,4 @@ const flags = {
   },
 }
 
-module.exports = flags
+export default flags
