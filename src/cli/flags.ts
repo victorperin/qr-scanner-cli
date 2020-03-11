@@ -1,12 +1,24 @@
-const flags = {
+import { BooleanFlag } from 'meow'
+
+type FlagWithDescription<T> = T & {
+  description: String
+}
+
+export type Flags = {
+  clear: FlagWithDescription<BooleanFlag>
+  clipboard: FlagWithDescription<BooleanFlag>
+  open: FlagWithDescription<BooleanFlag>
+}
+
+const flags: Flags = {
   clear: {
     type: 'boolean',
     alias: 'c',
     description: 'Clear output, just print the QR Code scan result',
   },
   clipboard: {
-    type: 'boolean',
-    alias: 'p',
+  type: 'boolean',
+  alias: 'p',
     description: 'Copy the qr code value to your clipboard',
   },
   open: {
