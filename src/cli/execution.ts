@@ -1,11 +1,12 @@
-const meow = require('meow')
+import meow from 'meow'
+import { Options } from 'meow'
 
-const scanFromFile = require('../scanFromFile')
+import scanFromFile from '../scanFromFile'
 
-const helpText = require('./helpText')
-const flags = require('./flags')
+import helpText from './helpText'
+import flags, { Flags } from './flags'
 
-const options = { flags }
+const options: Options<Flags> = { flags }
 
 const execution = () => {
   const cli = meow(helpText, options)
