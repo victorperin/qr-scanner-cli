@@ -1,5 +1,5 @@
-const originalLib = require('qrcode-reader')
-const qrcodeReader = require('./qrcode-reader')
+import originalLib from 'qrcode-reader'
+import qrcodeReader from './qrcode-reader'
 
 jest.mock('qrcode-reader')
 

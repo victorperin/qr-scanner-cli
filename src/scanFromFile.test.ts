@@ -1,5 +1,5 @@
 import { mocked } from 'ts-jest/utils'
-import jimp from './infrastructure/jimp'
+import * as jimp from './infrastructure/jimp'
 import clipboardy from 'clipboardy'
 import open from 'open'
 import qrReader from './infrastructure/qrcode-reader'

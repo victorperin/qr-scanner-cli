@@ -13,4 +13,4 @@ const readQR = imageBitmap =>
     qr.decode(imageBitmap)
   })
 
-module.exports = readQR
+export default readQR
