@@ -28,7 +28,7 @@
     "clipboardy": "^2.1.0",
     "common-tags": "^1.8.0",
     "jimp": "^0.9.3",
-    "meow": "^6.0.0",
+    "meow": "^6.0.1",
     "open": "^7.0.2",
     "qrcode-reader": "^1.0.4"
   },
