@@ -15,7 +15,7 @@
     "test:all": "npm run test:unit && npm run test:integration",
     "test:coverage": "nyc --reporter=lcov npm run test:all && cat ./coverage/lcov.info | coveralls",
     "test:diff": "jest --no-cache --passWithNoTests --collectCoverage=false --findRelatedTests",
-    "build": "pkg . -t node10-linux-x64,node10-macos-x64,node10-win-x64 --out-path ./bin",
+    "build": "tsc",
     "semantic-release": "semantic-release",
     "coverage": "http-server coverage/lcov-report/"
   },
@@ -50,7 +50,6 @@
     "jest": "^25.1.0",
     "lint-staged": "^10.0.7",
     "nyc": "^15.0.0",
-    "pkg": "^4.4.2",
     "prettier": "^1.19.1",
     "semantic-release": "^17.0.2",
     "ts-jest": "^25.2.0",
