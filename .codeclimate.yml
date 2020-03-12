@@ -13,3 +13,7 @@ exclude_patterns:
   - tests/fixture/*
   - package-lock.json
   - demo.gif
+  - dist/*
+  - tsconfig.json
+  - qrscanner
+  - .nyc_output

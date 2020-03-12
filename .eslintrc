@@ -1,7 +1,5 @@
 {
-  "ignorePatterns": [
-    "dist"
-  ],
+  "parser": "@typescript-eslint/parser",
   "env": {
     "commonjs": true,
     "es6": true,
@@ -9,17 +7,15 @@
     "jest": true
   },
   "extends": [
-    "airbnb-base",
+    "eslint:recommended",
     "prettier",
-    "plugin:node/recommended"
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
   ],
   "plugins": [
-    "prettier"
+    "prettier",
+    "@typescript-eslint"
   ],
-  "parserOptions": {
-    "ecmaVersion": 9,
-    "sourceType": "module"
-  },
   "rules": {
     "prettier/prettier": ["error"],
     "no-console": "off",
