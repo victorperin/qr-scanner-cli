@@ -13,3 +13,9 @@ coverage/
 __mocks__
 CONTRIBUTING.md
 CODE_OF_CONDUCT.md
+.nyc_output
+*.ts
+.eslintrc
+.gitattributes
+tsconfig.json
+.codeclimate.yml
