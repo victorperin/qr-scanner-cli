@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "bin": {
-    "qrscanner": "./dist/src/cli/index.js"
+    "qrscanner": "./qrscanner"
   },
   "scripts": {
     "start": "node ./src/cli/index.js",
