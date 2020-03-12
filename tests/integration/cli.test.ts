@@ -1,5 +1,6 @@
 import execa from 'execa'
 import clipboardy from 'clipboardy'
+import { build } from 'tsc-prog'
 
 const ERROR = {
   MISSING_PARAMS_FILE: '[WARNING] Missing argument file: node index.js <file>!',
@@ -17,6 +18,15 @@ const execute = (args = []) =>
   execa('./node_modules/.bin/nyc', ['--silent', '--no-clean', CLI_PATH, ...args])
 
 beforeAll(() => jest.setTimeout(300000))
+
+// build tsc for real test cases
+beforeAll(() => build({
+  basePath: process.cwd(),
+  configFilePath: 'tsconfig.json',
+  include: ['src'],
+  exclude: ['**/*.test.ts'],
+}))
+
 beforeEach(() => clipboardy.writeSync(''))
 
 test('Should read successfully the URL from QR-Code', async () => {
