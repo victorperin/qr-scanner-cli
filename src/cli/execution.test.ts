@@ -1,18 +1,31 @@
-const { mocked } = require('ts-jest/utils')
-const meow = require('meow')
+import { mocked } from 'ts-jest/utils'
+import meow from 'meow'
 
-const scanFromFile = require('../scanFromFile')
-const execution = require('./execution')
+import scanFromFile from '../scanFromFile'
+import execution from './execution'
 
 const meowMocked = mocked(meow, true)
-const scanFromFileMocked = mocked(scanFromFile)
+const scanFromFileMocked = mocked(scanFromFile, true)
 
-jest.mock('../scanFromFile.js')
+jest.mock('../scanFromFile')
 jest.mock('meow', jest.fn)
 
+const DEFAULT_MEOW_PROPERTIES = {
+  unnormalizedFlags: {},
+  pkg: {},
+  help: "",
+  showHelp: () => {},
+  showVersion: () => {},
+}
+
 test('should execute scanFrom file', () => {
-  scanFromFileMocked.mockResolvedValue('MOCKED SCAN RESULT')
-  meowMocked.mockReturnValue({ input: ['MOCKED FILE PATH'], flags: { biru: 'laibe' } })
+  scanFromFileMocked.mockResolvedValue()
+  meowMocked.mockReturnValue({
+    ...DEFAULT_MEOW_PROPERTIES,
+    input: ['MOCKED FILE PATH'],
+    flags: { biru: 'laibe' }
+  })
+
   execution()
 
   expect(meowMocked).toHaveBeenCalledTimes(1)
@@ -20,11 +33,17 @@ test('should execute scanFrom file', () => {
 })
 
 test('should warn if no argument passed', () => {
-  scanFromFileMocked.mockResolvedValue('MOCKED SCAN RESULT')
+  scanFromFileMocked.mockResolvedValue()
   const helpSpy = jest.fn()
   jest.spyOn(global.console, 'warn').mockReturnValue()
 
-  meowMocked.mockReturnValue({ input: [], flags: { biru: 'laibe' }, showHelp: helpSpy })
+  meowMocked.mockReturnValue({
+    ...DEFAULT_MEOW_PROPERTIES,
+    input: [],
+    flags: { biru: 'laibe' },
+    showHelp: helpSpy
+  })
+
   execution()
 
   expect(meow).toHaveBeenCalledTimes(1)
