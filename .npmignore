@@ -19,3 +19,5 @@ CODE_OF_CONDUCT.md
 .gitattributes
 tsconfig.json
 .codeclimate.yml
+!*.d.ts
+*.test.d.ts
