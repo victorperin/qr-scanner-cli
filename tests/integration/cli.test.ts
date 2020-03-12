@@ -1,5 +1,5 @@
-const execa = require('execa')
-const clipboardy = require('clipboardy')
+import execa from 'execa'
+import clipboardy from 'clipboardy'
 
 const ERROR = {
   MISSING_PARAMS_FILE: '[WARNING] Missing argument file: node index.js <file>!',
@@ -7,7 +7,7 @@ const ERROR = {
   PATTERN_NOT_FOUND: '[WARNING] No pattern could be found! Is there a QR-Code?',
 }
 
-const CLI_PATH = './src/cli/index.js'
+const CLI_PATH = './dist/src/cli/index.js'
 
 /*
   using execa with nyc is a workarround to get coverage from jest.
@@ -34,7 +34,6 @@ test('Should output text to clipboard if -p is specified', async () => {
 
   const result = clipboardy.readSync()
   const expected = 'https://github.com/victorperin/qr-scanner-cli'
-
   expect(stdout).toEqual(expect.stringContaining(expected))
   expect(result).toEqual(expected)
 })
