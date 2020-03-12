@@ -19,4 +19,4 @@ const execution = () => {
   return scanFromFile(cli.input[0], cli.flags)
 }
 
-module.exports = execution
+export default execution
