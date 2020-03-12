@@ -7,15 +7,18 @@
     "jest": true
   },
   "extends": [
-    "eslint:recommended",
-    "prettier",
-    "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "prettier/@typescript-eslint",
+    "plugin:prettier/recommended"
   ],
   "plugins": [
     "prettier",
     "@typescript-eslint"
   ],
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType":  "module"
+  },
   "rules": {
     "prettier/prettier": ["error"],
     "no-console": "off",
