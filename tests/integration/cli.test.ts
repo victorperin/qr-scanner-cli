@@ -8,7 +8,7 @@ const ERROR = {
   PATTERN_NOT_FOUND: '[WARNING] No pattern could be found! Is there a QR-Code?',
 }
 
-const CLI_PATH = './dist/src/cli/index.js'
+const CLI_PATH = './qrscanner'
 
 /*
   using execa with nyc is a workarround to get coverage from jest.

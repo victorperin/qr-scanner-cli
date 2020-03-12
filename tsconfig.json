@@ -1,4 +1,11 @@
 {
+  "include": [
+    "src",
+  ],
+  "exclude": [
+    "jest.config.js",
+    "*.test.ts"
+  ],
   "compilerOptions": {
     /* Basic Options */
     // "incremental": true,                   /* Enable incremental compilation */
