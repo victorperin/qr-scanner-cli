@@ -25,6 +25,9 @@ beforeAll(() => build({
   configFilePath: 'tsconfig.json',
   include: ['src'],
   exclude: ['**/*.test.ts'],
+  compilerOptions: {
+    sourceMap: true
+  }
 }))
 
 beforeEach(() => clipboardy.writeSync(''))
