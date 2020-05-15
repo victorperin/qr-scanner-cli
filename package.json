@@ -27,7 +27,7 @@
     "chalk": "^4.0.0",
     "clipboardy": "^2.3.0",
     "common-tags": "^1.8.0",
-    "jimp": "^0.10.0",
+    "jimp": "^0.11.0",
     "meow": "^7.0.0",
     "open": "^7.0.3",
     "qrcode-reader": "^1.0.4"
