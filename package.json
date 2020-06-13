@@ -27,7 +27,7 @@
     "chalk": "^4.0.0",
     "clipboardy": "^2.3.0",
     "common-tags": "^1.8.0",
-    "jimp": "^0.10.0",
+    "jimp": "^0.11.0",
     "meow": "^7.0.0",
     "open": "^7.0.3",
     "qrcode-reader": "^1.0.4"
@@ -39,7 +39,7 @@
     "@istanbuljs/nyc-config-typescript": "^1.0.1",
     "@types/jest": "^25.2.1",
     "@typescript-eslint/eslint-plugin": "^3.0.0",
-    "@typescript-eslint/parser": "^2.27.0",
+    "@typescript-eslint/parser": "^3.0.0",
     "coveralls": "^3.0.11",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.1",
@@ -54,7 +54,7 @@
     "prettier": "^2.0.4",
     "semantic-release": "^17.0.4",
     "source-map-support": "^0.5.16",
-    "ts-jest": "^25.3.1",
+    "ts-jest": "^26.0.0",
     "ts-node": "^8.8.2",
     "tsc-prog": "^2.2.0",
     "typescript": "^3.7.5"
