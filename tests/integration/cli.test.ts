@@ -4,7 +4,7 @@ import { build } from 'tsc-prog'
 
 const ERROR = {
   MISSING_PARAMS_FILE: '[WARNING] Missing argument file: node index.js <file>!',
-  FILE_NOT_FOUND: file => `[ERROR] File <${file}> not found!`,
+  FILE_NOT_FOUND: (file) => `[ERROR] File <${file}> not found!`,
   PATTERN_NOT_FOUND: '[WARNING] No pattern could be found! Is there a QR-Code?',
 }
 
@@ -20,15 +20,17 @@ const execute = (args = []) =>
 beforeAll(() => jest.setTimeout(300000))
 
 // build tsc for real test cases
-beforeAll(() => build({
-  basePath: process.cwd(),
-  configFilePath: 'tsconfig.json',
-  include: ['src'],
-  exclude: ['**/*.test.ts'],
-  compilerOptions: {
-    sourceMap: true
-  }
-}))
+beforeAll(() =>
+  build({
+    basePath: process.cwd(),
+    configFilePath: 'tsconfig.json',
+    include: ['src'],
+    exclude: ['**/*.test.ts'],
+    compilerOptions: {
+      sourceMap: true,
+    },
+  }),
+)
 
 beforeEach(() => clipboardy.writeSync(''))
 
@@ -53,7 +55,7 @@ test('Should output text to clipboard if -p is specified', async () => {
 
 test('Should handle missing parameter <file>', async () => {
   expect.assertions(2)
-  const { failed, stderr } = await execute().catch(err => err)
+  const { failed, stderr } = await execute().catch((err) => err)
 
   const expected = ERROR.MISSING_PARAMS_FILE
   expect(failed).toBeTruthy()
@@ -63,7 +65,7 @@ test('Should handle missing parameter <file>', async () => {
 test('Should handle file not found', async () => {
   expect.assertions(2)
   const img = '404-notfound.jpg'
-  const { failed, stderr } = await execute([img]).catch(err => err)
+  const { failed, stderr } = await execute([img]).catch((err) => err)
 
   const expected = ERROR.FILE_NOT_FOUND(img)
   expect(failed).toBeTruthy()

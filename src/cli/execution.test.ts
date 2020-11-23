@@ -13,9 +13,9 @@ jest.mock('meow', jest.fn)
 const DEFAULT_MEOW_PROPERTIES = {
   unnormalizedFlags: {},
   pkg: {},
-  help: "",
-  showHelp: () => {},
-  showVersion: () => {},
+  help: '',
+  showHelp: () => null,
+  showVersion: () => null,
 }
 
 test('should execute scanFrom file', () => {
@@ -23,7 +23,7 @@ test('should execute scanFrom file', () => {
   meowMocked.mockReturnValue({
     ...DEFAULT_MEOW_PROPERTIES,
     input: ['MOCKED FILE PATH'],
-    flags: { biru: 'laibe' }
+    flags: { biru: 'laibe' },
   })
 
   execution()
@@ -41,7 +41,7 @@ test('should warn if no argument passed', () => {
     ...DEFAULT_MEOW_PROPERTIES,
     input: [],
     flags: { biru: 'laibe' },
-    showHelp: helpSpy
+    showHelp: helpSpy,
   })
 
   execution()

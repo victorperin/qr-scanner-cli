@@ -5,7 +5,7 @@ jest.mock('qrcode-reader')
 
 beforeEach(originalLib.mockClear)
 
-test('should resolve if qr is qrcode-reader runs callback without errors', done => {
+test('should resolve if qr is qrcode-reader runs callback without errors', (done) => {
   const fakeImageBitmap = 'FAKE BITMAP'
   const qrPromise = qrcodeReader(fakeImageBitmap)
 
@@ -17,12 +17,10 @@ test('should resolve if qr is qrcode-reader runs callback without errors', done 
 
   expect(mockDecode).toHaveBeenCalledWith(fakeImageBitmap)
 
-  expect(qrPromise)
-    .resolves.toEqual('FAKE RESULT')
-    .then(done)
+  expect(qrPromise).resolves.toEqual('FAKE RESULT').then(done)
 })
 
-test('should reject if qr is qrcode-reader runs callback with error', done => {
+test('should reject if qr is qrcode-reader runs callback with error', (done) => {
   const fakeImageBitmap = 'FAKE BITMAP'
   const qrPromise = qrcodeReader(fakeImageBitmap)
 
@@ -30,7 +28,5 @@ test('should reject if qr is qrcode-reader runs callback with error', done => {
 
   originalLibInstance.callback('FAKE ERROR')
 
-  expect(qrPromise)
-    .rejects.toEqual('FAKE ERROR')
-    .then(done)
+  expect(qrPromise).rejects.toEqual('FAKE ERROR').then(done)
 })

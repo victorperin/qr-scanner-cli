@@ -1,7 +1,7 @@
 import { BooleanFlag } from 'meow'
 
 type FlagWithDescription<T> = T & {
-  description: String
+  description: string
 }
 
 export type Flags = {
@@ -17,8 +17,8 @@ const flags: Flags = {
     description: 'Clear output, just print the QR Code scan result',
   },
   clipboard: {
-  type: 'boolean',
-  alias: 'p',
+    type: 'boolean',
+    alias: 'p',
     description: 'Copy the qr code value to your clipboard',
   },
   open: {

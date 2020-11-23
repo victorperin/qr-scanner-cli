@@ -3,7 +3,7 @@ import { greenBox } from '../infrastructure/boxen'
 import flags from '../cli/flags'
 
 const flagDescriptions = Object.keys(flags)
-  .map(flagKey => {
+  .map((flagKey) => {
     const flag = flags[flagKey]
     return `    --${flagKey}, -${flag.alias}  ${flag.description}`
   })
