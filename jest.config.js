@@ -8,4 +8,7 @@ module.exports = {
   testEnvironment: 'node',
   testMatch: ['<rootDir>/tests/**/*.test.(t|j)s', '<rootDir>/src/**/*.test.(t|j)s'],
   verbose: true,
+  globals: {
+    'ts-jest': { compiler: 'ttypescript' },
+  },
 }
