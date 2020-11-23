@@ -5,6 +5,8 @@ import open from 'open'
 import qrReader from './infrastructure/qrcode-reader'
 import boxen from './infrastructure/boxen'
 import errorHandler from './handlers/error'
+import { createMock } from 'ts-auto-mock'
+import { Bitmap } from '@jimp/core'
 
 import scanFromFile from './scanFromFile'
 
@@ -22,8 +24,10 @@ jest.mock('./infrastructure/boxen')
 jest.mock('./infrastructure/jimp')
 jest.mock('./handlers/error')
 
+const fakeBitmap = createMock<Bitmap>()
+
 beforeEach(() => {
-  JimpMocked.getBitmap.mockResolvedValue('FAKE BITMAP')
+  JimpMocked.getBitmap.mockResolvedValue(fakeBitmap)
   qrReaderMocked.mockResolvedValue('FAKE QR CONTENT')
   boxenMocked.greenBox.mockReturnValue('FAKE BOX')
   clipboardyMocked.writeSync.mockResolvedValue(undefined as never)
@@ -39,7 +43,7 @@ test('should pass on happy path', async () => {
   await scanFromFile('FAKE PATH', {})
 
   expect(JimpMocked.getBitmap).toBeCalledWith('FAKE PATH')
-  expect(qrReaderMocked).toBeCalledWith('FAKE BITMAP')
+  expect(qrReaderMocked).toBeCalledWith(fakeBitmap)
   expect(boxenMocked.greenBox).toBeCalledWith('FAKE QR CONTENT')
   expect(console.log).toBeCalledWith('FAKE BOX')
 
@@ -52,7 +56,7 @@ test('should copy to clipboard if flag is present', async () => {
   await scanFromFile('FAKE PATH', { clipboard: true })
 
   expect(JimpMocked.getBitmap).toBeCalledWith('FAKE PATH')
-  expect(qrReader).toBeCalledWith('FAKE BITMAP')
+  expect(qrReader).toBeCalledWith(fakeBitmap)
   expect(boxen.greenBox).toBeCalledWith('FAKE QR CONTENT')
 
   expect(clipboardy.writeSync).toBeCalledWith('FAKE QR CONTENT')
@@ -65,7 +69,7 @@ test('should output without box if clear flag is present', async () => {
   await scanFromFile('FAKE PATH', { clear: true })
 
   expect(JimpMocked.getBitmap).toBeCalledWith('FAKE PATH')
-  expect(qrReader).toBeCalledWith('FAKE BITMAP')
+  expect(qrReader).toBeCalledWith(fakeBitmap)
   expect(boxen.greenBox).not.toBeCalledWith('FAKE QR CONTENT')
   expect(console.log).toBeCalledWith('FAKE QR CONTENT')
   expect(console.log).not.toBeCalledWith('FAKE BOX')
@@ -79,7 +83,7 @@ test('should execute flags (clear, clipboard)', async () => {
   await scanFromFile('FAKE PATH', { clear: true, clipboard: true })
 
   expect(JimpMocked.getBitmap).toBeCalledWith('FAKE PATH')
-  expect(qrReader).toBeCalledWith('FAKE BITMAP')
+  expect(qrReader).toBeCalledWith(fakeBitmap)
   expect(boxen.greenBox).not.toBeCalledWith('FAKE QR CONTENT')
   expect(console.log).toBeCalledWith('FAKE QR CONTENT')
   expect(console.log).not.toBeCalledWith('FAKE BOX')
@@ -93,7 +97,7 @@ test('should execute open with --open', async () => {
   await scanFromFile('FAKE PATH', { open: true })
 
   expect(JimpMocked.getBitmap).toBeCalledWith('FAKE PATH')
-  expect(qrReader).toBeCalledWith('FAKE BITMAP')
+  expect(qrReader).toBeCalledWith(fakeBitmap)
   expect(boxen.greenBox).toBeCalledWith('FAKE QR CONTENT')
   expect(open).toBeCalledWith('FAKE QR CONTENT')
   expect(console.log).toBeCalledWith('FAKE BOX')

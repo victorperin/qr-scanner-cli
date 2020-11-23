@@ -1,12 +1,17 @@
-const Jimp = require('jimp')
-const { getBitmap } = require('./jimp')
+import { mocked } from 'ts-jest/utils'
+import { createMock } from 'ts-auto-mock'
+import Jimp from 'jimp'
+import { Bitmap } from '@jimp/core'
+import { getBitmap } from './jimp'
 
 jest.mock('jimp')
-beforeEach(Jimp.mockReset)
+const jimpMock = mocked(Jimp, true)
+beforeEach(jimpMock.mockReset)
 
 describe('jimp/getBitmap', () => {
   it('should execute Jimp.read with input', async () => {
-    Jimp.read.mockResolvedValue({})
+    const fakeJimpObject = createMock<Jimp>()
+    jimpMock.read.mockResolvedValue(fakeJimpObject)
 
     await getBitmap('SOME FILE PATH')
 
@@ -14,10 +19,12 @@ describe('jimp/getBitmap', () => {
   })
 
   it('should return bitmap from Jimp.read response', async () => {
-    Jimp.read.mockResolvedValue({ bitmap: 'SOME BITMAP' })
+    const fakeBitmap = createMock<Bitmap>()
+    const fakeJimpObject = createMock<Jimp>({ bitmap: fakeBitmap })
+    jimpMock.read.mockResolvedValue(fakeJimpObject)
 
     const result = await getBitmap('')
 
-    expect(result).toBe('SOME BITMAP')
+    expect(result).toBe(fakeBitmap)
   })
 })
