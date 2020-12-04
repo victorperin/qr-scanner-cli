@@ -28,6 +28,10 @@ jobs:
           restore-keys: |
             nodeModules-
 
+      - name: install clipboard tools
+        if: ${{ matrix.os == "ubuntu-latest" }}
+        run: apt update && apt install xsel xvfb -y
+
       - name: 🏘️ Install dependencies
         run: npm ci
         env:
@@ -35,10 +39,11 @@ jobs:
 
       - name: 🐛 Linter 🕵️
         run: npm run linter
-        env:
-          CI: true
 
-      - name: 🐛 Test 🕵️
+      - name: 🐛 Test on Ubuntu
+        if: ${{ matrix.os == "ubuntu-latest" }}
+        run: xvfb-run npm test
+
+      - name: 🐛 Test on other os
+        if: ${{ matrix.os != "ubuntu-latest" }}
         run: npm test
-        env:
-          CI: true
