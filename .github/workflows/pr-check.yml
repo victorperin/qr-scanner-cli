@@ -36,7 +36,7 @@ jobs:
 
       - name: install clipboard tools
         if: matrix.os == 'ubuntu-latest'
-        run: apt update && apt install xsel xvfb -y
+        run: sudo apt update && sudo apt install xsel xvfb -y
 
       - name: 🏘️ Install dependencies
         run: npm ci
