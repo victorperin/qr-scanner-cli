@@ -1,6 +1,6 @@
 on:
   workflow_run:
-    workflows: ["Check"]
+    workflows: ["pr-check"]
     branches: [master]
     types:
       - completed
