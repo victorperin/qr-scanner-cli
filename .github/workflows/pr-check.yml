@@ -49,8 +49,13 @@ jobs:
 
       - name: 🐛 Test on Ubuntu
         if: matrix.os == 'ubuntu-latest'
-        run: xvfb-run npm test
+        run: xvfb-run npm run test:coverage
 
       - name: 🐛 Test on other os
         if: matrix.os != 'ubuntu-latest'
         run: npm test
+
+      - name: publish code coverage on CodeClimate
+        uses: paambaati/codeclimate-action@v2.7.4
+        env:
+          CC_TEST_REPORTER_ID: 7224dfa80ac316eaffa0c0d753c472d455d995ac1a10dd2ff66462ad48b70577
