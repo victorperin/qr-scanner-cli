@@ -6,7 +6,7 @@ module.exports = {
   // coverageReporters: ['lcov', 'text'],
   // coverageDirectory: 'coverage',
   testEnvironment: 'node',
-  testMatch: ['<rootDir>/tests/**/*.test.(t|j)s', '<rootDir>/src/**/*.test.(t|j)s'],
+  testMatch: ['<rootDir>/tests/**/*.test.ts', '<rootDir>/src/**/*.test.ts'],
   verbose: true,
   globals: {
     'ts-jest': { compiler: 'ttypescript' },
