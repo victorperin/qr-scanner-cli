@@ -7,7 +7,7 @@ import execution from './execution'
 const meowMocked = mocked(meow, true)
 const scanFromFileMocked = mocked(scanFromFile, true)
 
-jest.mock('../scanFromFile')
+jest.mock('../scanFromFile', jest.fn)
 jest.mock('meow', jest.fn)
 
 const DEFAULT_MEOW_PROPERTIES = {

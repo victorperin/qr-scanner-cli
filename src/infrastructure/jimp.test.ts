@@ -4,9 +4,9 @@ import Jimp from 'jimp'
 import { Bitmap } from '@jimp/core'
 import { getBitmap } from './jimp'
 
-jest.mock('jimp')
-const jimpMock = mocked(Jimp, true)
-beforeEach(jimpMock.mockReset)
+jest.mock('jimp', () => ({ read: jest.fn() }))
+const jimpMock = mocked(Jimp)
+beforeEach(jimpMock.read.mockReset)
 
 describe('jimp/getBitmap', () => {
   it('should execute Jimp.read with input', async () => {

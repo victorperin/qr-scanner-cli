@@ -21,7 +21,7 @@ jest.mock('clipboardy')
 jest.mock('open')
 jest.mock('./infrastructure/qrcode-reader')
 jest.mock('./infrastructure/boxen')
-jest.mock('./infrastructure/jimp')
+jest.mock('./infrastructure/jimp', () => ({ getBitmap: jest.fn() }))
 jest.mock('./handlers/error')
 
 const fakeBitmap = createMock<Bitmap>()
