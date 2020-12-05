@@ -12,7 +12,7 @@
     "test": "jest",
     "test:unit": "jest src/**/*.test.ts",
     "test:integration": "jest tests/integration/cli.test.ts",
-    "test:all": "npm run test:unit && npm run test:integration",
+    "test:all": "jest",
     "test:coverage": "nyc --reporter=lcov npm run test:all && cat ./coverage/lcov.info | coveralls",
     "test:diff": "jest --no-cache --passWithNoTests --collectCoverage=false --findRelatedTests",
     "build": "tsc",
