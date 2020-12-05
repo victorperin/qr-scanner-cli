@@ -1,6 +1,6 @@
 # QR Scanner CLI
 
-[![Build Status](https://travis-ci.org/victorperin/qr-scanner-cli.svg?branch=master)](https://travis-ci.org/victorperin/qr-scanner-cli)
+[![Build Status](https://github.com/victorperin/qr-scanner-cli/workflows/pr-check/badge.svg?branch=master)](https://github.com/victorperin/qr-scanner-cli/actions?query=workflow%3Apr-check+branch%3Amaster)
 [![Coverage Status](https://coveralls.io/repos/github/victorperin/qr-scanner-cli/badge.svg?branch=master)](https://coveralls.io/github/victorperin/qr-scanner-cli?branch=master)
 [![Known Vulnerabilities](https://snyk.io/test/github/victorperin/qr-scanner-cli/badge.svg)](https://snyk.io/test/github/{username}/{repo})
 [![Maintainability](https://api.codeclimate.com/v1/badges/db529f4bc96d3bc44341/maintainability)](https://codeclimate.com/github/victorperin/qr-scanner-cli/maintainability)
