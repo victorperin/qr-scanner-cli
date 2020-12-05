@@ -1,1 +1,1 @@
-*.ts text eol=lf
+*.(j|t)s text eol=lf
