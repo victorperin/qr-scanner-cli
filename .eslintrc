@@ -9,10 +9,12 @@
   "extends": [
     "plugin:@typescript-eslint/recommended",
     "prettier/@typescript-eslint",
+    "plugin:editorconfig/noconflict",
     "plugin:prettier/recommended"
   ],
   "plugins": [
     "prettier",
+    "editorconfig",
     "@typescript-eslint"
   ],
   "parserOptions": {
@@ -23,6 +25,7 @@
     "prettier/prettier": ["error"],
     "no-console": "off",
     "comma-dangle": ["error", "always-multiline"],
+    "editorconfig/editorconfig": "error",
     "import/prefer-default-export": "off"
   }
 }
