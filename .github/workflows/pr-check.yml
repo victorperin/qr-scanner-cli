@@ -44,6 +44,7 @@ jobs:
           CI: true
 
       - name: 🐛 Linter 🕵️
+        if: matrix.os == 'ubuntu-latest' && matrix.node-version == '15.x'
         run: npm run linter
 
       - name: 🐛 Test on Ubuntu
