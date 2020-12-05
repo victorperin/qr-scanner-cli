@@ -18,6 +18,11 @@ jobs:
         node-version: [15.x, 14.x, 12.x, 10.x]
 
     steps:
+      - name: Set git to use LF
+        run: |
+          git config --global core.autocrlf false
+          git config --global core.eol lf
+
       - name: Begin Check...
         uses: actions/checkout@v2
 
