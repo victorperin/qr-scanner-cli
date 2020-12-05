@@ -1,3 +1,4 @@
+name: Deploy
 on:
   workflow_run:
     workflows: ["pr-check"]
@@ -9,5 +10,31 @@ jobs:
   Deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Print success
-        run: echo "success! :)"
+
+      - name: Checkout project
+        uses: actions/checkout@v2
+
+      - name: Use NodeJS 15.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 15.x
+
+      - name: Use cached node_modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: nodeModules-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build JS files
+        run: npm run build
+
+      - name: Semantic Release
+        uses: cycjimmy/semantic-release-action@v2.5.3
+        with:
+          dry_run: true
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
