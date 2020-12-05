@@ -5,7 +5,9 @@ plugins:
       editorconfig: .editorconfig
   eslint:
     enabled: true
-    channel: "eslint-6"
+    channel: "eslint-7"
+    config:
+      config: .eslintrc
 
 exclude_patterns:
   - node_modules/*
