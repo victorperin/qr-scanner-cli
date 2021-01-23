@@ -1,7 +1,7 @@
 import { read } from 'jimp'
-import { Bitmap } from '@jimp/core'
+import { Bitmap, Image } from '@jimp/core'
 
-const extractBitmap = ({ bitmap }): Bitmap => bitmap
+const extractBitmap = (image: Image): Bitmap => image.bitmap
 
 export const getBitmap = (filePath: string): Promise<Bitmap> =>
   Promise.resolve(filePath).then(read).then(extractBitmap)

@@ -2,11 +2,8 @@ import { stripIndent } from 'common-tags'
 import { greenBox } from '../infrastructure/boxen'
 import flags from '../cli/flags'
 
-const flagDescriptions = Object.keys(flags)
-  .map((flagKey) => {
-    const flag = flags[flagKey]
-    return `    --${flagKey}, -${flag.alias}  ${flag.description}`
-  })
+const flagDescriptions = Object.entries(flags)
+  .map(([flagKey, flag]) => `    --${flagKey}, -${flag.alias}  ${flag.description}`)
   .join('\n')
 
 const helpText = stripIndent`
