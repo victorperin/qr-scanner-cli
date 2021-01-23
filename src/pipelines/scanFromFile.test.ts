@@ -1,10 +1,10 @@
 import { mocked } from 'ts-jest/utils'
-import * as jimp from './infrastructure/jimp'
+import * as jimp from '../infrastructure/jimp'
 import clipboardy from 'clipboardy'
 import open from 'open'
-import qrReader from './infrastructure/qrcode-reader'
-import boxen from './infrastructure/boxen'
-import errorHandler from './handlers/error'
+import qrReader from '../infrastructure/qrcode-reader'
+import boxen from '../infrastructure/boxen'
+import errorHandler from '../handlers/error'
 import { createMock } from 'ts-auto-mock'
 import { Bitmap } from '@jimp/core'
 
@@ -19,10 +19,10 @@ const errorHandlerMocked = mocked(errorHandler, true)
 
 jest.mock('clipboardy')
 jest.mock('open')
-jest.mock('./infrastructure/qrcode-reader')
-jest.mock('./infrastructure/boxen')
-jest.mock('./infrastructure/jimp', () => ({ getBitmap: jest.fn() }))
-jest.mock('./handlers/error')
+jest.mock('../infrastructure/qrcode-reader')
+jest.mock('../infrastructure/boxen')
+jest.mock('../infrastructure/jimp', () => ({ getBitmap: jest.fn() }))
+jest.mock('../handlers/error')
 
 const fakeBitmap = createMock<Bitmap>()
 
