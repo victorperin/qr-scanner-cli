@@ -16,7 +16,7 @@ test('should resolve if qr is qrcode-reader runs callback without errors', async
   expect(qrcodeReaderLibMocked).toHaveBeenCalledTimes(1)
   const qrcodeReaderLibMockedInstance = qrcodeReaderLibMocked.mock.instances[0]
 
-  qrcodeReaderLibMockedInstance.callback(null, { result: 'FAKE RESULT' })
+  qrcodeReaderLibMockedInstance.callback(undefined, { result: 'FAKE RESULT' })
   const mockDecode = qrcodeReaderLibMockedInstance.decode
 
   expect(mockDecode).toHaveBeenCalledWith(fakeImageBitmap)
