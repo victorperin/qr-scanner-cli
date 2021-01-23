@@ -4,7 +4,7 @@ import readQR from '../infrastructure/qrcode-reader'
 import { outputText, doFlagClipboard, doOpen } from '../handlers/flags'
 import { Flags } from '../cli/flags'
 
-const scanFromFile = (filePath: string, flags: Flags): Promise<void> =>
+export const scanFromFile = (filePath: string, flags: Flags): Promise<void> =>
   Promise.resolve(filePath)
     .then(getBitmap)
     .then(readQR)
@@ -12,5 +12,3 @@ const scanFromFile = (filePath: string, flags: Flags): Promise<void> =>
     .then(doOpen(flags))
     .then(outputText(flags))
     .catch(errorHandlers.scanFromFile(filePath))
-
-export default scanFromFile

@@ -8,7 +8,7 @@ import errorHandler from '../handlers/error'
 import { createMock } from 'ts-auto-mock'
 import { Bitmap } from '@jimp/core'
 
-import scanFromFile from './scanFromFile'
+import { scanFromFile } from './scanFromFile'
 import { Flags } from '../cli/flags'
 
 const JimpMocked = mocked(jimp, true)

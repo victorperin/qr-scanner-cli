@@ -1,7 +1,7 @@
 import meow from 'meow'
 import { Options } from 'meow'
 
-import scanFromFile from '../pipelines/scanFromFile'
+import { scanFromFile } from '../pipelines/scanFromFile'
 
 import helpText from './helpText'
 import flags, { Flags, FlagsDefinition } from './flags'
