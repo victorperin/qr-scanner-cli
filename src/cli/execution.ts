@@ -4,19 +4,19 @@ import { Options } from 'meow'
 import scanFromFile from '../pipelines/scanFromFile'
 
 import helpText from './helpText'
-import flags, { Flags } from './flags'
+import flags, { Flags, FlagsDefinition } from './flags'
 
-const options: Options<Flags> = { flags }
+const options: Options<FlagsDefinition> = { flags }
 
-const execution = () => {
-  const cli = meow(helpText, options)
+const execution = (): Promise<void> | void => {
+  const cli = meow<FlagsDefinition>(helpText, options)
 
   if (!cli.input.length) {
     console.warn(`[WARNING] Missing argument file: node index.js <file>!`)
     return cli.showHelp(1)
   }
 
-  return scanFromFile(cli.input[0], cli.flags)
+  return scanFromFile(cli.input[0], cli.flags as Flags)
 }
 
 export default execution

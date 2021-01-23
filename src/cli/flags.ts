@@ -4,13 +4,19 @@ type FlagWithDescription<T> = T & {
   description: string
 }
 
-export type Flags = {
+export type FlagsDefinition = {
   clear: FlagWithDescription<BooleanFlag>
   clipboard: FlagWithDescription<BooleanFlag>
   open: FlagWithDescription<BooleanFlag>
 }
 
-const flags: Flags = {
+export type Flags = {
+  clear: boolean
+  clipboard: boolean
+  open: boolean
+}
+
+const flags: FlagsDefinition = {
   clear: {
     type: 'boolean',
     alias: 'c',
