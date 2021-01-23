@@ -5,7 +5,7 @@ const readQR = (imageBitmap: Bitmap): Promise<string> =>
   new Promise((resolve, reject) => {
     const qr = new QrCode()
 
-    qr.callback = (error: Error, value: { result: string }) => {
+    qr.callback = (error: Error | null, value: { result: string }) => {
       if (error) return reject(error)
 
       return resolve(value.result)

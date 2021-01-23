@@ -4,7 +4,7 @@ import { build } from 'tsc-prog'
 
 const ERROR = {
   MISSING_PARAMS_FILE: '[WARNING] Missing argument file: node index.js <file>!',
-  FILE_NOT_FOUND: (file) => `[ERROR] File <${file}> not found!`,
+  FILE_NOT_FOUND: (file: string) => `[ERROR] File <${file}> not found!`,
   PATTERN_NOT_FOUND: '[WARNING] No pattern could be found! Is there a QR-Code?',
 }
 
@@ -14,7 +14,7 @@ const CLI_PATH = './qrscanner'
   using execa with nyc is a workarround to get coverage from jest.
   More on: https://github.com/facebook/jest/issues/3190#issuecomment-354758036
 */
-const execute = (args = []) =>
+const execute = (args: string[] = []) =>
   execa('./node_modules/.bin/nyc', ['--silent', '--no-clean', CLI_PATH, ...args])
 
 beforeAll(() => jest.setTimeout(300000))

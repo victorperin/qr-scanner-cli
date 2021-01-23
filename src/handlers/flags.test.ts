@@ -1,6 +1,8 @@
 import { mocked } from 'ts-jest/utils'
 import open from 'open'
 import { doOpen } from './flags'
+import { createMock } from 'ts-auto-mock'
+import { Flags } from '../cli/flags'
 
 const openMocked = mocked(open, true)
 jest.mock('open')
@@ -9,7 +11,7 @@ beforeEach(openMocked.mockReset)
 describe('doOpen', () => {
   it('should open with text if flag open exists', () => {
     // arrange
-    const flags = { open: true }
+    const flags = createMock<Flags>({ open: true })
     const input = 'some text'
 
     // act
@@ -21,7 +23,7 @@ describe('doOpen', () => {
 
   it('should not open with text if there is no flag open', () => {
     // arrange
-    const flags = {}
+    const flags = createMock<Flags>({})
     const input = 'some text'
 
     // act
@@ -33,7 +35,7 @@ describe('doOpen', () => {
 
   it('should return text if there is no flag open', () => {
     // arrange
-    const flags = {}
+    const flags = createMock<Flags>({})
     const input = 'some text'
 
     // act

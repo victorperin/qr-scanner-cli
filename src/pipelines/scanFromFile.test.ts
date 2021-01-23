@@ -9,6 +9,7 @@ import { createMock } from 'ts-auto-mock'
 import { Bitmap } from '@jimp/core'
 
 import scanFromFile from './scanFromFile'
+import { Flags } from '../cli/flags'
 
 const JimpMocked = mocked(jimp, true)
 const clipboardyMocked = mocked(clipboardy, true)
@@ -40,7 +41,7 @@ afterEach(jest.restoreAllMocks)
 test('should pass on happy path', async () => {
   jest.spyOn(global.console, 'log').mockReturnValue()
 
-  await scanFromFile('FAKE PATH', {})
+  await scanFromFile('FAKE PATH', createMock<Flags>({}))
 
   expect(JimpMocked.getBitmap).toBeCalledWith('FAKE PATH')
   expect(qrReaderMocked).toBeCalledWith(fakeBitmap)
@@ -53,7 +54,10 @@ test('should pass on happy path', async () => {
 test('should copy to clipboard if flag is present', async () => {
   jest.spyOn(global.console, 'log').mockReturnValue()
 
-  await scanFromFile('FAKE PATH', { clipboard: true })
+  await scanFromFile(
+    'FAKE PATH',
+    createMock<Flags>({ clipboard: true }),
+  )
 
   expect(JimpMocked.getBitmap).toBeCalledWith('FAKE PATH')
   expect(qrReader).toBeCalledWith(fakeBitmap)
@@ -66,7 +70,10 @@ test('should copy to clipboard if flag is present', async () => {
 test('should output without box if clear flag is present', async () => {
   jest.spyOn(global.console, 'log').mockReturnValue()
 
-  await scanFromFile('FAKE PATH', { clear: true })
+  await scanFromFile(
+    'FAKE PATH',
+    createMock<Flags>({ clear: true }),
+  )
 
   expect(JimpMocked.getBitmap).toBeCalledWith('FAKE PATH')
   expect(qrReader).toBeCalledWith(fakeBitmap)
@@ -80,7 +87,10 @@ test('should output without box if clear flag is present', async () => {
 test('should execute flags (clear, clipboard)', async () => {
   jest.spyOn(global.console, 'log').mockReturnValue()
 
-  await scanFromFile('FAKE PATH', { clear: true, clipboard: true })
+  await scanFromFile(
+    'FAKE PATH',
+    createMock<Flags>({ clear: true, clipboard: true }),
+  )
 
   expect(JimpMocked.getBitmap).toBeCalledWith('FAKE PATH')
   expect(qrReader).toBeCalledWith(fakeBitmap)
@@ -90,11 +100,14 @@ test('should execute flags (clear, clipboard)', async () => {
 
   expect(clipboardy.writeSync).toBeCalledWith('FAKE QR CONTENT')
 })
-
+createMock
 test('should execute open with --open', async () => {
   jest.spyOn(global.console, 'log').mockReturnValue()
 
-  await scanFromFile('FAKE PATH', { open: true })
+  await scanFromFile(
+    'FAKE PATH',
+    createMock<Flags>({ open: true }),
+  )
 
   expect(JimpMocked.getBitmap).toBeCalledWith('FAKE PATH')
   expect(qrReader).toBeCalledWith(fakeBitmap)

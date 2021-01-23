@@ -1,32 +1,37 @@
-import originalLib from 'qrcode-reader'
+import qrcodeReaderLib from 'qrcode-reader'
 import qrcodeReader from './qrcode-reader'
+import { createMock } from 'ts-auto-mock'
+import { mocked } from 'ts-jest/utils'
+import { Bitmap } from '@jimp/core'
 
 jest.mock('qrcode-reader')
+const qrcodeReaderLibMocked = mocked(qrcodeReaderLib, true)
 
-beforeEach(originalLib.mockClear)
+beforeEach(qrcodeReaderLibMocked.mockClear)
 
-test('should resolve if qr is qrcode-reader runs callback without errors', (done) => {
-  const fakeImageBitmap = 'FAKE BITMAP'
+test('should resolve if qr is qrcode-reader runs callback without errors', async (done) => {
+  const fakeImageBitmap = createMock<Bitmap>()
   const qrPromise = qrcodeReader(fakeImageBitmap)
 
-  expect(originalLib).toHaveBeenCalledTimes(1)
-  const originalLibInstance = originalLib.mock.instances[0]
+  expect(qrcodeReaderLibMocked).toHaveBeenCalledTimes(1)
+  const qrcodeReaderLibMockedInstance = qrcodeReaderLibMocked.mock.instances[0]
 
-  originalLibInstance.callback(null, { result: 'FAKE RESULT' })
-  const mockDecode = originalLibInstance.decode
+  qrcodeReaderLibMockedInstance.callback(null, { result: 'FAKE RESULT' })
+  const mockDecode = qrcodeReaderLibMockedInstance.decode
 
   expect(mockDecode).toHaveBeenCalledWith(fakeImageBitmap)
 
-  expect(qrPromise).resolves.toEqual('FAKE RESULT').then(done)
+  await expect(qrPromise).resolves.toEqual('FAKE RESULT').then(done)
 })
 
 test('should reject if qr is qrcode-reader runs callback with error', (done) => {
-  const fakeImageBitmap = 'FAKE BITMAP'
+  const fakeImageBitmap = createMock<Bitmap>()
   const qrPromise = qrcodeReader(fakeImageBitmap)
 
-  const originalLibInstance = originalLib.mock.instances[0]
+  const qrcodeReaderLibMockedInstance = qrcodeReaderLibMocked.mock.instances[0]
 
-  originalLibInstance.callback('FAKE ERROR')
+  const fakeError = new Error('FAKE ERROR')
+  qrcodeReaderLibMockedInstance.callback(fakeError)
 
-  expect(qrPromise).rejects.toEqual('FAKE ERROR').then(done)
+  expect(qrPromise).rejects.toEqual(fakeError).then(done)
 })
