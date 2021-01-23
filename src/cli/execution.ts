@@ -1,7 +1,7 @@
 import meow from 'meow'
 import { Options } from 'meow'
 
-import { scanFromFile } from '../pipelines/scanFromFile'
+import { scanFromFileOnCli } from '../pipelines/scanFromFile'
 
 import helpText from './helpText'
 import flags, { Flags, FlagsDefinition } from './flags'
@@ -16,7 +16,7 @@ const execution = (): Promise<void> | void => {
     return cli.showHelp(1)
   }
 
-  return scanFromFile(cli.input[0], cli.flags as Flags)
+  return scanFromFileOnCli(cli.input[0], cli.flags as Flags)
 }
 
 export default execution

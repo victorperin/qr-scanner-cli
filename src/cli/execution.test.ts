@@ -1,13 +1,13 @@
 import { mocked } from 'ts-jest/utils'
 import meow from 'meow'
 
-import { scanFromFile } from '../pipelines/scanFromFile'
+import { scanFromFileOnCli } from '../pipelines/scanFromFile'
 import execution from './execution'
 
 const meowMocked = mocked(meow, true)
-const scanFromFileMocked = mocked(scanFromFile, true)
+const scanFromFileMocked = mocked(scanFromFileOnCli, true)
 
-jest.mock('../pipelines/scanFromFile', () => ({ scanFromFile: jest.fn() }))
+jest.mock('../pipelines/scanFromFile', () => ({ scanFromFileOnCli: jest.fn() }))
 jest.mock('meow', jest.fn)
 
 const DEFAULT_MEOW_PROPERTIES = {

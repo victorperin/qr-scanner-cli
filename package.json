@@ -2,7 +2,7 @@
   "name": "qr-scanner-cli",
   "version": "0.2.2-development",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "bin": {
     "qrscanner": "./qrscanner"
   },
