@@ -12,7 +12,5 @@ export const scanFromFile = (filePath: string, flags: Flags): Promise<string> =>
     .then(doOpen(flags))
     .catch(errorHandlers.scanFromFile(filePath))
 
-
 export const scanFromFileOnCli = (filePath: string, flags: Flags): Promise<void> =>
-  scanFromFile(filePath, flags)
-    .then(outputText(flags))
+  scanFromFile(filePath, flags).then(outputText(flags))
