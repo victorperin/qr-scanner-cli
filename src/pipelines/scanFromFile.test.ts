@@ -8,7 +8,7 @@ import errorHandler from '../handlers/error'
 import { createMock } from 'ts-auto-mock'
 import { Bitmap } from '@jimp/core'
 
-import { scanFromFileOnCli } from './scanFromFile'
+import { scanFromFileOnCli, scanFromFile } from './scanFromFile'
 import { Flags } from '../cli/flags'
 
 const JimpMocked = mocked(jimp, true)
@@ -114,4 +114,19 @@ test('should execute open with --open', async () => {
   expect(boxen.greenBox).toBeCalledWith('FAKE QR CONTENT')
   expect(open).toBeCalledWith('FAKE QR CONTENT')
   expect(console.log).toBeCalledWith('FAKE BOX')
+})
+
+describe('programatic mode', () => {
+  it('should return value', async () => {
+    const result = await scanFromFile('FAKE PATH')
+
+    expect(result).toBe('FAKE QR CONTENT')
+  })
+
+  it('should use flags', async () => {
+    await scanFromFile('FAKE PATH', { clipboard: true, open: true })
+
+    expect(open).toBeCalledWith('FAKE QR CONTENT')
+    expect(clipboardy.writeSync).toBeCalledWith('FAKE QR CONTENT')
+  })
 })
