@@ -24,3 +24,6 @@ tsconfig.json
 *.js.map
 .nycrc
 .eslintignore
+docs/
+.github
+src/
