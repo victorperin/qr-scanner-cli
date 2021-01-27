@@ -21,7 +21,7 @@ npm i -g qr-scanner-cli
 $ qrscanner <input file>
 ```
 
-![New Demo Gif](./demo.gif)
+![New Demo Gif](https://media.giphy.com/media/u5FnaAB5tqlSJr9GuT/source.gif)
 
 ## Options
 
@@ -39,6 +39,7 @@ A view of the options at release [v1.0.0](https://github.com/victorperin/qr-scan
 --version Show installed version
 --help Show this help
 ```
+
 > Consider that this list may be outdated, always refer to the `help` option described above.
 
 ## Examples
@@ -53,4 +54,19 @@ $ qrscanner ./qrCode.jpg
 
 $ qrscanner ./qrCode.jpg --clean
 This message is written in a QR Code
+```
+
+## Programatic Usage
+
+You can also install this as a lib and use the programatic mode. Don't forget to read our [documentation](./docs/modules.md).
+
+```
+npm install qr-scanner-cli
+```
+
+```javascript
+// some-file.js
+import { scanFromFile } from 'qr-scanner-cli'
+
+const value = await scanFromFile('./image.jpg')
 ```

@@ -7,6 +7,7 @@ module.exports = {
   // coverageDirectory: 'coverage',
   testEnvironment: 'node',
   testMatch: ['<rootDir>/tests/**/*.test.ts', '<rootDir>/src/**/*.test.ts'],
+  modulePathIgnorePatterns: ['<rootDir>/dist/', '<rootDir>/coverage/', '<rootDir>/.nyc_output/'],
   verbose: true,
   globals: {
     'ts-jest': { compiler: 'ttypescript' },

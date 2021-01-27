@@ -11,9 +11,9 @@ export type FlagsDefinition = {
 }
 
 export type Flags = {
-  clear: boolean
-  clipboard: boolean
-  open: boolean
+  clear?: boolean
+  clipboard?: boolean
+  open?: boolean
 }
 
 const flags: FlagsDefinition = {
