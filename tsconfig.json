@@ -1,4 +1,11 @@
 {
+  "typedocOptions": {
+    "plugin": "typedoc-plugin-markdown",
+    "entryPoints": [
+      "src/index.ts"
+    ],
+    "out": "docs"
+  },
   "include": [
     "src"
   ],
