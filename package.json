@@ -29,7 +29,7 @@
     "common-tags": "^1.8.0",
     "jimp": "^0.16.1",
     "meow": "^8.1.0",
-    "open": "^7.3.0",
+    "open": "^7.3.1",
     "qrcode-reader": "^1.0.4"
   },
   "devDependencies": {
