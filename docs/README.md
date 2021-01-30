@@ -57,3 +57,18 @@ $ qrscanner ./qrCode.jpg
 $ qrscanner ./qrCode.jpg --clean
 This message is written in a QR Code
 ```
+
+## Programatic Usage
+
+You can also install this as a lib and use the programatic mode. Don't forget to read our [documentation](./docs/modules.md).
+
+```
+npm install qr-scanner-cli
+```
+
+```javascript
+// some-file.js
+import { scanFromFile } from 'qr-scanner-cli'
+
+const value = await scanFromFile('./image.jpg')
+```
