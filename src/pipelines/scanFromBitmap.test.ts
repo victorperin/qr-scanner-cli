@@ -1,3 +1,4 @@
+import 'jest-extended'
 import { scanFromBitmap } from './scanFromBitmap'
 import readQR from '../infrastructure/qrcode-reader'
 import { mocked } from 'ts-jest/utils'
