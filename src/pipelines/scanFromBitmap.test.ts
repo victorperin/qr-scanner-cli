@@ -39,7 +39,7 @@ describe('scanFromBitmap', () => {
   })
 
   it('should check for flag open', async () => {
-    const flags = { clipboard: true }
+    const flags = { open: true }
     await scanFromBitmap(fileBitmap, flags)
 
     expect(doOpenMock).toBeCalledTimes(1)
