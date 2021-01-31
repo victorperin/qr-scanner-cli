@@ -3,13 +3,15 @@ import clipboardy from 'clipboardy'
 import { greenBox } from '../infrastructure/boxen'
 import { Flags } from '../cli/flags'
 
+export type FlagFunction = (flags: Flags) => (string: string) => string
+
 export const outputText = (flags: Flags) => (text: string): void => {
   const output = flags.clear ? text : greenBox(text)
 
   console.log(output)
 }
 
-export const doFlagClipboard = (flags: Flags) => (text: string): string => {
+export const doFlagClipboard: FlagFunction = (flags) => (text) => {
   if (flags.clipboard) {
     clipboardy.writeSync(text)
   }
@@ -17,7 +19,7 @@ export const doFlagClipboard = (flags: Flags) => (text: string): string => {
   return text
 }
 
-export const doOpen = (flags: Flags) => (text: string): string => {
+export const doOpen: FlagFunction = (flags) => (text) => {
   if (flags.open) {
     open(text)
   }

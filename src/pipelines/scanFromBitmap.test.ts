@@ -4,14 +4,16 @@ import readQR from '../infrastructure/qrcode-reader'
 import { mocked } from 'ts-jest/utils'
 import { Bitmap } from '@jimp/core'
 import { createMock } from 'ts-auto-mock'
-import doFlags, { doFlagClipboard } from '../handlers/flags'
+import { doFlagClipboard, doOpen, FlagFunction } from '../handlers/flags'
 import errorHandlers from '../handlers/error'
+import { MockedFunction } from 'ts-jest/dist/utils/testing'
 
 jest.mock('../infrastructure/qrcode-reader')
 jest.mock('../handlers/flags')
 jest.mock('../handlers/error')
 const readQRMock = mocked(readQR)
-const { doFlagClipboard: doFlagClipboardMock, doOpen: doOpenMock } = mocked(doFlags, true)
+const doFlagClipboardMock = mocked(doFlagClipboard)
+const doOpenMock = mocked(doOpen)
 const errorHandlerMock = mocked(errorHandlers.scanFromBitmap)
 
 readQRMock.mockResolvedValue('readQR fake result')
@@ -28,24 +30,25 @@ describe('scanFromBitmap', () => {
     expect(readQRMock).toBeCalledWith(fileBitmap)
   })
 
-  it('should check for flag clipboard', async () => {
-    const flags = { clipboard: true }
-    await scanFromBitmap(fileBitmap, flags)
+  describe('flags tests', () => {
+    type FlagMockedFunction = MockedFunction<FlagFunction>
+    type FlagsTestTuple = [string, FlagMockedFunction]
 
-    expect(doFlagClipboardMock).toBeCalledTimes(1)
-    expect(doFlagClipboardMock).toBeCalledWith(flags)
-    expect(doFlagClipboardMock.mock.results[0].value).toBeCalledWith('readQR fake result')
-    expect(doFlagClipboardMock.mock.results[0].value).toHaveBeenCalledAfter(readQRMock)
-  })
+    const flags: FlagsTestTuple[] = [
+      ['clipboard', doFlagClipboardMock],
+      ['open', doOpenMock],
+    ]
 
-  it('should check for flag open', async () => {
-    const flags = { open: true }
-    await scanFromBitmap(fileBitmap, flags)
+    it.each(flags)('should check for flag %s', async (flagName, mockedFunction) => {
+      const flags = { [flagName]: true }
+      await scanFromBitmap(fileBitmap, flags)
 
-    expect(doOpenMock).toBeCalledTimes(1)
-    expect(doOpenMock).toBeCalledWith(flags)
-    expect(doOpenMock.mock.results[0].value).toBeCalledWith('readQR fake result')
-    expect(doFlagClipboardMock.mock.results[0].value).toHaveBeenCalledAfter(readQRMock)
+      expect(mockedFunction).toBeCalledTimes(1)
+      expect(mockedFunction).toBeCalledWith(flags)
+      expect(mockedFunction.mock.results[0].value).toBeCalledTimes(1)
+      expect(mockedFunction.mock.results[0].value).toBeCalledWith('readQR fake result')
+      expect(mockedFunction.mock.results[0].value).toHaveBeenCalledAfter(readQRMock)
+    })
   })
 
   describe('errors', () => {
