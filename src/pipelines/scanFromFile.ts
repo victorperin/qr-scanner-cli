@@ -1,12 +1,12 @@
 import errorHandlers from '../handlers/error'
 import { getBitmap } from '../infrastructure/jimp'
-import readQR from '../infrastructure/qrcode-reader'
-import { outputText, doFlagClipboard, doOpen } from '../handlers/flags'
+import { outputText } from '../handlers/flags'
 import { Flags } from '../cli/flags'
+import { scanFromBitmap } from './scanFromBitmap'
 
 /**
  * This function reads a file, get it's bitmap, searches and read a qrcode from it.
- * ```
+ * ```javascript
  * const value = await scanFromFile('./image.jpg')
  * ```
  *
@@ -17,9 +17,7 @@ import { Flags } from '../cli/flags'
 export const scanFromFile = (filePath: string, flags?: Flags): Promise<string> =>
   Promise.resolve(filePath)
     .then(getBitmap)
-    .then(readQR)
-    .then(doFlagClipboard(flags || {}))
-    .then(doOpen(flags || {}))
+    .then((bitmap) => scanFromBitmap(bitmap, flags))
     .catch(errorHandlers.scanFromFile(filePath))
 
 export const scanFromFileOnCli = (filePath: string, flags: Flags): Promise<void> =>
