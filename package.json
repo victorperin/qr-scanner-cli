@@ -33,9 +33,8 @@
     "qrcode-reader": "^1.0.4"
   },
   "devDependencies": {
-    "@commitlint/cli": "^11.0.0",
-    "@commitlint/config-conventional": "^11.0.0",
-    "@commitlint/travis-cli": "^11.0.0",
+    "@commitlint/cli": "^12.0.1",
+    "@commitlint/config-conventional": "^12.0.1",
     "@istanbuljs/nyc-config-typescript": "^1.0.1",
     "@types/common-tags": "^1.8.0",
     "@types/jest": "^26.0.22",
