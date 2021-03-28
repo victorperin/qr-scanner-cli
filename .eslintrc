@@ -8,18 +8,14 @@
   },
   "extends": [
     "plugin:@typescript-eslint/recommended",
-    "prettier/@typescript-eslint",
+    "prettier",
     "plugin:editorconfig/noconflict",
     "plugin:prettier/recommended"
   ],
-  "plugins": [
-    "prettier",
-    "editorconfig",
-    "@typescript-eslint"
-  ],
+  "plugins": ["prettier", "editorconfig", "@typescript-eslint"],
   "parserOptions": {
     "ecmaVersion": 2020,
-    "sourceType":  "module"
+    "sourceType": "module"
   },
   "rules": {
     "prettier/prettier": ["error"],

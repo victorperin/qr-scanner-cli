@@ -1,8 +1,8 @@
-import boxen, { BorderStyle } from 'boxen'
+import boxen, { Options } from 'boxen'
 
-const GREEN_BOX_CONFIG = {
+const GREEN_BOX_CONFIG: Options = {
   padding: 1,
-  borderStyle: BorderStyle.Double,
+  borderStyle: 'double',
   borderColor: 'green',
 }
 
