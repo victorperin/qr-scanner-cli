@@ -1,0 +1,164 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>qr-scanner-cli</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<ul class="results-priority" style="display:none">
+					</ul>
+					<a href="index.html" class="title">qr-scanner-cli</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+			</ul>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-3 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class=" ">
+						<a href="modules.html">Exports</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+		<div class="col-7 offset-3 col-content">
+			<h1>Project qr-scanner-cli</h1>
+			<div class="tsd-panel tsd-typography">
+				<a href="#qr-scanner-cli" id="qr-scanner-cli" style="color: inherit; text-decoration: none;">
+					<h1>QR Scanner CLI</h1>
+				</a>
+				<p><a href="https://github.com/victorperin/qr-scanner-cli/actions?query=workflow%3Apr-check+branch%3Amaster"><img src="https://github.com/victorperin/qr-scanner-cli/workflows/pr-check/badge.svg?branch=master" alt="Build Status"></a>
+					<a href="https://coveralls.io/github/victorperin/qr-scanner-cli?branch=master"><img src="https://coveralls.io/repos/github/victorperin/qr-scanner-cli/badge.svg?branch=master" alt="Coverage Status"></a>
+					<a href="https://snyk.io/test/github/victorperin/qr-scanner-cli"><img src="https://snyk.io/test/github/victorperin/qr-scanner-cli/badge.svg" alt="Known Vulnerabilities"></a>
+				<a href="https://codeclimate.com/github/victorperin/qr-scanner-cli/maintainability"><img src="https://api.codeclimate.com/v1/badges/db529f4bc96d3bc44341/maintainability" alt="Maintainability"></a></p>
+				<p>QR Scanner CLI is a project that can resolve any QR code from an image on your desktop.</p>
+				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+					<h2>Installation</h2>
+				</a>
+				<p>Installation is done using the npm install command:</p>
+				<pre><code><span style="color: #001080">npm</span><span style="color: #000000"> </span><span style="color: #001080">i</span><span style="color: #000000"> -</span><span style="color: #001080">g</span><span style="color: #000000"> </span><span style="color: #001080">qr</span><span style="color: #000000">-</span><span style="color: #001080">scanner</span><span style="color: #000000">-</span><span style="color: #001080">cli</span>
+</code></pre>
+				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+					<h2>Usage</h2>
+				</a>
+				<pre><code><span style="color: #001080">$</span><span style="color: #000000"> </span><span style="color: #001080">qrscanner</span><span style="color: #000000"> &lt;</span><span style="color: #001080">input</span><span style="color: #000000"> </span><span style="color: #001080">file</span><span style="color: #000000">&gt;</span>
+</code></pre>
+				<p><img src="https://media.giphy.com/media/u5FnaAB5tqlSJr9GuT/source.gif" alt="New Demo Gif"></p>
+				<a href="#options" id="options" style="color: inherit; text-decoration: none;">
+					<h2>Options</h2>
+				</a>
+				<p>Access all available and updated options passing the <code>--help</code> argument:</p>
+				<pre><code><span style="color: #001080">qrscanner</span><span style="color: #000000"> --</span><span style="color: #001080">help</span>
+</code></pre>
+				<p>A view of the options at release <a href="https://github.com/victorperin/qr-scanner-cli/releases/tag/v1.0.0">v1.0.0</a>:</p>
+				<pre><code><span style="color: #000000">--</span><span style="color: #001080">clean</span><span style="color: #000000">, -</span><span style="color: #001080">c</span><span style="color: #000000">  </span><span style="color: #001080">Clear</span><span style="color: #000000"> </span><span style="color: #001080">output</span><span style="color: #000000">, </span><span style="color: #001080">just</span><span style="color: #000000"> </span><span style="color: #001080">print</span><span style="color: #000000"> </span><span style="color: #001080">the</span><span style="color: #000000"> </span><span style="color: #0070C1">QR</span><span style="color: #000000"> </span><span style="color: #001080">Code</span><span style="color: #000000"> </span><span style="color: #001080">scan</span><span style="color: #000000"> </span><span style="color: #001080">result</span>
+<span style="color: #000000">--</span><span style="color: #001080">clipboard</span><span style="color: #000000">, -</span><span style="color: #001080">p</span><span style="color: #000000">  </span><span style="color: #001080">copy</span><span style="color: #000000"> </span><span style="color: #001080">the</span><span style="color: #000000"> </span><span style="color: #001080">qr</span><span style="color: #000000"> </span><span style="color: #001080">code</span><span style="color: #000000"> </span><span style="color: #001080">value</span><span style="color: #000000"> </span><span style="color: #001080">to</span><span style="color: #000000"> </span><span style="color: #001080">your</span><span style="color: #000000"> </span><span style="color: #001080">clipboard</span>
+<span style="color: #000000">--</span><span style="color: #001080">version</span><span style="color: #000000"> </span><span style="color: #001080">Show</span><span style="color: #000000"> </span><span style="color: #001080">installed</span><span style="color: #000000"> </span><span style="color: #001080">version</span>
+<span style="color: #000000">--</span><span style="color: #001080">help</span><span style="color: #000000"> </span><span style="color: #001080">Show</span><span style="color: #000000"> </span><span style="color: #0000FF">this</span><span style="color: #000000"> </span><span style="color: #001080">help</span>
+</code></pre>
+				<blockquote>
+					<p>Consider that this list may be outdated, always refer to the <code>help</code> option described above.</p>
+				</blockquote>
+				<a href="#examples" id="examples" style="color: inherit; text-decoration: none;">
+					<h2>Examples</h2>
+				</a>
+				<pre><code><span style="color: #001080">$</span><span style="color: #000000"> </span><span style="color: #001080">qrscanner</span><span style="color: #000000"> ./</span><span style="color: #001080">qrCode</span><span style="color: #000000">.</span><span style="color: #001080">jpg</span>
+<span style="color: #000000">╔══════════════════════════════════════════╗</span>
+<span style="color: #000000">║                                          ║</span>
+<span style="color: #000000">║   </span><span style="color: #001080">This</span><span style="color: #000000"> </span><span style="color: #001080">message</span><span style="color: #000000"> </span><span style="color: #001080">is</span><span style="color: #000000"> </span><span style="color: #001080">written</span><span style="color: #000000"> </span><span style="color: #0000FF">in</span><span style="color: #000000"> </span><span style="color: #001080">a</span><span style="color: #000000"> </span><span style="color: #0070C1">QR</span><span style="color: #000000"> </span><span style="color: #001080">Code</span><span style="color: #000000">   ║</span>
+<span style="color: #000000">║                                          ║</span>
+<span style="color: #000000">╚══════════════════════════════════════════╝</span>
+
+<span style="color: #001080">$</span><span style="color: #000000"> </span><span style="color: #001080">qrscanner</span><span style="color: #000000"> ./</span><span style="color: #001080">qrCode</span><span style="color: #000000">.</span><span style="color: #001080">jpg</span><span style="color: #000000"> --</span><span style="color: #001080">clean</span>
+<span style="color: #001080">This</span><span style="color: #000000"> </span><span style="color: #001080">message</span><span style="color: #000000"> </span><span style="color: #001080">is</span><span style="color: #000000"> </span><span style="color: #001080">written</span><span style="color: #000000"> </span><span style="color: #0000FF">in</span><span style="color: #000000"> </span><span style="color: #001080">a</span><span style="color: #000000"> </span><span style="color: #0070C1">QR</span><span style="color: #000000"> </span><span style="color: #001080">Code</span>
+</code></pre>
+				<a href="#programatic-usage" id="programatic-usage" style="color: inherit; text-decoration: none;">
+					<h2>Programatic Usage</h2>
+				</a>
+				<p>You can also install this as a lib and use the programatic mode. Don&#39;t forget to read our <a href="./docs/modules.md">documentation</a>.</p>
+				<p>run: <code>npm install qr-scanner-cli</code></p>
+				<pre><code class="language-js"><span style="color: #008000">// some-file.js</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">scanFromFile</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;qr-scanner-cli&#039;</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">value</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #795E26">scanFromFile</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;./image.jpg&#039;</span><span style="color: #000000">)</span>
+</code></pre>
+			</div>
+			<!--{&quot;options&quot;:&quot;/home/perin/dev/qr-scanner-cli&quot;,&quot;tsconfig&quot;:&quot;/home/perin/dev/qr-scanner-cli&quot;,&quot;entryPoints&quot;:[&quot;src/index.ts&quot;],&quot;exclude&quot;:[],&quot;externalPattern&quot;:[&quot;**/node_modules/**&quot;],&quot;excludeExternals&quot;:false,&quot;excludeNotDocumented&quot;:false,&quot;excludeInternal&quot;:false,&quot;excludePrivate&quot;:false,&quot;excludeProtected&quot;:false,&quot;disableSources&quot;:false,&quot;includes&quot;:&quot;&quot;,&quot;media&quot;:&quot;&quot;,&quot;watch&quot;:false,&quot;preserveWatchOutput&quot;:false,&quot;emit&quot;:false,&quot;out&quot;:&quot;docs&quot;,&quot;json&quot;:&quot;&quot;,&quot;theme&quot;:&quot;./node_modules/typedoc-neo-theme/bin/default&quot;,&quot;highlightTheme&quot;:&quot;light-plus&quot;,&quot;name&quot;:&quot;&quot;,&quot;includeVersion&quot;:false,&quot;excludeTags&quot;:[],&quot;readme&quot;:&quot;&quot;,&quot;defaultCategory&quot;:&quot;Other&quot;,&quot;categoryOrder&quot;:[&quot;Functions&quot;,&quot;Type aliases&quot;,&quot;Interfaces&quot;],&quot;categorizeByGroup&quot;:true,&quot;gitRevision&quot;:&quot;&quot;,&quot;gitRemote&quot;:&quot;origin&quot;,&quot;gaID&quot;:&quot;&quot;,&quot;gaSite&quot;:&quot;auto&quot;,&quot;hideGenerator&quot;:false,&quot;toc&quot;:[],&quot;disableOutputCheck&quot;:false,&quot;help&quot;:false,&quot;version&quot;:false,&quot;showConfig&quot;:false,&quot;plugin&quot;:[&quot;none&quot;],&quot;logger&quot;:&quot;console&quot;,&quot;logLevel&quot;:1,&quot;listInvalidSymbolLinks&quot;:false}-->
+		</div>
+		<div class="col-2 col-menu secondary-menu">
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-interface tsd-is-external root">
+						<a href="interfaces/bitmap.html" class="tsd-kind-icon">Bitmap</a>
+					</li>
+					<li class=" tsd-kind-type-alias root">
+						<a href="modules.html#flags" class="tsd-kind-icon">Flags</a>
+					</li>
+					<li class=" tsd-kind-function root">
+						<a href="modules.html#scanfrombitmap" class="tsd-kind-icon">scan<wbr>From<wbr>Bitmap</a>
+					</li>
+					<li class=" tsd-kind-function root">
+						<a href="modules.html#scanfromfile" class="tsd-kind-icon">scan<wbr>From<wbr>File</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
