@@ -24,7 +24,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "boxen": "^5.0.0",
+    "boxen": "^5.0.1",
     "chalk": "^4.1.0",
     "clipboardy": "^2.3.0",
     "common-tags": "^1.8.0",
