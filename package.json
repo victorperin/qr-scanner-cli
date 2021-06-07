@@ -30,7 +30,7 @@
     "common-tags": "^1.8.0",
     "jimp": "^0.16.1",
     "meow": "^9.0.0",
-    "open": "^8.0.6",
+    "open": "^8.0.8",
     "qrcode-reader": "^1.0.4"
   },
   "devDependencies": {
