@@ -16,7 +16,7 @@
     "test:coverage": "nyc --reporter=lcov npm run test:all && cat ./coverage/lcov.info | coveralls",
     "test:diff": "jest --no-cache --passWithNoTests --collectCoverage=false --findRelatedTests",
     "build:doc": "typedoc",
-    "build:doc:web": "typedoc --theme ./node_modules/typedoc-neo-theme/bin/default --plugin typedoc-neo-theme",
+    "build:doc:web": "typedoc --theme ./node_modules/typedoc-neo-theme/bin/default --plugin typedoc-neo-theme --out docs-web",
     "publish:docs": "gh-pages -d docs-web",
     "build": "tsc",
     "semantic-release": "semantic-release",
