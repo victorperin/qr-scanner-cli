@@ -26,7 +26,10 @@ const execution = (args: string[]): Promise<void> | void => {
   const { _, $0, ...flagsTreated } = argv
   const filePath = _[0].toString()
 
-  return scanFromFileOnCli(filePath, flagsTreated)
+  return scanFromFileOnCli(filePath, flagsTreated).catch((error: Error) => {
+    console.error(error.message)
+    return yargsInstance.exit(1, error)
+  })
 }
 
 export default execution
