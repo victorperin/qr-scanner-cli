@@ -34,6 +34,7 @@ jobs:
         run: npm run build:doc:web
 
       - name: Publish docs
-        run: npm run publish:docs
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs-web
