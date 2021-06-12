@@ -1,0 +1,39 @@
+name: Build Docs
+on:
+  workflow_run:
+    workflows: ['on-release']
+    branches: [master]
+    types:
+      - completed
+
+jobs:
+  Deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v2
+
+      - name: Use NodeJS 15.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 15.x
+
+      - name: Use cached node_modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: nodeModules-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build JS files
+        run: npm run build
+
+      - name: Build docs
+        run: npm run build:doc:web
+
+      - name: Publish docs
+        run: npm run publish:docs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
