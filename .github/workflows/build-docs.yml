@@ -1,7 +1,7 @@
 name: Build Docs
 on:
   workflow_run:
-    workflows: ['on-release']
+    workflows: ['Deploy']
     branches: [master]
     types:
       - completed
