@@ -17,8 +17,6 @@ const execution = (args: string[]): Promise<void> | void => {
 
   const argv = yargsInstance.argv
 
-  console.log(argv['_'])
-
   if (!argv['_'].length) {
     console.warn(`[WARNING] Missing argument file: qrscanner <file>!`)
     yargsInstance.showHelp()
