@@ -3,3 +3,4 @@ node_modules
 bin
 coverage
 .nyc_output
+docs-web
