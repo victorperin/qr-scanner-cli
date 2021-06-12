@@ -29,9 +29,9 @@
     "clipboardy": "^2.3.0",
     "common-tags": "^1.8.0",
     "jimp": "^0.16.1",
-    "meow": "^9.0.0",
     "open": "^8.0.9",
-    "qrcode-reader": "^1.0.4"
+    "qrcode-reader": "^1.0.4",
+    "yargs": "^15.4.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^12.0.1",

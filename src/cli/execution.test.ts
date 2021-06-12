@@ -1,53 +1,46 @@
 import { mocked } from 'ts-jest/utils'
-import meow from 'meow'
+import { createMock } from 'ts-auto-mock'
 
+import yargs, { Arguments } from 'yargs'
 import { scanFromFileOnCli } from '../pipelines/scanFromFile'
 import execution from './execution'
 
-const meowMocked = mocked(meow, true)
 const scanFromFileMocked = mocked(scanFromFileOnCli, true)
 
+const yargsMocked = mocked(yargs, true)
+yargsMocked.mockReturnValue(yargsMocked)
+yargsMocked.strict.mockReturnValue(yargsMocked)
+yargsMocked.example.mockReturnValue(yargsMocked)
+yargsMocked.options.mockReturnValue(yargsMocked)
+yargsMocked.help.mockReturnValue(yargsMocked)
+const defaultArgv = createMock<Arguments>({})
+
 jest.mock('../pipelines/scanFromFile', () => ({ scanFromFileOnCli: jest.fn() }))
-jest.mock('meow', jest.fn)
+jest.mock('yargs', yargsMocked)
 
-const DEFAULT_MEOW_PROPERTIES = {
-  unnormalizedFlags: {},
-  pkg: {},
-  help: '',
-  showHelp: () => null,
-  showVersion: () => null,
-}
+beforeEach(jest.clearAllMocks)
+beforeEach(() => (yargsMocked.argv = defaultArgv))
 
-test('should execute scanFrom file', () => {
+test('should execute scanFrom file', async () => {
   scanFromFileMocked.mockResolvedValue()
-  meowMocked.mockReturnValue({
-    ...DEFAULT_MEOW_PROPERTIES,
-    input: ['MOCKED FILE PATH'],
-    flags: { biru: 'laibe' },
-  })
+  yargsMocked.argv = {
+    ...defaultArgv,
+    _: ['MOCKED FILE PATH'],
+    biru: 'leibe',
+  }
+  await execution(['MOCKED FILE PATH', '--biru', 'leibe'])
 
-  execution()
-
-  expect(meowMocked).toHaveBeenCalledTimes(1)
-  expect(scanFromFileMocked).toBeCalledWith('MOCKED FILE PATH', { biru: 'laibe' })
+  expect(scanFromFileMocked).toBeCalledWith('MOCKED FILE PATH', { biru: 'leibe' })
 })
 
-test('should warn if no argument passed', () => {
+test('should warn if no argument passed', async () => {
   scanFromFileMocked.mockResolvedValue()
-  const helpSpy = jest.fn()
   jest.spyOn(global.console, 'warn').mockReturnValue()
 
-  meowMocked.mockReturnValue({
-    ...DEFAULT_MEOW_PROPERTIES,
-    input: [],
-    flags: { biru: 'laibe' },
-    showHelp: helpSpy,
-  })
+  await execution([])
 
-  execution()
-
-  expect(meow).toHaveBeenCalledTimes(1)
   expect(scanFromFileMocked).not.toBeCalled()
-  expect(helpSpy).toBeCalledWith(1)
+  expect(yargsMocked.showHelp).toBeCalled()
+  expect(yargsMocked.exit).toBeCalledWith(1, new Error('missing file path'))
   expect(console.warn).toHaveBeenCalledTimes(1)
 })
