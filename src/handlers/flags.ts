@@ -5,11 +5,13 @@ import { Flags } from '../cli/flags'
 
 export type FlagFunction = (flags: Flags) => (string: string) => string
 
-export const outputText = (flags: Flags) => (text: string): void => {
-  const output = flags.clear ? text : greenBox(text)
+export const outputText =
+  (flags: Flags) =>
+  (text: string): void => {
+    const output = flags.clear ? text : greenBox(text)
 
-  console.log(output)
-}
+    console.log(output)
+  }
 
 export const doFlagClipboard: FlagFunction = (flags) => (text) => {
   if (flags.clipboard) {

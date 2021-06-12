@@ -9,7 +9,7 @@ const qrcodeReaderLibMocked = mocked(qrcodeReaderLib, true)
 
 beforeEach(qrcodeReaderLibMocked.mockClear)
 
-test('should resolve if qr is qrcode-reader runs callback without errors', async (done) => {
+test('should resolve if qr is qrcode-reader runs callback without errors', (done) => {
   const fakeImageBitmap = createMock<Bitmap>()
   const qrPromise = qrcodeReader(fakeImageBitmap)
 
@@ -21,7 +21,7 @@ test('should resolve if qr is qrcode-reader runs callback without errors', async
 
   expect(mockDecode).toHaveBeenCalledWith(fakeImageBitmap)
 
-  await expect(qrPromise).resolves.toEqual('FAKE RESULT').then(done)
+  expect(qrPromise).resolves.toEqual('FAKE RESULT').then(done)
 })
 
 test('should reject if qr is qrcode-reader runs callback with error', (done) => {
