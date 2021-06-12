@@ -3,7 +3,7 @@ import clipboardy from 'clipboardy'
 import { build } from 'tsc-prog'
 
 const ERROR = {
-  MISSING_PARAMS_FILE: '[WARNING] Missing argument file: node index.js <file>!',
+  MISSING_PARAMS_FILE: '[WARNING] Missing argument file: qrscanner <file>!',
   FILE_NOT_FOUND: (file: string) => `[ERROR] File <${file}> not found!`,
   PATTERN_NOT_FOUND: '[WARNING] No pattern could be found! Is there a QR-Code?',
 }

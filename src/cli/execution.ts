@@ -1,22 +1,35 @@
-import meow from 'meow'
-import { Options } from 'meow'
+import yargs from 'yargs'
 
 import { scanFromFileOnCli } from '../pipelines/scanFromFile'
 
-import helpText from './helpText'
-import flags, { Flags, FlagsDefinition } from './flags'
+import { greenBox } from '../infrastructure/boxen'
+import flags from './flags'
 
-const options: Options<FlagsDefinition> = { flags }
+const execution = (args: string[]): Promise<void> | void => {
+  const yargsInstance = yargs(args)
+    .strict()
+    .example([
+      ['qrscanner ./qrCode.jpg', greenBox('This message is written in a QR Code', { margin: 1 })],
+      ['qrscanner ./qrCode.jpg --clear', '\nThis message is written in a QR Code'],
+    ])
+    .options(flags)
+    .help()
 
-const execution = (): Promise<void> | void => {
-  const cli = meow<FlagsDefinition>(helpText, options)
+  const argv = yargsInstance.argv
 
-  if (!cli.input.length) {
-    console.warn(`[WARNING] Missing argument file: node index.js <file>!`)
-    return cli.showHelp(1)
+  if (!argv['_'].length) {
+    console.warn(`[WARNING] Missing argument file: qrscanner <file>!`)
+    yargsInstance.showHelp()
+    return yargsInstance.exit(1, new Error('missing file path'))
   }
 
-  return scanFromFileOnCli(cli.input[0], cli.flags as Flags)
+  const { _, $0, ...flagsTreated } = argv
+  const filePath = _[0].toString()
+
+  return scanFromFileOnCli(filePath, flagsTreated).catch((error: Error) => {
+    console.error(error.message)
+    return yargsInstance.exit(1, error)
+  })
 }
 
 export default execution
