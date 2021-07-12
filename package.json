@@ -31,7 +31,7 @@
     "clipboardy": "^2.3.0",
     "common-tags": "^1.8.0",
     "jimp": "^0.16.1",
-    "open": "^8.2.0",
+    "open": "^8.2.1",
     "qrcode-reader": "^1.0.4",
     "yargs": "^17.0.1"
   },
