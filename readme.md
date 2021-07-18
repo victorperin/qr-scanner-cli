@@ -34,7 +34,7 @@ qrscanner --help
 A view of the options at release [v1.0.0](https://github.com/victorperin/qr-scanner-cli/releases/tag/v1.0.0):
 
 ```
---clean, -c  Clear output, just print the QR Code scan result
+--clear, -c  Clear output, just print the QR Code scan result
 --clipboard, -p  copy the qr code value to your clipboard
 --version Show installed version
 --help Show this help
@@ -52,7 +52,7 @@ $ qrscanner ./qrCode.jpg
 ║                                          ║
 ╚══════════════════════════════════════════╝
 
-$ qrscanner ./qrCode.jpg --clean
+$ qrscanner ./qrCode.jpg --clear
 This message is written in a QR Code
 ```
 
