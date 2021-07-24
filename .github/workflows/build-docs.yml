@@ -2,7 +2,7 @@ name: Build Docs
 on:
   workflow_run:
     workflows: ['Deploy']
-    branches: [master]
+    branches: [main]
     types:
       - completed
 
