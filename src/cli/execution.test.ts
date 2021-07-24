@@ -33,6 +33,23 @@ test('should execute scanFrom file', async () => {
   expect(scanFromFileMocked).toBeCalledWith('MOCKED FILE PATH', { biru: 'leibe' })
 })
 
+test('should catch if scanFromFile fails', async () => {
+  const expectedError = new Error('MOCKED ERROR')
+  scanFromFileMocked.mockRejectedValue(expectedError)
+  jest.spyOn(global.console, 'error').mockReturnValue()
+
+  yargsMocked.argv = {
+    ...defaultArgv,
+    _: ['MOCKED FILE PATH'],
+    biru: 'leibe',
+  }
+  await execution(['MOCKED FILE PATH', '--biru', 'leibe'])
+
+  expect(scanFromFileMocked).toBeCalledWith('MOCKED FILE PATH', { biru: 'leibe' })
+  expect(yargsMocked.exit).toBeCalledWith(1, expectedError)
+  expect(console.error).toBeCalledWith(expectedError.message)
+})
+
 test('should warn if no argument passed', async () => {
   scanFromFileMocked.mockResolvedValue()
   jest.spyOn(global.console, 'warn').mockReturnValue()
