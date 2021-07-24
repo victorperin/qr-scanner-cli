@@ -59,5 +59,5 @@ test('should warn if no argument passed', async () => {
   expect(scanFromFileMocked).not.toBeCalled()
   expect(yargsMocked.showHelp).toBeCalled()
   expect(yargsMocked.exit).toBeCalledWith(1, new Error('missing file path'))
-  expect(console.warn).toHaveBeenCalledTimes(1)
+  expect(console.warn).toBeCalledWith('[WARNING] Missing argument file: qrscanner <file>!')
 })
