@@ -27,6 +27,15 @@ describe('error handler', () => {
 
       expect(functionToTest).toThrowError(expectedResult)
     })
+
+    it('should throw generic error if unknown string is received', () => {
+      const expectedResult = ''
+
+      const functionToTest = () => scanFromBitmap(expectedResult)
+
+      expect(functionToTest).toThrowError(/^$/)
+    })
+
     it('should throw warning if "0 patterns found" is received', () => {
       const input = '0 patterns found'
 
