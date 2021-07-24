@@ -15,7 +15,9 @@ const CLI_PATH = './qrscanner'
   More on: https://github.com/facebook/jest/issues/3190#issuecomment-354758036
 */
 const execute = (args: string[] = []) =>
-  execa('./node_modules/.bin/nyc', ['--silent', '--no-clean', CLI_PATH, ...args])
+  process.env.STRYKER_TEST
+    ? execa('./node_modules/.bin/nyc', ['--silent', '--no-clean', 'node', CLI_PATH, ...args])
+    : execa('./node_modules/.bin/nyc', ['--silent', '--no-clean', CLI_PATH, ...args])
 
 beforeAll(() => jest.setTimeout(300000))
 

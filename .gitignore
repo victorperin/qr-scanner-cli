@@ -4,3 +4,7 @@ bin
 coverage
 .nyc_output
 docs-web
+
+# stryker temp files
+.stryker-tmp
+reports
