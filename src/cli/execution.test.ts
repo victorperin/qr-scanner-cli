@@ -2,6 +2,7 @@ import { mocked } from 'ts-jest/utils'
 import { createMock } from 'ts-auto-mock'
 
 import yargs, { Arguments } from 'yargs'
+import { greenBox } from '../infrastructure/boxen'
 import { scanFromFileOnCli } from '../pipelines/scanFromFile'
 import execution from './execution'
 
@@ -15,8 +16,13 @@ yargsMocked.options.mockReturnValue(yargsMocked)
 yargsMocked.help.mockReturnValue(yargsMocked)
 const defaultArgv = createMock<Arguments>({})
 
+const greenBoxMocked = mocked(greenBox)
+
 jest.mock('../pipelines/scanFromFile', () => ({ scanFromFileOnCli: jest.fn() }))
 jest.mock('yargs', yargsMocked)
+jest.mock('../infrastructure/boxen', () => ({
+  greenBox: jest.fn().mockImplementation((input) => input),
+}))
 
 beforeEach(jest.clearAllMocks)
 beforeEach(() => (yargsMocked.argv = defaultArgv))
@@ -65,51 +71,40 @@ test('should warn if no argument passed', async () => {
 test('should provide examples and options', async () => {
   await execution([])
 
-  yargsMocked.example.mock.calls
-
-  expect(yargsMocked.example.mock.calls[0]).toMatchInlineSnapshot(`
+  expect(greenBoxMocked).toBeCalled()
+  expect(yargsMocked.example.mock.calls[0][0]).toMatchInlineSnapshot(`
 Array [
   Array [
-    Array [
-      "qrscanner ./qrCode.jpg",
-      "[32m[39m
-[32m   ╔══════════════════════════════════════════╗[39m
-   [32m║[39m                                          [32m║[39m
-   [32m║[39m   This message is written in a QR Code   [32m║[39m
-   [32m║[39m                                          [32m║[39m
-[32m   ╚══════════════════════════════════════════╝[39m
-[32m[39m",
-    ],
-    Array [
-      "qrscanner ./qrCode.jpg --clear",
-      "
+    "qrscanner ./qrCode.jpg",
+    "This message is written in a QR Code",
+  ],
+  Array [
+    "qrscanner ./qrCode.jpg --clear",
+    "
 This message is written in a QR Code",
-    ],
   ],
 ]
 `)
-  expect(yargsMocked.options.mock.calls[0]).toMatchInlineSnapshot(`
-Array [
-  Object {
-    "clear": Object {
-      "alias": "c",
-      "boolean": true,
-      "default": false,
-      "description": "Clear output, just print the QR Code scan result",
-    },
-    "clipboard": Object {
-      "alias": "p",
-      "boolean": true,
-      "default": false,
-      "description": "Copy the qr code value to your clipboard",
-    },
-    "open": Object {
-      "alias": "o",
-      "boolean": true,
-      "default": false,
-      "description": "Open the qr code value in any browser or program if support it",
-    },
+  expect(yargsMocked.options.mock.calls[0][0]).toMatchInlineSnapshot(`
+Object {
+  "clear": Object {
+    "alias": "c",
+    "boolean": true,
+    "default": false,
+    "description": "Clear output, just print the QR Code scan result",
   },
-]
+  "clipboard": Object {
+    "alias": "p",
+    "boolean": true,
+    "default": false,
+    "description": "Copy the qr code value to your clipboard",
+  },
+  "open": Object {
+    "alias": "o",
+    "boolean": true,
+    "default": false,
+    "description": "Open the qr code value in any browser or program if support it",
+  },
+}
 `)
 })
