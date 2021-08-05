@@ -27,9 +27,3 @@ export const doOpen: FlagFunction = (flags) => (text) => {
   }
   return text
 }
-
-export default {
-  outputText,
-  doFlagClipboard,
-  doOpen,
-}
