@@ -13,7 +13,11 @@ const execution = (args: string[]): Promise<void> | void => {
       ['qrscanner ./qrCode.jpg --clear', '\nThis message is written in a QR Code'],
     ])
     .command('$0 <file>', 'Scan a QR Code from a file')
-    .positional('file', { describe: 'Path to the file to scan', type: 'string', demandOption: true })
+    .positional('file', {
+      describe: 'Path to the file to scan',
+      type: 'string',
+      demandOption: true,
+    })
     .options(flags)
     .help()
 
