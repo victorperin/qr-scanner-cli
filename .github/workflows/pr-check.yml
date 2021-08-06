@@ -50,8 +50,6 @@ jobs:
       - name: 🐛 Test on Ubuntu
         if: matrix.os == 'ubuntu-latest'
         run: xvfb-run npm run test:coverage
-        env:
-          COVERALLS_REPO_TOKEN: gFsy9Nv3L01rcg0NX5C8KzktUbjA4rFWn
 
       - name: 🐛 Test on other os
         if: matrix.os != 'ubuntu-latest'
@@ -62,3 +60,8 @@ jobs:
         uses: paambaati/codeclimate-action@v2.7.4
         env:
           CC_TEST_REPORTER_ID: 7224dfa80ac316eaffa0c0d753c472d455d995ac1a10dd2ff66462ad48b70577
+
+      - name: publish code coverage on Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
