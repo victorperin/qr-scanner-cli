@@ -37,8 +37,8 @@
     "yargs": "^17.1.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^12.1.4",
-    "@commitlint/config-conventional": "^12.1.4",
+    "@commitlint/cli": "^13.1.0",
+    "@commitlint/config-conventional": "^13.1.0",
     "@istanbuljs/nyc-config-typescript": "^1.0.1",
     "@stryker-mutator/core": "^5.2.3",
     "@stryker-mutator/jest-runner": "^5.2.3",
