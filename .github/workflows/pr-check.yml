@@ -62,6 +62,7 @@ jobs:
           CC_TEST_REPORTER_ID: 7224dfa80ac316eaffa0c0d753c472d455d995ac1a10dd2ff66462ad48b70577
 
       - name: publish code coverage on Coveralls
+        if: matrix.os == 'ubuntu-latest'
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
