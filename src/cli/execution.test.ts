@@ -14,6 +14,8 @@ yargsMocked.strict.mockReturnValue(yargsMocked)
 yargsMocked.example.mockReturnValue(yargsMocked)
 yargsMocked.options.mockReturnValue(yargsMocked)
 yargsMocked.help.mockReturnValue(yargsMocked)
+yargsMocked.command.mockReturnValue(yargsMocked)
+yargsMocked.positional.mockReturnValue(yargsMocked)
 const defaultArgv = createMock<Arguments>({})
 
 const greenBoxMocked = mocked(greenBox)
@@ -26,12 +28,13 @@ jest.mock('../infrastructure/boxen', () => ({
 
 beforeEach(jest.clearAllMocks)
 beforeEach(() => (yargsMocked.argv = defaultArgv))
+beforeEach(() => yargsMocked.help.mockReturnValue(yargsMocked))
 
 test('should execute scanFrom file', async () => {
   scanFromFileMocked.mockResolvedValue()
   yargsMocked.argv = {
     ...defaultArgv,
-    _: ['MOCKED FILE PATH'],
+    file: 'MOCKED FILE PATH',
     biru: 'leibe',
   }
   await execution(['MOCKED FILE PATH', '--biru', 'leibe'])
@@ -46,7 +49,7 @@ test('should catch if scanFromFile fails', async () => {
 
   yargsMocked.argv = {
     ...defaultArgv,
-    _: ['MOCKED FILE PATH'],
+    file: 'MOCKED FILE PATH',
     biru: 'leibe',
   }
   await execution(['MOCKED FILE PATH', '--biru', 'leibe'])
@@ -58,14 +61,36 @@ test('should catch if scanFromFile fails', async () => {
 
 test('should warn if no argument passed', async () => {
   scanFromFileMocked.mockResolvedValue()
-  jest.spyOn(global.console, 'warn').mockReturnValue()
+  yargsMocked.mockImplementationOnce(() => {
+    throw new Error('teste')
+  })
 
+  const expectedExecution = () => execution([])
+
+  expect(expectedExecution).toThrow()
+  expect(scanFromFileMocked).not.toBeCalled()
+})
+
+test('should provide command and positional', async () => {
   await execution([])
 
-  expect(scanFromFileMocked).not.toBeCalled()
-  expect(yargsMocked.showHelp).toBeCalled()
-  expect(yargsMocked.exit).toBeCalledWith(1, new Error('missing file path'))
-  expect(console.warn).toBeCalledWith('[WARNING] Missing argument file: qrscanner <file>!')
+  expect(greenBoxMocked).toBeCalled()
+  expect(yargsMocked.command.mock.calls[0]).toMatchInlineSnapshot(`
+    Array [
+      "$0 <file>",
+      "Scan a QR Code from a file",
+    ]
+  `)
+  expect(yargsMocked.positional.mock.calls[0]).toMatchInlineSnapshot(`
+    Array [
+      "file",
+      Object {
+        "demandOption": true,
+        "describe": "Path to the file to scan",
+        "type": "string",
+      },
+    ]
+  `)
 })
 
 test('should provide examples and options', async () => {
@@ -73,38 +98,38 @@ test('should provide examples and options', async () => {
 
   expect(greenBoxMocked).toBeCalled()
   expect(yargsMocked.example.mock.calls[0][0]).toMatchInlineSnapshot(`
-Array [
-  Array [
-    "qrscanner ./qrCode.jpg",
-    "This message is written in a QR Code",
-  ],
-  Array [
-    "qrscanner ./qrCode.jpg --clear",
-    "
-This message is written in a QR Code",
-  ],
-]
-`)
+    Array [
+      Array [
+        "qrscanner ./qrCode.jpg",
+        "This message is written in a QR Code",
+      ],
+      Array [
+        "qrscanner ./qrCode.jpg --clear",
+        "
+    This message is written in a QR Code",
+      ],
+    ]
+  `)
   expect(yargsMocked.options.mock.calls[0][0]).toMatchInlineSnapshot(`
-Object {
-  "clear": Object {
-    "alias": "c",
-    "boolean": true,
-    "default": false,
-    "description": "Clear output, just print the QR Code scan result",
-  },
-  "clipboard": Object {
-    "alias": "p",
-    "boolean": true,
-    "default": false,
-    "description": "Copy the qr code value to your clipboard",
-  },
-  "open": Object {
-    "alias": "o",
-    "boolean": true,
-    "default": false,
-    "description": "Open the qr code value in any browser or program if support it",
-  },
-}
-`)
+    Object {
+      "clear": Object {
+        "alias": "c",
+        "boolean": true,
+        "default": false,
+        "description": "Clear output, just print the QR Code scan result",
+      },
+      "clipboard": Object {
+        "alias": "p",
+        "boolean": true,
+        "default": false,
+        "description": "Copy the qr code value to your clipboard",
+      },
+      "open": Object {
+        "alias": "o",
+        "boolean": true,
+        "default": false,
+        "description": "Open the qr code value in any browser or program if support it",
+      },
+    }
+  `)
 })
