@@ -6,6 +6,7 @@ import { Bitmap } from '@jimp/core'
 
 /**
  * You can pass a jimp Bitmap, this functions reads it's content and tries to find a QR Code, returning it's result
+ *
  * ```javascript
  * import Jimp from 'jimp'
  *
