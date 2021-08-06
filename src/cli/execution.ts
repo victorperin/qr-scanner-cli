@@ -12,21 +12,20 @@ const execution = (args: string[]): Promise<void> | void => {
       ['qrscanner ./qrCode.jpg', greenBox('This message is written in a QR Code', { margin: 1 })],
       ['qrscanner ./qrCode.jpg --clear', '\nThis message is written in a QR Code'],
     ])
+    .command('$0 <file>', 'Scan a QR Code from a file')
+    .positional('file', {
+      describe: 'Path to the file to scan',
+      type: 'string',
+      demandOption: true,
+    })
     .options(flags)
     .help()
 
   const argv = yargsInstance.argv
 
-  if (!argv['_'].length) {
-    console.warn(`[WARNING] Missing argument file: qrscanner <file>!`)
-    yargsInstance.showHelp()
-    return yargsInstance.exit(1, new Error('missing file path'))
-  }
+  const { _, $0, file, ...flagsTreated } = argv
 
-  const { _, $0, ...flagsTreated } = argv
-  const filePath = _[0].toString()
-
-  return scanFromFileOnCli(filePath, flagsTreated).catch((error: Error) => {
+  return scanFromFileOnCli(file, flagsTreated).catch((error: Error) => {
     console.error(error.message)
     return yargsInstance.exit(1, error)
   })
