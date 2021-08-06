@@ -55,7 +55,7 @@
     "eslint-plugin-prettier": "^3.4.0",
     "execa": "^5.1.1",
     "gh-pages": "^3.2.3",
-    "husky": "^6.0.0",
+    "husky": "^7.0.1",
     "jest": "^27.0.6",
     "jest-extended": "^0.11.5",
     "jest-ts-auto-mock": "^2.0.0",
