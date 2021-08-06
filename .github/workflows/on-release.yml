@@ -2,7 +2,7 @@ name: Deploy
 on:
   workflow_run:
     workflows: ["pr-check"]
-    branches: [main]
+    branches: ["main"]
     types:
       - completed
 
