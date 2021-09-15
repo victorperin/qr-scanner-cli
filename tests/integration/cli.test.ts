@@ -85,13 +85,12 @@ test('Should handle file not found', async () => {
 
 test('Should handle invalid file (no QR-Code)', async () => {
   expect.assertions(2)
-  await execute(['tests/fixture/invalid.jpg'])
-    .catch(err => {
-      const { failed, stderr } = err
+  await execute(['tests/fixture/invalid.jpg']).catch((err) => {
+    const { failed, stderr } = err
 
-      const result = stderr
-      const expected = ERROR.PATTERN_NOT_FOUND
-      expect(failed).toBeTruthy()
-      expect(result).toEqual(expect.stringContaining(expected))
-    })
+    const result = stderr
+    const expected = ERROR.PATTERN_NOT_FOUND
+    expect(failed).toBeTruthy()
+    expect(result).toEqual(expect.stringContaining(expected))
+  })
 })
