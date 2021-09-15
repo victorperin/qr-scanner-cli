@@ -37,21 +37,20 @@ beforeAll(() =>
 beforeEach(() => clipboardy.writeSync(''))
 
 test('Should read successfully the URL from QR-Code', async () => {
-  const img = 'tests/fixture/sample.jpg'
-  const { stdout } = await execute([img])
-
-  const result = stdout
+  expect.assertions(2)
+  const imgs = [
+    'tests/fixture/sample.jpg',
+    'tests/fixture/IMG_4428.jpg',
+  ]
   const expected = 'https://github.com/victorperin/qr-scanner-cli'
-  expect(result).toEqual(expect.stringContaining(expected))
-})
 
-test('Should read successfully the URL from QR-Code', async () => {
-  const img = 'tests/fixture/IMG_4428.jpg'
-  const { stdout } = await execute([img])
+  const promises = imgs.map(async img => {
+    const { stdout: result } = await execute([img])
 
-  const result = stdout
-  const expected = 'https://github.com/victorperin/qr-scanner-cli'
-  expect(result).toEqual(expect.stringContaining(expected))
+    expect(result).toEqual(expect.stringContaining(expected))
+  })
+
+  await Promise.all(promises)
 })
 
 test('Should output text to clipboard if -p is specified', async () => {
