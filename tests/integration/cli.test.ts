@@ -45,6 +45,15 @@ test('Should read successfully the URL from QR-Code', async () => {
   expect(result).toEqual(expect.stringContaining(expected))
 })
 
+test('Should read successfully the URL from QR-Code', async () => {
+  const img = 'tests/fixture/IMG_4428.jpg'
+  const { stdout } = await execute([img])
+
+  const result = stdout
+  const expected = 'https://github.com/victorperin/qr-scanner-cli'
+  expect(result).toEqual(expect.stringContaining(expected))
+})
+
 test('Should output text to clipboard if -p is specified', async () => {
   const img = 'tests/fixture/sample.jpg'
   const { stdout } = await execute([img, '-p'])
