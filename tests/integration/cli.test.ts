@@ -14,7 +14,7 @@ const CLI_PATH = './qrscanner'
   using execa with nyc is a workarround to get coverage from jest.
   More on: https://github.com/facebook/jest/issues/3190#issuecomment-354758036
 */
-const execute = (args: string[] = []) =>
+const execute = (args: string[] = []): execa.ExecaChildProcess =>
   process.env.STRYKER_TEST
     ? execa('./node_modules/.bin/nyc', ['--silent', '--no-clean', 'node', CLI_PATH, ...args])
     : execa('./node_modules/.bin/nyc', ['--silent', '--no-clean', CLI_PATH, ...args])
@@ -76,14 +76,13 @@ test('Should handle file not found', async () => {
 
 test('Should handle invalid file (no QR-Code)', async () => {
   expect.assertions(2)
-  try {
-    await execute(['tests/fixture/invalid.jpg'])
-  } catch (err) {
-    const { failed, stderr } = err
+  await execute(['tests/fixture/invalid.jpg'])
+    .catch(err => {
+      const { failed, stderr } = err
 
-    const result = stderr
-    const expected = ERROR.PATTERN_NOT_FOUND
-    expect(failed).toBeTruthy()
-    expect(result).toEqual(expect.stringContaining(expected))
-  }
+      const result = stderr
+      const expected = ERROR.PATTERN_NOT_FOUND
+      expect(failed).toBeTruthy()
+      expect(result).toEqual(expect.stringContaining(expected))
+    })
 })
