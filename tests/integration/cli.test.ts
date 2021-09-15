@@ -38,13 +38,10 @@ beforeEach(() => clipboardy.writeSync(''))
 
 test('Should read successfully the URL from QR-Code', async () => {
   expect.assertions(2)
-  const imgs = [
-    'tests/fixture/sample.jpg',
-    'tests/fixture/IMG_4428.jpg',
-  ]
+  const imgs = ['tests/fixture/sample.jpg', 'tests/fixture/IMG_4428.jpg']
   const expected = 'https://github.com/victorperin/qr-scanner-cli'
 
-  const promises = imgs.map(async img => {
+  const promises = imgs.map(async (img) => {
     const { stdout: result } = await execute([img])
 
     expect(result).toEqual(expect.stringContaining(expected))
