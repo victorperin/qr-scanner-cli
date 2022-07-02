@@ -61,7 +61,7 @@
     "lint-staged": "^11.1.2",
     "nyc": "^15.1.0",
     "prettier": "^2.4.0",
-    "semantic-release": "^17.4.7",
+    "semantic-release": "^19.0.3",
     "source-map-support": "^0.5.20",
     "ts-auto-mock": "^3.5.0",
     "ts-jest": "^27.0.5",
