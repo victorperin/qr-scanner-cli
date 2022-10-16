@@ -43,5 +43,16 @@ describe('error handler', () => {
 
       expect(functionToTest).toThrowError('[WARNING]')
     })
+
+    it('should thow error from input', () => {
+      // Arrange
+      const input = new Error('a generic error')
+
+      // Act
+      const functionToTest = () => scanFromBitmap(input)
+
+      // Assert
+      expect(functionToTest).toThrowError(input)
+    })
   })
 })
