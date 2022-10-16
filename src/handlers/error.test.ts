@@ -17,6 +17,17 @@ describe('error handler', () => {
 
       expect(functionToTest).toThrowError('[ERROR] File <SOME PATH> not found!')
     })
+
+    it('should throw error if input is a string', () => {
+      // Arrange
+      const input = 'a generic error'
+
+      // Act
+      const functionToTest = () => scanFromFile('SOME PATH')(input)
+
+      // Assert
+      expect(functionToTest).toThrowError('a generic error')
+    })
   })
 
   describe('scanFromBitmap', () => {
