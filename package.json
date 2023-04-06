@@ -34,7 +34,7 @@
     "jimp": "^0.16.1",
     "open": "^8.2.1",
     "qrcode-reader": "^1.0.4",
-    "yargs": "^17.1.1"
+    "yargs": "^17.7.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",
