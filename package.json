@@ -32,7 +32,7 @@
     "clipboardy": "^2.3.0",
     "common-tags": "^1.8.0",
     "jimp": "^0.16.1",
-    "open": "^8.2.1",
+    "open": "^8.4.2",
     "qrcode-reader": "^1.0.4",
     "yargs": "^17.1.1"
   },
