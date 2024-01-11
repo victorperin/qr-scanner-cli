@@ -10,7 +10,12 @@ module.exports = {
   testMatch: ['<rootDir>/tests/**/*.test.ts', '<rootDir>/src/**/*.test.ts'],
   modulePathIgnorePatterns: ['<rootDir>/dist/', '<rootDir>/coverage/', '<rootDir>/.nyc_output/'],
   verbose: true,
-  globals: {
-    'ts-jest': { compiler: 'ttypescript' },
+  transform: {
+    '^.+\\.tsx?$': [
+      'ts-jest',
+      {
+        compiler: 'ts-patch/compiler',
+      },
+    ],
   },
 }

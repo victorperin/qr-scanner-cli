@@ -1,20 +1,18 @@
 import 'jest-extended'
 import { scanFromBitmap } from './scanFromBitmap'
 import readQR from '../infrastructure/qrcode-reader'
-import { mocked } from 'ts-jest/utils'
 import { Bitmap } from '@jimp/core'
 import { createMock } from 'ts-auto-mock'
 import { doFlagClipboard, doOpen, FlagFunction } from '../handlers/flags'
 import errorHandlers from '../handlers/error'
-import { MockedFunction } from 'ts-jest/dist/utils/testing'
 
 jest.mock('../infrastructure/qrcode-reader')
 jest.mock('../handlers/flags')
 jest.mock('../handlers/error')
-const readQRMock = mocked(readQR)
-const doFlagClipboardMock = mocked(doFlagClipboard)
-const doOpenMock = mocked(doOpen)
-const errorHandlerMock = mocked(errorHandlers.scanFromBitmap)
+const readQRMock = jest.mocked(readQR)
+const doFlagClipboardMock = jest.mocked(doFlagClipboard)
+const doOpenMock = jest.mocked(doOpen)
+const errorHandlerMock = jest.mocked(errorHandlers.scanFromBitmap)
 
 readQRMock.mockResolvedValue('readQR fake result')
 doFlagClipboardMock.mockImplementation(() => jest.fn((result) => result))
@@ -31,7 +29,7 @@ describe('scanFromBitmap', () => {
   })
 
   describe('flags tests', () => {
-    type FlagMockedFunction = MockedFunction<FlagFunction>
+    type FlagMockedFunction = jest.MockedFn<FlagFunction>
     type FlagsTestTuple = [string, FlagMockedFunction]
 
     const flags: FlagsTestTuple[] = [

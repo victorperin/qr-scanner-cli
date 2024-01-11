@@ -5,7 +5,7 @@ import { scanFromFileOnCli } from '../pipelines/scanFromFile'
 import { greenBox } from '../infrastructure/boxen'
 import flags from './flags'
 
-const execution = (args: string[]): Promise<void> | void => {
+const execution = async (args: string[]): Promise<void> => {
   const yargsInstance = yargs(args)
     .strict()
     .example([
@@ -21,7 +21,7 @@ const execution = (args: string[]): Promise<void> | void => {
     .options(flags)
     .help()
 
-  const argv = yargsInstance.argv
+  const argv = await yargsInstance.argv
 
   const { _, $0, file, ...flagsTreated } = argv
 
