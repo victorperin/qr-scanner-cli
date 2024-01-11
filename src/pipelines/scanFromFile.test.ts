@@ -1,4 +1,3 @@
-import { mocked } from 'ts-jest/utils'
 import * as jimp from '../infrastructure/jimp'
 import clipboardy from 'clipboardy'
 import open from 'open'
@@ -11,12 +10,12 @@ import { Bitmap } from '@jimp/core'
 import { scanFromFileOnCli, scanFromFile } from './scanFromFile'
 import { Flags } from '../cli/flags'
 
-const JimpMocked = mocked(jimp, true)
-const clipboardyMocked = mocked(clipboardy, true)
-const openMocked = mocked(open, true)
-const qrReaderMocked = mocked(qrReader, true)
-const boxenMocked = mocked(boxen, true)
-const errorHandlerMocked = mocked(errorHandler, true)
+const JimpMocked = jest.mocked(jimp, true)
+const clipboardyMocked = jest.mocked(clipboardy, true)
+const openMocked = jest.mocked(open, true)
+const qrReaderMocked = jest.mocked(qrReader, true)
+const boxenMocked = jest.mocked(boxen, true)
+const errorHandlerMocked = jest.mocked(errorHandler, true)
 
 jest.mock('clipboardy')
 jest.mock('open')

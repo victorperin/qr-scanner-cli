@@ -1,8 +1,7 @@
-import { mocked } from 'ts-jest/utils'
 import boxen from 'boxen'
 import { greenBox } from './boxen'
 
-const boxenMocked = mocked(boxen, true)
+const boxenMocked = jest.mocked(boxen)
 
 jest.mock('boxen')
 beforeEach(() => boxenMocked.mockReset())

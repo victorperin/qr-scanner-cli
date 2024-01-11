@@ -1,11 +1,10 @@
-import { mocked } from 'ts-jest/utils'
 import { createMock } from 'ts-auto-mock'
 import Jimp from 'jimp'
 import { Bitmap } from '@jimp/core'
 import { getBitmap } from './jimp'
 
 jest.mock('jimp', () => ({ read: jest.fn() }))
-const jimpMock = mocked(Jimp)
+const jimpMock = jest.mocked(Jimp)
 beforeEach(jimpMock.read.mockReset)
 
 describe('jimp/getBitmap', () => {
