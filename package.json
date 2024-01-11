@@ -31,7 +31,6 @@
     "boxen": "^5.1.2",
     "chalk": "^4.1.2",
     "clipboardy": "^2.3.0",
-    "common-tags": "^1.8.2",
     "jimp": "^0.16.13",
     "open": "^8.4.2",
     "qrcode-reader": "^1.0.4",
