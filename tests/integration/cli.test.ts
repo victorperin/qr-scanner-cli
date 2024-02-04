@@ -17,13 +17,9 @@ const envVars = { LANG: 'en_US' }
   More on: https://github.com/facebook/jest/issues/3190#issuecomment-354758036
 */
 const execute = (args: string[] = []): execa.ExecaChildProcess =>
-  process.env.STRYKER_TEST
-    ? execa('./node_modules/.bin/nyc', ['--silent', '--no-clean', 'node', CLI_PATH, ...args], {
-        env: envVars,
-      })
-    : execa('./node_modules/.bin/nyc', ['--silent', '--no-clean', CLI_PATH, ...args], {
-        env: envVars,
-      })
+  execa('./node_modules/.bin/nyc', ['--silent', '--no-clean', CLI_PATH, ...args], {
+    env: envVars,
+  })
 
 beforeAll(() => jest.setTimeout(300000))
 
