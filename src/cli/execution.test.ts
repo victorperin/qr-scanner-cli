@@ -7,7 +7,7 @@ import execution from './execution'
 
 const scanFromFileMocked = jest.mocked(scanFromFileOnCli)
 
-const yargsMocked = jest.mocked(yargs, true)
+const yargsMocked = jest.mocked(yargs)
 yargsMocked.mockReturnValue(yargsMocked)
 yargsMocked.strict.mockReturnValue(yargsMocked)
 yargsMocked.example.mockReturnValue(yargsMocked)
