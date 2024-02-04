@@ -23,6 +23,7 @@ const execution = async (args: string[]): Promise<void> => {
 
   const argv = await yargsInstance.argv
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { _, $0, file, ...flagsTreated } = argv
 
   return scanFromFileOnCli(file, flagsTreated).catch((error: Error) => {
