@@ -10,12 +10,12 @@ import { Bitmap } from '@jimp/core'
 import { scanFromFileOnCli, scanFromFile } from './scanFromFile'
 import { Flags } from '../cli/flags'
 
-const JimpMocked = jest.mocked(jimp, true)
-const clipboardyMocked = jest.mocked(clipboardy, true)
-const openMocked = jest.mocked(open, true)
-const qrReaderMocked = jest.mocked(qrReader, true)
-const boxenMocked = jest.mocked(boxen, true)
-const errorHandlerMocked = jest.mocked(errorHandler, true)
+const JimpMocked = jest.mocked(jimp)
+const clipboardyMocked = jest.mocked(clipboardy)
+const openMocked = jest.mocked(open)
+const qrReaderMocked = jest.mocked(qrReader)
+const boxenMocked = jest.mocked(boxen)
+const errorHandlerMocked = jest.mocked(errorHandler)
 
 jest.mock('clipboardy')
 jest.mock('open')

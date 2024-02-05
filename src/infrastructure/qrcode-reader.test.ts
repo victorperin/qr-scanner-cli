@@ -4,7 +4,7 @@ import { createMock } from 'ts-auto-mock'
 import { Bitmap } from '@jimp/core'
 
 jest.mock('qrcode-reader')
-const qrcodeReaderLibMocked = jest.mocked(qrcodeReaderLib, true)
+const qrcodeReaderLibMocked = jest.mocked(qrcodeReaderLib)
 
 beforeEach(qrcodeReaderLibMocked.mockClear)
 

@@ -3,7 +3,7 @@ import { doOpen } from './flags'
 import { createMock } from 'ts-auto-mock'
 import { Flags } from '../cli/flags'
 
-const openMocked = jest.mocked(open, true)
+const openMocked = jest.mocked(open)
 jest.mock('open')
 beforeEach(openMocked.mockReset)
 
