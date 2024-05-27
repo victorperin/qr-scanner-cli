@@ -27,7 +27,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@jimp/core": "^0.22.10",
+    "@jimp/core": "^0.22.12",
     "@stryker-mutator/core": "^8.2.3",
     "boxen": "^5.1.2",
     "chalk": "^4.1.2",
