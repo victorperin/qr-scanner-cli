@@ -28,7 +28,7 @@
   "license": "ISC",
   "dependencies": {
     "@jimp/core": "^0.22.10",
-    "@stryker-mutator/core": "^8.2.3",
+    "@stryker-mutator/core": "^6.4.2",
     "boxen": "^5.1.2",
     "chalk": "^4.1.2",
     "clipboardy": "^2.3.0",
