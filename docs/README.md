@@ -1,4 +1,6 @@
-qr-scanner-cli / [Exports](modules.md)
+**qr-scanner-cli**
+
+***
 
 # QR Scanner CLI
 

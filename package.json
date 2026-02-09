@@ -17,7 +17,7 @@
     "test:coverage": "nyc --reporter=lcov npm run test:all",
     "test:diff": "jest --no-cache --passWithNoTests --collectCoverage=false --findRelatedTests",
     "build:doc": "typedoc",
-    "build:doc:web": "typedoc --theme ./node_modules/typedoc-neo-theme/bin/default --plugin typedoc-neo-theme --out docs-web",
+    "build:doc:web": "typedoc --html docs-web",
     "publish:docs": "gh-pages -d docs-web",
     "build": "tsc",
     "semantic-release": "semantic-release",
@@ -69,9 +69,8 @@
     "ts-node": "^10.9.2",
     "ts-patch": "^3.3.0",
     "tsc-prog": "^2.3.0",
-    "typedoc": "^0.22.18",
-    "typedoc-neo-theme": "^1.1.1",
-    "typedoc-plugin-markdown": "^3.17.1",
+    "typedoc": "^0.28.16",
+    "typedoc-plugin-markdown": "^4.10.0",
     "typescript": "~5.3.3"
   },
   "repository": {
